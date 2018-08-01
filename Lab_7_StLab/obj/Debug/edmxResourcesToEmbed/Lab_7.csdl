@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Lab_7Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UsersImages" Relationship="Self.FK__UsersImag__IdIma__0E6E26BF" FromRole="Images" ToRole="UsersImages" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pseudonym" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FieldOfActivity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="UsersImages" Relationship="Self.FK__UsersImag__IdUse__0D7A0286" FromRole="Users" ToRole="UsersImages" />
+  </EntityType>
+  <EntityType Name="UsersImages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUser" Type="Int32" Nullable="false" />
+    <Property Name="IdImage" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Images" Relationship="Self.FK__UsersImag__IdIma__0E6E26BF" FromRole="UsersImages" ToRole="Images" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__UsersImag__IdUse__0D7A0286" FromRole="UsersImages" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK__UsersImag__IdIma__0E6E26BF">
+    <End Role="Images" Type="Self.Images" Multiplicity="1" />
+    <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Images">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsersImages">
+        <PropertyRef Name="IdImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsersImag__IdUse__0D7A0286">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsersImages">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Lab_7Entities7" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Images" EntityType="Self.Images" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="UsersImages" EntityType="Self.UsersImages" />
+    <AssociationSet Name="FK__UsersImag__IdIma__0E6E26BF" Association="Self.FK__UsersImag__IdIma__0E6E26BF">
+      <End Role="Images" EntitySet="Images" />
+      <End Role="UsersImages" EntitySet="UsersImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsersImag__IdUse__0D7A0286" Association="Self.FK__UsersImag__IdUse__0D7A0286">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersImages" EntitySet="UsersImages" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
