@@ -75,3 +75,4 @@ C:\Users\Yulya\source\repos\Lab_7_StLab\Lab_7_StLab\bin\ru\EntityFramework.resou
 C:\Users\Yulya\source\repos\Lab_7_StLab\Lab_7_StLab\bin\Vse.Web.Serialization.dll
 C:\Users\Yulya\source\repos\Lab_7_StLab\Lab_7_StLab\bin\Vse.Web.Serialization.pdb
 C:\Users\Yulya\source\repos\Lab_7_StLab\Lab_7_StLab\bin\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\Yulya\source\repos\Lab_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLab.csprojResolveAssemblyReference.cache
