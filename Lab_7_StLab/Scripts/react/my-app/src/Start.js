@@ -1,8 +1,8 @@
-﻿// var React = require('react')
-// var ReactDOM = require('react-dom')
-// var axios = require('axios')
-// import App from "./Profile.js"
-// import RegistrtionForm from "./App.js"
+﻿// var React = require('react');
+// var ReactDOM = require('react-dom');
+// var axios = require('axios');
+// import App from "./Profile.js";
+// import RegistrtionForm from "./App.js";
 //
 // class UserForm extends React.Component {
 //     constructor(props) {
@@ -68,11 +68,36 @@
 // )
 
 import * as actionCreators from "./actions/index.js"
-
-var React = require('react')
+import axios from "axios";
+var React = require('react');
+import App from "./Profile.js";
 import {connect} from "react-redux";
+var ReactDOM = require('react-dom');
 
 class UserForm extends React.Component {
+
+        constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        var obj = {};
+        obj.Email = this.props.email;
+        debugger;
+        obj.Password = this.props.password;
+        axios.post('registrationform', obj)
+            .then((response)=> {
+                if (response.data == true)
+                    ReactDOM.render(
+                        <App somthing={this.props.componentWillMount} idActiveUser={this.props.activeUserId}/>,
+                        document.getElementById("app")
+                    );
+                else
+                    alert('Net takogo usera');
+            });
+    }
 
     render() {
         return (
@@ -85,13 +110,14 @@ class UserForm extends React.Component {
                     <label>Password:</label><br />
                     <input type="password" name="password" value={this.props.password} onChange={this.props.onChangePassword} />
                 </p>
-                <button onClick={this.props.loadColor(this.props.email,this.props.password)}></button>
+                <button onClick={this.handleSubmit}>Sign in</button>
             </div>
         );
     }
 }
 
 const mapStateToProps=(state)=>{
+    debugger;
     return state
 };
 

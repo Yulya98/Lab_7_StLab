@@ -1,31 +1,30 @@
 ﻿import React from 'react';
-//import Albom from './Albom'
 import MyComponent from './Albom'
 import InfoAboutYourself from './AboutYourself'
 import Posts from './Posts'
-var axios = require('axios');
+var ReactDOM = require('react-dom');
+import * as actionCreators from "./actions/index.js"
+import {connect} from "react-redux";
 
 import {
     BrowserRouter as Router,
     Route,
     Link,
     Switch,
-    Redirect
 } from 'react-router-dom'
 
 
 class App extends React.Component {
-    constructor(){
-        super();
+    constructor(props) {
+        super(props);
         debugger;
-        this.state = {activeUserId:""}
     }
 
-    componentWillMount(){
-     axios.post('searchActiveUserId')
-         .then((response) => {
-             this.setState({ activeUserId: response.data });
-         });
+    componentWillMount() {
+        if(typeof this.props.somthing != "undefined") {
+            this.props.somthing();
+        }
+        debugger;
     }
 
     render() {
@@ -38,12 +37,13 @@ class App extends React.Component {
                             <li><Link to="/albom">My albom</Link></li>
                             <li><Link to="/posts">Last posts</Link></li>
                         </ul>
-                        <hr />
+                        <hr/>
 
                         <Switch>
-                            <Route exact path="/about" component={InfoAboutYourself} />
-                            <Route exact path="/albom" component={()=> <MyComponent idActiveUser={this.state.activeUserId} />} />
-                            <Route exact path="/posts" component={Posts} />
+                            <Route exact path="/about" component={InfoAboutYourself}/>
+                            <Route exact path="/albom"
+                                   component={() => <MyComponent idActiveUser={this.props.idActiveUser}/>}/>
+                            <Route exact path="/posts" component={Posts}/>
                         </Switch>
                     </div>
                 </div>
@@ -52,9 +52,14 @@ class App extends React.Component {
     }
 }
 
-export default App;
-
 ReactDOM.render(
     <App />,
     document.getElementById("app")
-)
+);
+
+const mapStateToProps=(state)=>{
+    debugger;
+    return state
+};
+
+export default connect (mapStateToProps, actionCreators)(App);

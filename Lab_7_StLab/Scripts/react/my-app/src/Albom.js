@@ -32,7 +32,6 @@ export default class MyComponent extends React.Component {
         this.setState({
             images: [...this.state.images, objs]
         });
-        this.forceUpdate();
     }
 
     componentWillMount() {
@@ -50,7 +49,6 @@ export default class MyComponent extends React.Component {
                         images: [...this.state.images, obj]
                     });
                 }
-                console.log(this.state.images.length);
             });
     }
 

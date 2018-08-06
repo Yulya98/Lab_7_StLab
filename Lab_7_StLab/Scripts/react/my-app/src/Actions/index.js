@@ -1,6 +1,23 @@
 import axios from "axios";
-import App from "../Profile.js"
-var ReactDOM = require('react-dom');
+
+export function componentWillMount(){
+    return(dispatch)=>{
+        debugger;
+        axios.post('searchActiveUserId')
+            .then(function(response) {
+                dispatch(searchActiveUserId(response.data))
+            });
+    }
+}
+
+export function searchActiveUserId(data){
+    return{
+        type:"CHANGE_ACTIVE_USER",
+        activeUserId: data
+    }
+}
+
+
 
 export function onChangeEmail(e){
     return(dispatch)=>{dispatch(changeEmail(e))};
@@ -12,34 +29,6 @@ export function changeEmail(e){
         email: e.target.value
     }
 }
-
-export function loadColor(a,b){
-    return(dispatch)=> {
-        var obj = {};
-        obj.Email = a;
-        debugger;
-        obj.Password = b;
-        axios.post('registrationform', obj)
-            .then(function (response) {
-                dispatch(checkUser(response.data));
-            });
-    }
-}
-
-export function checkUser(response){
-    if(response == true) {
-        ReactDOM.render(
-            <App/>,
-            document.getElementById("app")
-        )
-    }else {
-        alert("Net takogo usera");
-    }
-    return{
-        type:"CHECK_USER",
-    }
-}
-
 
 export function onChangePassword(e){
     debugger;

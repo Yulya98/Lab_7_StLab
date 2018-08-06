@@ -3,7 +3,8 @@ var ReactDOM = require('react-dom');
 
 let defaultState={
     email: "",
-    password: ""
+    password: "",
+    activeUserId: ""
 }
 
 const mainReducer=(state=defaultState,action)=>{
@@ -24,6 +25,12 @@ const mainReducer=(state=defaultState,action)=>{
         return{
             ...state,
             password: action.password
+        }
+    }
+    if(action.type ==="CHANGE_ACTIVE_USER"){
+        return{
+            ...state,
+            activeUserId: action.activeUserId
         }
     }
 }
