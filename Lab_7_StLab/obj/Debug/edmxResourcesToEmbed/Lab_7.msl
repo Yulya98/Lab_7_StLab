@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище Lab_7ModelContainer" CdmEntityContainer="Lab_7Entities7">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Lab_7ModelContainer" CdmEntityContainer="Lab_7Entities9">
     <EntitySetMapping Name="Images">
       <EntityTypeMapping TypeName="Lab_7Model.Images">
         <MappingFragment StoreEntitySet="Images">
@@ -29,6 +29,17 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IdUser" ColumnName="IdUser" />
           <ScalarProperty Name="IdImage" ColumnName="IdImage" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersImagesComments">
+      <EntityTypeMapping TypeName="Lab_7Model.UsersImagesComments">
+        <MappingFragment StoreEntitySet="UsersImagesComments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

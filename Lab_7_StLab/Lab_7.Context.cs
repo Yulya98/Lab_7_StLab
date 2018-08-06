@@ -13,10 +13,10 @@ namespace Lab_7_StLab
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Lab_7Entities7 : DbContext
+    public partial class Lab_7Entities9 : DbContext
     {
-        public Lab_7Entities7()
-            : base("name=Lab_7Entities7")
+        public Lab_7Entities9()
+            : base("name=Lab_7Entities9")
         {
         }
     
@@ -28,5 +28,6 @@ namespace Lab_7_StLab
         public virtual DbSet<Images> Images { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UsersImages> UsersImages { get; set; }
+        public virtual DbSet<UsersImagesComments> UsersImagesComments { get; set; }
     }
 }

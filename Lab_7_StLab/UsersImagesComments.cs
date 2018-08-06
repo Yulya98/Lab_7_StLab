@@ -12,22 +12,14 @@ namespace Lab_7_StLab
     using System;
     using System.Collections.Generic;
     
-    public partial class UsersImages
+    public partial class UsersImagesComments
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UsersImages()
-        {
-            this.UsersImagesComments = new HashSet<UsersImagesComments>();
-        }
-    
         public int Id { get; set; }
+        public int IdPost { get; set; }
         public int IdUser { get; set; }
-        public int IdImage { get; set; }
-        public string Name { get; set; }
+        public string Comment { get; set; }
     
-        public virtual Images Images { get; set; }
         public virtual Users Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UsersImagesComments> UsersImagesComments { get; set; }
+        public virtual UsersImages UsersImages { get; set; }
     }
 }

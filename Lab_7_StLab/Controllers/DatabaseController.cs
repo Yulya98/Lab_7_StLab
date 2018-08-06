@@ -17,10 +17,18 @@ namespace Lab_7_StLab.Controllers
         }
 
         [Route("aktiveusersearch")]
-        public Users AktiveUser(Newtonsoft.Json.Linq.JObject obj)
+        public string[] PostAktiveUser()
         {
             Users user = WorkWithDb.getInformationActiveUser();
-            return user;
+            return new string[]{ user.Name, user.Surname, user.Email, user.FieldOfActivity,user.City};
+        }
+
+
+        [Route("searchActiveUserId")]
+        public string serchActiveUserId()
+        {
+            int id = WorkWithDb.getInformationActiveUser().Id;
+            return id.ToString();
         }
 
         [Route("adduser")]
@@ -31,23 +39,51 @@ namespace Lab_7_StLab.Controllers
         }
 
         [Route("searchphoto")]
-        public string[] SearchPhoto(Newtonsoft.Json.Linq.JObject list)
+        public string[] SearchPhoto(Newtonsoft.Json.Linq.JObject idUser)
         {
-            string[] array = WorkWithDb.PathPhoto().ToArray();
+            string[] array = WorkWithDb.PathPhoto(Convert.ToInt32(idUser["idActiveUers"])).ToArray();
             return array;
         }
 
         [Route("addPhoto")]
         public void AddPhoto(Newtonsoft.Json.Linq.JObject photo)
         {
-            WorkWithDb.AddNewPhoto(photo["Path"].ToString());
+            WorkWithDb.AddNewPhoto(photo["NameImg"].ToString(), photo["Path"].ToString());
         }
 
         [Route("searchPosts")]
         public string[] searchImagesPosts()
         {
             string[] posts = WorkWithDb.SearchPosts().ToArray();
-            return posts;
+            return posts; 
         }
+
+        [Route("searchComments")]
+        public string[] SearchCommentsToPosts(Newtonsoft.Json.Linq.JObject idPost)
+        {
+            string[] comments = WorkWithDb.SearchComments(Convert.ToInt32(idPost["idPost"])).ToArray();
+            return comments;
+        }
+
+        [Route("searchAuthor")]
+        public string[] AuthorNameAndImagePath(Newtonsoft.Json.Linq.JObject idPost)
+        {
+            string[] authorsPaths = WorkWithDb.AuthorNameAndImagePath(Convert.ToInt32(idPost["idPost"])).ToArray();
+            return authorsPaths;
+        }
+
+        [Route("deletePhoto")]
+        public void DeletePhoto(Newtonsoft.Json.Linq.JObject photo)
+        {
+            WorkWithDb.DeletePhoto(photo["nameImg"].ToString());
+        }
+
+        [Route("addComment")]
+        public void AddComment(Newtonsoft.Json.Linq.JObject photo)
+        {
+            WorkWithDb.AddComment(Convert.ToInt32(photo["idPost"]), photo["text"].ToString());
+        }
+
     }
 }
+                                                            

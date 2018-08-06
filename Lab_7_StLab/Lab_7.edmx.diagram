@@ -4,12 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="efbf8766e7654359a36ce609d4c02d14" Name="Diagram1">
-        <EntityTypeShape EntityType="Lab_7Model.Images" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lab_7Model.Users" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lab_7Model.UsersImages" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+      <Diagram DiagramId="46e0e51ec70241b39dda394e57b65c49" Name="Diagram1">
+        <EntityTypeShape EntityType="Lab_7Model.Images" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lab_7Model.Users" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lab_7Model.UsersImages" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lab_7Model.UsersImagesComments" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdIma__0E6E26BF" ManuallyRouted="false" />
         <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdUse__0D7A0286" ManuallyRouted="false" />
+        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdUse__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdPos__29221CFB" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

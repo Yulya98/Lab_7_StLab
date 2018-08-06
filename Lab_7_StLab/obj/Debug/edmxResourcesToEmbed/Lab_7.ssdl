@@ -27,6 +27,16 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdUser" Type="int" Nullable="false" />
     <Property Name="IdImage" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="UsersImagesComments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdPost" Type="int" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="text" Nullable="false" />
   </EntityType>
   <Association Name="FK__UsersImag__IdIma__0E6E26BF">
     <End Role="Images" Type="Self.Images" Multiplicity="1" />
@@ -37,6 +47,18 @@
       </Principal>
       <Dependent Role="UsersImages">
         <PropertyRef Name="IdImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsersImag__IdPos__29221CFB">
+    <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="1" />
+    <End Role="UsersImagesComments" Type="Self.UsersImagesComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UsersImages">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsersImagesComments">
+        <PropertyRef Name="IdPost" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -52,17 +74,38 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__UsersImag__IdUse__2A164134">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersImagesComments" Type="Self.UsersImagesComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsersImagesComments">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище Lab_7ModelContainer">
     <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsersImages" EntityType="Self.UsersImages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersImagesComments" EntityType="Self.UsersImagesComments" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__UsersImag__IdIma__0E6E26BF" Association="Self.FK__UsersImag__IdIma__0E6E26BF">
       <End Role="Images" EntitySet="Images" />
       <End Role="UsersImages" EntitySet="UsersImages" />
     </AssociationSet>
+    <AssociationSet Name="FK__UsersImag__IdPos__29221CFB" Association="Self.FK__UsersImag__IdPos__29221CFB">
+      <End Role="UsersImages" EntitySet="UsersImages" />
+      <End Role="UsersImagesComments" EntitySet="UsersImagesComments" />
+    </AssociationSet>
     <AssociationSet Name="FK__UsersImag__IdUse__0D7A0286" Association="Self.FK__UsersImag__IdUse__0D7A0286">
       <End Role="Users" EntitySet="Users" />
       <End Role="UsersImages" EntitySet="UsersImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsersImag__IdUse__2A164134" Association="Self.FK__UsersImag__IdUse__2A164134">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersImagesComments" EntitySet="UsersImagesComments" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -222,6 +222,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IlyaTupitsaController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,14 +231,14 @@
       <DependentUpon>Lab_7.tt</DependentUpon>
     </Compile>
     <Compile Include="Lab_7.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Lab_7.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Lab_7.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Lab_7.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Lab_7.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -251,6 +252,9 @@
     <Compile Include="UsersImages.cs">
       <DependentUpon>Lab_7.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsersImagesComments.cs">
+      <DependentUpon>Lab_7.tt</DependentUpon>
+    </Compile>
     <Compile Include="WorkWithDb.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -262,13 +266,16 @@
     <Content Include="Global.asax" />
     <Content Include="Lab_7.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Lab_7.edmx</DependentUpon>
       <LastGenOutput>Lab_7.Context.cs</LastGenOutput>
+      <DependentUpon>Lab_7.edmx</DependentUpon>
+    </Content>
+    <Content Include="Lab_7.edmx.diagram">
+      <DependentUpon>Lab_7.edmx</DependentUpon>
     </Content>
     <Content Include="Lab_7.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Lab_7.edmx</DependentUpon>
       <LastGenOutput>Lab_7.cs</LastGenOutput>
+      <DependentUpon>Lab_7.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\react-dom.js" />
     <Content Include="Scripts\react.js" />
@@ -297,9 +304,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Lab_7.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Lab_7.edmx.diagram">
-      <DependentUpon>Lab_7.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

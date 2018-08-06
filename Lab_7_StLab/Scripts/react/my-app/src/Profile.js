@@ -3,6 +3,7 @@
 import MyComponent from './Albom'
 import InfoAboutYourself from './AboutYourself'
 import Posts from './Posts'
+var axios = require('axios');
 
 import {
     BrowserRouter as Router,
@@ -14,6 +15,19 @@ import {
 
 
 class App extends React.Component {
+    constructor(){
+        super();
+        debugger;
+        this.state = {activeUserId:""}
+    }
+
+    componentWillMount(){
+     axios.post('searchActiveUserId')
+         .then((response) => {
+             this.setState({ activeUserId: response.data });
+         });
+    }
+
     render() {
         return (
             <Router>
@@ -28,7 +42,7 @@ class App extends React.Component {
 
                         <Switch>
                             <Route exact path="/about" component={InfoAboutYourself} />
-                            <Route exact path="/albom" component={MyComponent} />
+                            <Route exact path="/albom" component={()=> <MyComponent idActiveUser={this.state.activeUserId} />} />
                             <Route exact path="/posts" component={Posts} />
                         </Switch>
                     </div>

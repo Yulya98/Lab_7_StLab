@@ -18,6 +18,7 @@ namespace Lab_7_StLab
         public Users()
         {
             this.UsersImages = new HashSet<UsersImages>();
+            this.UsersImagesComments = new HashSet<UsersImagesComments>();
         }
     
         public int Id { get; set; }
@@ -32,5 +33,7 @@ namespace Lab_7_StLab
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersImages> UsersImages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsersImagesComments> UsersImagesComments { get; set; }
     }
 }

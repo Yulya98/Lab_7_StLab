@@ -12,11 +12,13 @@ class InfoAboutYourself extends React.Component {
         this.setState(state);
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        debugger;
         axios.post('aktiveusersearch')
             .then((response) => {
+                debugger;
                 console.log(response.data.City)
-                this.setState({ name: response.data.Name, surname: response.data.Surname, pseoudonym: response.data.Pseoudonym, email: response.data.Email, sphere: response.data.FieldOfActivity, city: response.data.City });
+                this.setState({ name: response.data[0], surname: response.data[1], email: response.data[2], sphere: response.data[3], city: response.data[4] });
             });
     }
 
