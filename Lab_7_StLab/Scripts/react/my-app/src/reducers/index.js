@@ -77,30 +77,35 @@ const mainReducer=(state=defaultState,action)=>{
 
     if(action.type === "CHANGE_IMAGES"){
         return{
+            ...state,
             images: action.images
         }
     }
 
     if(action.type === "CHANGE_DELETE_ITEM"){
         return{
+            ...state,
             deleteItem: action.deleteItem
         }
     }
 
     if(action.type === "CHANGE_NAME_IMAGE"){
         return{
+            ...state,
             nameImg: action.nameImg
         }
     }
 
     if(action.type === "CHANGE_PATH"){
         return{
+            ...state,
             path: action.path
         }
     }
 
     if(action.type === "CHANGE_ID_POST_AND_VISIBLE"){
         return{
+            ...state,
             idPost:action.idPost,
             isVisiblePost: action.isVisiblePost,
             isVisiblePosts: action.isVisiblePosts
@@ -109,6 +114,7 @@ const mainReducer=(state=defaultState,action)=>{
 
     if(action.type === "ADD_ITEM") {
         return {
+            ...state,
             currentImage: action.currentImage,
             lightboxIsOpen: action.lightboxIsOpen,
             subPosts: action.subPosts
@@ -117,6 +123,7 @@ const mainReducer=(state=defaultState,action)=>{
 
     if(action.type === "CLOSE_IMAGE"){
         return{
+            ...state,
             currentImage: action.currentImage,
             lightboxIsOpen: action.lightboxIsOpen
         }
@@ -124,17 +131,20 @@ const mainReducer=(state=defaultState,action)=>{
 
     if(action.type === "TO_PREVIOUS_PHOTO"){
         return{
+            ...state,
             currentImage: action.currentImage
         }
     }
     if(action.type === "GO_TO_NEXT_PHOTO"){
         return{
+            ...state,
             currentImage: action.currentImage
         }
     }
 
     if(action.type === "CHANGE_ID_USER"){
         return{
+            ...state,
             isVisibleAlbum: action.isVisibleAlbum,
             idUser: action.idUser,
             isVisiblePosts: action.isVisiblePosts
@@ -156,12 +166,14 @@ const mainReducer=(state=defaultState,action)=>{
     }
     if(action.type === "SCROLL_UP_EVENT"){
         return{
+            ...state,
             subPosts:action.subPosts
         }
     }
 
     if(action.type === "SCROLL_DOWN_EVENT"){
         return{
+            ...state,
             subPosts: action.subPosts
         }
     }
@@ -182,6 +194,7 @@ const mainReducer=(state=defaultState,action)=>{
 
     if(action.type === "CHANGE_COMMENT"){
         return{
+            ...state,
             comment: action.comment
         }
     }

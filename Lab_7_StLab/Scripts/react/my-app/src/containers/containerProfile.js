@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from "react-redux";
-import * as actionCreators from "../actions/actionAthorization.js"
 import Profile from "../components/Profile"
 
 
@@ -19,4 +18,4 @@ const mapStateToProps=(state)=>{
     return state
 };
 
-export default connect (mapStateToProps, actionCreators)(ContainerProfile);
+export default connect (mapStateToProps)(ContainerProfile);
