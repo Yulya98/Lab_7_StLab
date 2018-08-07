@@ -1,5 +1,6 @@
 ﻿import ImageGallery from 'react-image-gallery'
 var axios = require('axios')
+import React from 'react';
 import "../../node_modules/react-image-gallery/styles/css/image-gallery.css"
 
 import "../../node_modules/react-image-gallery/styles/scss/image-gallery.scss"
@@ -20,11 +21,14 @@ export default class Album extends React.Component {
         axios.post('deletePhoto',obj);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         debugger;
-        this.props.returnInInitialState();
         this.props.loadData();
         this.props.loadImages(this.props.activeUserId);
+    }
+
+    componentWillUnmount(){
+        this.props.returnInInitialState();
     }
 
     render() {
@@ -34,7 +38,7 @@ export default class Album extends React.Component {
                 <div>
                     <input type="text" name="value" value={this.props.path} onChange={this.props.onChangePath} />
                     <input type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage} />
-                    <button onClick={this.props.handleClick}>Add photo</button>
+                    <button onClick={() => this.props.handleClicks(this.props.nameImg, this.props.path)}>Add photo</button>
                     <h1>You haven't photos</h1>
                 </div>
             );
@@ -46,7 +50,7 @@ export default class Album extends React.Component {
                     <div>
                         <input type="text" name="value" value={this.props.path} onChange={this.props.onChangePath} />
                         <input type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage} />
-                        <button onClick={this.props.handleClick}>Add photo</button>
+                        <button onClick={() =>this.props.handleClicks(this.props.nameImg, this.props.path)}>Add photo</button>
                     </div>
                     <div>
                         <input type="text" name="deleteItem" value={this.props.deleteItem} onChange={this.props.onChangeDeleteItem} />

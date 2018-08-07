@@ -117,7 +117,7 @@ var images =[];
         debugger;
         return{
             ...state,
-            images: images
+            images: action.images
         }
     }
 

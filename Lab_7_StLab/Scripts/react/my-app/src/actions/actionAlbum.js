@@ -18,12 +18,12 @@ export function searchActiveUserId(data){
     }
 }
 
-export function  handleClick(e) {
+export function  handleClick(nameImg,value) {
     return (dispatch)=> {
         debugger;
         var obj = {};
-        obj.NameImg = this.props.nameImg;
-        obj.Path = this.props.value;
+        obj.NameImg = nameImg;
+        obj.Path = value;
         axios.post('addPhoto', obj);
         const objs = {'original': obj.NameImg, 'thumbnail': obj.NameImg, 'description': obj.Path}
         dispatch(changeState(objs));
@@ -104,7 +104,7 @@ export  function loadImg(obj) {
 export function returnInInitialState(){
     debugger;
     return (dispatch) => {
-        dispatch(returnImagesInInitialState);
+        dispatch(returnImagesInInitialState());
     }
 }
 
