@@ -5,10 +5,10 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers/index.js";
-import UserForm from './Start';
-import './index.css';
+import ContainerAuthorization from './containers/containerAuthorization';
+import Profile from './containers/containerProfile'
 
-let store = createStore(reducers, applyMiddleware(thunk))
+let store = createStore(reducers, applyMiddleware(thunk));
 
 
 
@@ -16,7 +16,10 @@ let store = createStore(reducers, applyMiddleware(thunk))
 class App extends React.Component{
     render(){
         return(
-            <UserForm></UserForm>
+            <div>
+                <Profile></Profile>
+                <ContainerAuthorization></ContainerAuthorization>
+            </div>
         )
     }
 }

@@ -1,0 +1,247 @@
+import axios from "axios";
+
+var i = -1;
+
+export function handleClick(idPost){
+    return (dispatch) =>{
+        dispatch(changeIdPost(idPost));
+    }
+}
+
+export function changeIdPost(idPost){
+    return{
+        type:"CHANGE_ID_POST_AND_VISIBLE",
+        idPost: idPost,
+        isVisiblePost: true,
+        isVisiblePosts: false
+    }
+}
+
+export function openLightbox(event, obj) {
+    return (dispatch)=> {
+        const subPosts = this.props.subPosts;
+        setTimeout(() => {
+            dispatch(changeSubPosts(subPosts, obj));
+        }, 500)
+    }
+}
+
+export function changeSubPosts(subPosts,obj ) {
+    return{
+        type:"ADD_ITEM",
+        currentImage: obj.index,
+        lightboxIsOpen: true,
+        subPosts:subPosts
+    }
+}
+
+export function closeLightbox() {
+    return (dispatch)=> {
+        dispatch(closeImg());
+    }
+}
+
+export function closeImg(){
+    return{
+        type:"CLOSE_IMAGE",
+        currentImage: 0,
+        lightboxIsOpen: false
+    }
+}
+
+export function gotoPrevious(){
+   return (dispatch) => {
+       dispatch(toPreviosPhoto());
+   }
+}
+
+export function toPreviosPhoto() {
+    return{
+        type:"TO_PREVIOUS_PHOTO",
+        currentImage: this.props.currentImage-1
+    }
+}
+
+export function gotoNext() {
+    return (dispatch) => {
+        dispatch(gotoNextPhoto());
+    }
+}
+
+export function gotoNextPhoto() {
+    return{
+        type:"GO_TO_NEXT_PHOTO",
+        currentImage: this.props.currentImage + 1
+    }
+}
+
+export function goToAlbum(idUser){
+    return (dispatch) => {
+        dispatch(idUserChange(idUser));
+    }
+}
+
+export  function idUserChange(idUser) {
+    return{
+        type:"CHANGE_ID_USER",
+        idUser: idUser,
+        isVisibleAlbum: true,
+        isVisiblePosts: false
+    }
+}
+
+export function componentWillMount() {
+    return (dispatch) => {
+        axios.post('searchPosts')
+            .then((response) => {
+                debugger;
+                for (var i = 0; i < response.data.length; i += 4) {
+                    debugger;
+                    const obj = {
+                        postId: response.data[i],
+                        authorName: response.data[i + 1],
+                        image: [{src: response.data[i + 2], width: 1, height: 1}],
+                        idUser: response.data[i + 3]
+                    };
+                    dispatch(changePosts(obj));
+                }
+                var subPosts = [].concat(this.getItems()).concat(this.getItems());
+                dispatch(changeSubPostss(subPosts));
+            });
+    }
+}
+
+export function changePosts(data){
+    return {
+        type: "CHANGE_POSTS",
+        posts: data
+    }
+}
+
+function getItems() {
+    debugger;
+    if(typeof this.props.posts[0] != "undefined") {
+        i++;
+        debugger;
+        return (
+            <div><span>{this.props.posts[i].authorName}</span>
+                <Gallery photos={this.props.posts[i].image} onClick={this.props.openLightbox()}/>
+                <Lightbox images={this.props.posts[i].image}
+                          onClose={this.props.closeLightbox()}
+                          onClickPrev={this.props.gotoPrevious()}
+                          onClickNext={this.props.gotoNext()}
+                          currentImage={this.props.currentImage}
+                          isOpen={this.props.lightboxIsOpen}
+                /><button onClick={() => this.props.handleClick(this.props.posts[i].postId)}>Add comment</button>
+                <button onClick={() => this.props.goToAlbum(this.props.posts[i].idUser)}>To Album</button></div>
+        )
+    }
+    return(
+        <div>Loading...</div>
+    )
+}
+
+export function handleScrollUp(){
+    return (dispatch)=> {
+        const subPosts = [].concat(this.getItems()).concat(this.props.subPosts)
+        setTimeout(() => {
+            dispatch(scrollUp(subPosts));
+        }, 500)
+    }
+}
+
+export function scrollUp(data){
+    return{
+        type:"SCROLL_UP_EVENT",
+        subPosts: data
+    }
+}
+
+export function handleScrollDown() {
+    return (dispatch) => {
+        const subPosts = this.props.subPosts.concat(this.getItems())
+        setTimeout(() => {
+            dispatch(scrollDown(subPosts));
+        }, 500)
+    }
+}
+
+export function scrollDown(data){
+    return{
+        type:"SCROLL_DOWN_EVENT",
+        subPosts: data
+    }
+}
+
+
+export function changeSubPostss(data){
+    return {
+        type: "CHANGE_SUBPOSTS",
+        subPosts: data
+    }
+}
+
+export function  handleClick(e) {
+    return (dispatch) => {
+        e.preventDefault();
+        var obj = {};
+        obj.NameImg = this.state.nameImg;
+        obj.Path = this.state.value;
+        axios.post('addPhoto', obj);
+        const objs = {'original': obj.NameImg, 'thumbnail': obj.NameImg, 'description': obj.Path}
+        dispatch(changeState(obj));
+    }
+}
+
+export function changeState(data){
+    return{
+        type:"CHANGE_IMAGES",
+        images: data
+    }
+}
+
+export function onChangeDeleteItem(e) {
+    return (dispatch)=>
+    {
+        dispatch(changeDeleteItem)(e);
+    }
+}
+
+export function changeDeleteItem(e){
+    return{
+        type:"CHANGE_DELETE_ITEM",
+        deleteItem: e
+    }
+}
+
+export function onChangeNameImage(e) {
+    return (dispatch)=> {
+        dispatch(changeNameImage(e));
+    };
+}
+
+export function changeNameImage(e){
+    return{
+        type:"CHANGE_NAME_IMAGE",
+        nameImg: e
+    }
+}
+
+export function onChangePath(e) {
+      return (dispatch) =>{
+          dispatch(changePath(e));
+      }
+}
+
+export function changePath(e){
+    return{
+        type:"CHANGE_PATH",
+        path: e
+    }
+}
+
+export function deleteButton(deleteItem){
+    var obj = {};
+    obj.nameImg = deleteItem;
+    axios.post('deletePhoto',obj);
+}

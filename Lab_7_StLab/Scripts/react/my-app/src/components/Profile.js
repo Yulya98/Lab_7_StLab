@@ -1,10 +1,7 @@
 ﻿import React from 'react';
-import MyComponent from './Albom'
-import InfoAboutYourself from './AboutYourself'
 import Posts from './Posts'
-var ReactDOM = require('react-dom');
-import * as actionCreators from "./actions/index.js"
-import {connect} from "react-redux";
+import InfoAboutYourself from "../containers/containerAboutYourself"
+import Album from "../containers/containerAlbum"
 
 import {
     BrowserRouter as Router,
@@ -17,13 +14,6 @@ import {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        debugger;
-    }
-
-    componentWillMount() {
-        if(typeof this.props.somthing != "undefined") {
-            this.props.somthing();
-        }
         debugger;
     }
 
@@ -41,8 +31,7 @@ class App extends React.Component {
 
                         <Switch>
                             <Route exact path="/about" component={InfoAboutYourself}/>
-                            <Route exact path="/albom"
-                                   component={() => <MyComponent idActiveUser={this.props.idActiveUser}/>}/>
+                            <Route exact path="/albom" component={Album}/>
                             <Route exact path="/posts" component={Posts}/>
                         </Switch>
                     </div>
@@ -52,14 +41,4 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.render(
-    <App />,
-    document.getElementById("app")
-);
-
-const mapStateToProps=(state)=>{
-    debugger;
-    return state
-};
-
-export default connect (mapStateToProps, actionCreators)(App);
+export default  App;
