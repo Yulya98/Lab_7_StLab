@@ -27,8 +27,11 @@ let defaultState={
     comment:[]
 }
 
-const mainReducer=(state=defaultState,action)=>{
 
+
+const mainReducer=(state=defaultState,action)=>{
+debugger;
+var images =[];
     if(action.type === "CHECK_USER"){
         debugger;
         return {
@@ -78,7 +81,14 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === "CHANGE_IMAGES"){
         return{
             ...state,
-            images: action.images
+            images: [...state.images,action.images]
+        }
+    }
+
+    if(action.type === "LOAD_IMAGES"){
+        return{
+            ...state,
+            images:[...state.images,action.images]
         }
     }
 
@@ -100,6 +110,14 @@ const mainReducer=(state=defaultState,action)=>{
         return{
             ...state,
             path: action.path
+        }
+    }
+
+    if(action.type === "RETURN_IN_INITIAL_STATE_IMAGE"){
+        debugger;
+        return{
+            ...state,
+            images: images
         }
     }
 
@@ -197,6 +215,10 @@ const mainReducer=(state=defaultState,action)=>{
             ...state,
             comment: action.comment
         }
+    }
+
+    return{
+        ...state
     }
 };
 

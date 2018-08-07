@@ -1,31 +1,32 @@
 import axios from "axios";
 
 export function onChangeEmail(e){
-    return(dispatch)=>{dispatch(changeEmail(e))};
+    debugger;
+    return(dispatch)=>{dispatch(changeEmail(e.target.value))};
 }
 
 export function changeEmail(e){
+    debugger;
     return{
         type: "CHANGE_EMAIL",
-        email: e.target.value
+        email: e
     }
 }
 
 export function onChangePassword(e){
-    debugger;
-    return(dispatch)=>{dispatch(changePassword(e))};
+    return(dispatch)=>{dispatch(changePassword(e.target.value))};
 }
 
 export function changePassword(e){
+    console.log(e);
     return{
         type: "CHANGE_PASSWORD",
-        password: e.target.value
+        password: e
     }
 }
 
 export function handleSubmit(email,password){
     return(dispatch)=> {
-        e.preventDefault();
         var obj = {};
         obj.Email = email;
         debugger;
@@ -45,7 +46,7 @@ export function isVisibleProfile(data) {
         flag = false;
     }
     else{
-        flag = false;
+        flag = true;
     }
     return{
         type: "CHANGE_VISIBLE_PROFILE",

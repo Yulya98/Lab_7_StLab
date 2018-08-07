@@ -17,6 +17,6 @@ export function changeState(data) {
         surname: data[1],
         emailUser: data[2],
         sphere:data[3],
-        city:data[4],
+        city:data[4]
     }
 }

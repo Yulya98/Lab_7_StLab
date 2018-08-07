@@ -21,16 +21,20 @@ export default class Album extends React.Component {
     }
 
     componentWillMount() {
+        debugger;
+        this.props.returnInInitialState();
         this.props.loadData();
+        this.props.loadImages(this.props.activeUserId);
     }
 
     render() {
+        debugger;
         if (this.props.images.length == 0) {
             return (
                 <div>
-                    <input type="text" name="value" value={this.props.path} onChange={this.props.onChangePath()} />
-                    <input type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage()} />
-                    <button onClick={this.props.handleClick()}>Add photo</button>
+                    <input type="text" name="value" value={this.props.path} onChange={this.props.onChangePath} />
+                    <input type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage} />
+                    <button onClick={this.props.handleClick}>Add photo</button>
                     <h1>You haven't photos</h1>
                 </div>
             );
@@ -40,12 +44,12 @@ export default class Album extends React.Component {
                 <div>
                     <ImageGallery items={this.props.images} />
                     <div>
-                        <input type="text" name="value" value={this.props.path} onChange={this.props.onChangePath(this.props.path)} />
-                        <input type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage(this.props.nameImg)} />
+                        <input type="text" name="value" value={this.props.path} onChange={this.props.onChangePath} />
+                        <input type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage} />
                         <button onClick={this.props.handleClick}>Add photo</button>
                     </div>
                     <div>
-                        <input type="text" name="deleteItem" value={this.props.deleteItem} onChange={this.props.onChangeDeleteItem(this.props.deleteItem)} />
+                        <input type="text" name="deleteItem" value={this.props.deleteItem} onChange={this.props.onChangeDeleteItem} />
                         <button onClick={this.deleteButton}>Delete photo</button>
                     </div>
                 </div>
