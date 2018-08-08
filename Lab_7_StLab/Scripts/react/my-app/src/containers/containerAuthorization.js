@@ -6,7 +6,6 @@ import Authorization from "../components/Authorization"
 
 class ContainerAuthorization extends React.Component{
     render(){
-        console.log(this.props.isVisibleAuthorization );
         return(
             <div>
                 {this.props.isVisibleAuthorization && <Authorization email={this.props.email} password={this.props.password} handleSubmit={this.props.handleSubmit} changeEmail={this.props.onChangeEmail} changePassword={this.props.onChangePassword}></Authorization>}

@@ -5,7 +5,6 @@ import Profile from "../components/Profile"
 
 class ContainerProfile extends React.Component{
     render(){
-        console.log(this.props.isVisibleProfile );
         return(
             <div>
                 {this.props.isVisibleProfile && <Profile ></Profile>}

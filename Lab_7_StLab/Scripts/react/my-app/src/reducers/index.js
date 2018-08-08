@@ -32,7 +32,7 @@ let defaultState={
 const mainReducer=(state=defaultState,action)=>{
 debugger;
 var images =[];
-    if(action.type === "CHECK_USER"){
+    if(action.type === "CHECK_USER" || action.type === "GET_ITEMS"){
         debugger;
         return {
                 ...state
@@ -169,19 +169,35 @@ var images =[];
         }
     }
 
+    // if(action.type === "CHANGE_POSTS"){
+    //     return{
+    //         ...state,
+    //         posts:action.posts
+    //     }
+    // }
+
     if(action.type === "CHANGE_POSTS"){
         return{
             ...state,
-            posts:action.posts
+            posts:[...state.posts,action.posts]
         }
     }
 
+    // if(action.type === "CHANGE_SUBPOSTS"){
+    //     return {
+    //         ...state,
+    //         subPosts: action.subPosts
+    //     }
+    // }
+
     if(action.type === "CHANGE_SUBPOSTS"){
+        debugger;
         return {
             ...state,
-            subPosts: action.subPosts
+            subPosts: [...state.subPosts,action.subposts]
         }
     }
+
     if(action.type === "SCROLL_UP_EVENT"){
         return{
             ...state,
@@ -214,6 +230,44 @@ var images =[];
         return{
             ...state,
             comment: action.comment
+        }
+    }
+
+    if(action.type === "CHANGE_CURRENT_IMAGE"){
+        return{
+            ...state,
+            currentImage: action.currentImage
+        }
+    }
+
+    if(action.type === "CHANGE_LIGHTBOXES"){
+        return{
+            ...state,
+            lightboxIsOpen: action.lightboxIsOpen
+        }
+    }
+
+    if(action.type === "VISIBLE_POST"){
+        return{
+            ...state,
+            isVisiblePost: action.isVisiblePost,
+            isVisiblePosts: action.isVisiblePosts
+        }
+    }
+
+    if(action.type === "CHANGE_VISIBLE_ALBUM"){
+        return{
+            ...state,
+            isVisibleAlbum: action.isVisibleAlbum,
+            isVisiblePosts: action.isVisiblePosts
+        }
+    }
+
+    if(action.type ==="CHANGE_IN_INITIAL_STATE_IMAGES"){
+        return{
+            ...state,
+            posts: action.posts,
+            subPosts:action.subPosts
         }
     }
 

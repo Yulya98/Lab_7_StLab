@@ -15,16 +15,17 @@ export default class Album extends React.Component {
         this.deleteButton = this.deleteButton.bind(this);
     }
 
-    deleteButton(deleteItem){
+    deleteButton(){
+        debugger;
         var obj = {};
-        obj.nameImg = deleteItem;
+        obj.nameImg = this.props.deleteItem;
         axios.post('deletePhoto',obj);
     }
 
     componentDidMount() {
         debugger;
-        this.props.loadData();
-        this.props.loadImages(this.props.activeUserId);
+        this.props.loadData()
+        setTimeout(() => { this.props.loadImages(this.props.activeUserId)}, 4000);
     }
 
     componentWillUnmount(){

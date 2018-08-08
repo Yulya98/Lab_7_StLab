@@ -2,8 +2,6 @@ import axios from "axios";
 
 export function componentWillMount(){
     return(dispatch)=>{
-        debugger;
-        debugger;
         axios.post('searchActiveUserId')
             .then(function(response) {
                 dispatch(searchActiveUserId(response.data))
@@ -20,12 +18,13 @@ export function searchActiveUserId(data){
 
 export function  handleClick(nameImg,value) {
     return (dispatch)=> {
-        debugger;
+        document.getElementsByName('value').value = "";
+        document.getElementsByName('nameImg').value = "";
         var obj = {};
         obj.NameImg = nameImg;
         obj.Path = value;
         axios.post('addPhoto', obj);
-        const objs = {'original': obj.NameImg, 'thumbnail': obj.NameImg, 'description': obj.Path}
+        const objs = {'original': obj.NameImg, 'thumbnail': obj.NameImg, 'description': obj.Path};
         dispatch(changeState(objs));
     }
 }
@@ -39,7 +38,7 @@ export function changeState(data){
 
 export function onChangeDeleteItem(e) {
     return (dispatch)=>{
-        changeDeleteItem(e.target.value);
+        dispatch(changeDeleteItem(e.target.value));
     }
 }
 

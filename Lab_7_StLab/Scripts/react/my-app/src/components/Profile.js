@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import Posts from './Posts'
+import Posts from '../containers/containerPosts'
 import InfoAboutYourself from "../containers/containerAboutYourself"
 import Album from "../containers/containerAlbum"
 
