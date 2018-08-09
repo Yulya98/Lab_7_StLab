@@ -12,6 +12,7 @@ import "../../node_modules/react-image-gallery/styles/css/image-gallery-no-icon.
 export default class Album extends React.Component {
     constructor(props) {
         super(props);
+        debugger;
         this.deleteButton = this.deleteButton.bind(this);
     }
 
@@ -32,6 +33,7 @@ export default class Album extends React.Component {
     }
 
     componentWillUnmount(){
+        debugger;
         this.props.returnInInitialState();
     }
 

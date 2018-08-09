@@ -121,8 +121,10 @@ export function returnInInitialState(){
 export function returnImagesInInitialState() {
     debugger;
     return{
-        type:"RETURN_IN_INITIAL_STATE_IMAGE",
-        images: []
+        type:"RETURN_IN_INITIAL_STATE_ALBUM_PAGE",
+        images: [],
+        isVisibleAlbum: false,
+        isVisiblePosts: true
     }
 }
 
@@ -149,3 +151,4 @@ export function searchOnValue(array){
         images: array
     }
 }
+
