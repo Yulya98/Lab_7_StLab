@@ -37,13 +37,14 @@ export default class Posts extends React.Component {
         this.goToAlbum = this.goToAlbum.bind(this);
     }
 
-    handleClick(){
+    handleClick(postId){
         // debugger;
         // ReactDOM.render(
         //     <Comments idPost={idPost}/>,
         //     document.getElementById("app")
         // )
-        this.posts.visiblePost();
+        debugger;
+        this.props.visiblePost(postId);
     }
 
     openLightbox(event, obj) {

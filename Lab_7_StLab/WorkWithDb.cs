@@ -144,6 +144,10 @@ namespace Lab_7_StLab
                                 join post in context.UsersImages on author.Id equals post.IdUser
                                 where post.Id == idPost
                                 select author.Name).FirstOrDefault();
+            int authorId = (from author in context.Users
+                                join post in context.UsersImages on author.Id equals post.IdUser
+                                where post.Id == idPost
+                                select author.Id).FirstOrDefault();
             string imagePath = (from path in context.Images
                                 join post in context.UsersImages on path.Id equals post.IdImage
                                 where post.Id == idPost
@@ -151,6 +155,7 @@ namespace Lab_7_StLab
             List<string> list = new List<string>();
             list.Add(autorPost);
             list.Add(imagePath);
+            list.Add(authorId.ToString());
             return list;
         }
 

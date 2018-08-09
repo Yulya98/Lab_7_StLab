@@ -307,17 +307,19 @@ export function lightboxesIsOpen(lightboxIsOpen) {
     }
 }
 
-export function visiblePost(){
+export function visiblePost(postId){
     return (dispatch) =>{
-        dispatch(changeVisiblePost());
+        dispatch(changeVisiblePost(postId));
     }
 }
 
-export function changeVisiblePost(){
+export function changeVisiblePost(postId){
     return{
         type:"VISIBLE_POST",
+        type:"VISIBLE_POST",
         isVisiblePost: true,
-        isVisiblePosts: false
+        isVisiblePosts: false,
+        idPost: postId
     }
 }
 

@@ -1,12 +1,12 @@
 ﻿import ImageGallery from 'react-image-gallery'
-var axios = require('axios')
+import axios from "axios";
 import React from 'react';
-import "../../node_modules/react-image-gallery/styles/css/image-gallery.css"
+import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 
-import "../../node_modules/react-image-gallery/styles/scss/image-gallery.scss"
+import "../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
 
-import "../../node_modules/react-image-gallery/styles/scss/image-gallery-no-icon.scss"
-import "../../node_modules/react-image-gallery/styles/css/image-gallery-no-icon.css"
+import "../../node_modules/react-image-gallery/styles/scss/image-gallery-no-icon.scss";
+import "../../node_modules/react-image-gallery/styles/css/image-gallery-no-icon.css";
 
 
 export default class Album extends React.Component {
@@ -19,13 +19,16 @@ export default class Album extends React.Component {
         debugger;
         var obj = {};
         obj.nameImg = this.props.deleteItem;
-        axios.post('deletePhoto',obj);
+        console.log(obj.nameImg);
+        document.getElementsByName("deleteItem")[0].value = '';
+        axios.post('photoDelete', obj);
+        this.props.deleteItemFromArray(this.props.images, obj.nameImg);
     }
 
     componentDidMount() {
-        debugger;
-        this.props.loadData()
+        this.props.loadData(this.props.flagForCheckPageCommentsOrProfile);
         setTimeout(() => { this.props.loadImages(this.props.activeUserId)}, 4000);
+
     }
 
     componentWillUnmount(){

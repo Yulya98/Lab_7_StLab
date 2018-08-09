@@ -72,8 +72,8 @@ namespace Lab_7_StLab.Controllers
             return authorsPaths;
         }
 
-        [Route("deletePhoto")]
-        public void DeletePhoto(Newtonsoft.Json.Linq.JObject photo)
+        [Route("photoDelete")]
+        public void PhotoDelete(Newtonsoft.Json.Linq.JObject photo)
         {
             WorkWithDb.DeletePhoto(photo["nameImg"].ToString());
         }

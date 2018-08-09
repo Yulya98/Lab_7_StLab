@@ -24,7 +24,8 @@ let defaultState={
     posts: [],
     author: [],
     data: [],
-    comment:[]
+    comment:"",
+    flagForCheckPageCommentsOrProfile: false
 }
 
 
@@ -46,16 +47,31 @@ var images =[];
         }
     }
 
+    if(action.type === "CHANGE_LIGTBOX"){
+        return{
+            ...state,
+            currentImage: action.currentImage,
+            lightboxIsOpen: action.lightboxIsOpen
+        }
+    }
+
     if(action.type === "CHANGE_PASSWORD"){
         return{
             ...state,
             password: action.password
         }
     }
-    if(action.type ==="CHANGE_ACTIVE_USER"){
+    if(action.type === "CHANGE_ACTIVE_USER"){
         return{
             ...state,
             activeUserId: action.activeUserId
+        }
+    }
+
+    if(action.type === "CHANGE_ACTIVE_USER_FROM_COMMENTS"){
+        return{
+            ...state,
+            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile
         }
     }
 
@@ -81,7 +97,10 @@ var images =[];
     if(action.type === "CHANGE_IMAGES"){
         return{
             ...state,
-            images: [...state.images,action.images]
+            images: [...state.images,action.images],
+            nameImg: "",
+            path:""
+
         }
     }
 
@@ -215,14 +234,14 @@ var images =[];
     if(action.type === "CHANGE_AUTHOR"){
         return{
             ...state,
-            author: action.author
+            author: [...state.author,action.author]
         }
     }
 
     if(action.type === "CHANGE_DATA"){
         return{
             ...state,
-            data: action.data
+            data:[...state.data,action.data]
         }
     }
 
@@ -248,10 +267,12 @@ var images =[];
     }
 
     if(action.type === "VISIBLE_POST"){
+        debugger;
         return{
             ...state,
             isVisiblePost: action.isVisiblePost,
-            isVisiblePosts: action.isVisiblePosts
+            isVisiblePosts: action.isVisiblePosts,
+            idPost: action.idPost
         }
     }
 
@@ -268,6 +289,39 @@ var images =[];
             ...state,
             posts: action.posts,
             subPosts:action.subPosts
+        }
+    }
+
+    if(action.type === "DELETE_PHOTO_FROM_IMAGES"){
+        debugger;
+        return{
+            ...state,
+            images: action.images,
+            deleteItem: ""
+        }
+    }
+
+    if(action.type === "DELETE_PHOTOS"){
+        return{
+            ...state
+        }
+    }
+
+    if(action.type === "ADD_COMMENT"){
+        return{
+            ...state,
+            data: [...state.data, action.data]
+        }
+    }
+
+    if(action.type === "CHANGE_VISIBLE_COMMENTS"){
+        debugger;
+        return{
+            ...state,
+            isVisiblePost: action.isVisiblePost,
+            isVisibleAlbum: action.isVisibleAlbum,
+            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile,
+            activeUserId: action.activeUserId
         }
     }
 

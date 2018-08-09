@@ -1,25 +1,36 @@
 import axios from "axios";
 
-export function componentWillMount(){
+export function componentWillMount(flagForCheckPage){
     return(dispatch)=>{
-        axios.post('searchActiveUserId')
-            .then(function(response) {
-                dispatch(searchActiveUserId(response.data))
-            });
+        if(!flagForCheckPage) {
+            axios.post('searchActiveUserId')
+                .then(function (response) {
+                    dispatch(searchActiveUserIdFromProfile(response.data))
+                });
+        }
+        else {
+            dispatch(searchActiveUserIdFromComments())
+        }
     }
 }
 
-export function searchActiveUserId(data){
+export function searchActiveUserIdFromProfile(data){
     return{
         type:"CHANGE_ACTIVE_USER",
-        activeUserId: data
+        activeUserId: data,
+        flagForCheckPage: false
+    }
+}
+
+export function searchActiveUserIdFromComments(){
+    return{
+        type:"CHANGE_ACTIVE_USER_FROM_COMMENTS",
+        flagForCheckPageCommentsOrProfile: false
     }
 }
 
 export function  handleClick(nameImg,value) {
     return (dispatch)=> {
-        document.getElementsByName('value').value = "";
-        document.getElementsByName('nameImg').value = "";
         var obj = {};
         obj.NameImg = nameImg;
         obj.Path = value;
@@ -29,7 +40,7 @@ export function  handleClick(nameImg,value) {
     }
 }
 
-export function changeState(data){
+export function changeState(data){m
     return{
         type:"CHANGE_IMAGES",
         images: data
@@ -112,5 +123,29 @@ export function returnImagesInInitialState() {
     return{
         type:"RETURN_IN_INITIAL_STATE_IMAGE",
         images: []
+    }
+}
+
+export function deleteItemFromArray(array,deleteItem){
+    debugger;
+    var index = -1;
+    return (dispatch)=>{
+        for(var j=0; j<array.length;j++){
+            if(array[j].description === deleteItem)
+                index = j;
+        }
+        if(index != -1){
+            array.splice(index,1);
+            dispatch(searchOnValue(array));
+        }
+        else
+            alert("Incorrect data");
+    }
+}
+
+export function searchOnValue(array){
+    return{
+        type:"DELETE_PHOTO_FROM_IMAGES",
+        images: array
     }
 }
