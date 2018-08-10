@@ -13,6 +13,7 @@ export default class Album extends React.Component {
     constructor(props) {
         debugger;
         super(props);
+        debugger;
         this.deleteButton = this.deleteButton.bind(this);
     }
 
@@ -34,6 +35,7 @@ export default class Album extends React.Component {
     }
 
     componentWillUnmount(){
+        debugger;
         this.props.returnInInitialState();
     }
 

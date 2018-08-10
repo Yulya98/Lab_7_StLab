@@ -85,6 +85,11 @@ export default class Comments extends React.Component {
     //     // );
     // }
 
+    componentWillUnmount(){
+        debugger;
+        this.props.returnInInitialState();
+    }
+
     render() {
         debugger;
         return (

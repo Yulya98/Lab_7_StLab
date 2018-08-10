@@ -154,3 +154,19 @@ export function changeVisibleComments(idUser) {
         activeUserId: idUser
     }
 }
+
+export function returnInInitialState(){
+    return (dispatch) =>{
+        dispatch(changeInitialState())
+    }
+}
+
+export function changeInitialState() {
+    return{
+        type:"RETURN_IN_INITIAL_STATE_COMMENTS_PAGE",
+        author:[],
+        data: [],
+        isVisiblePost: false,
+        isVisiblePosts: true
+    }
+}

@@ -31,8 +31,8 @@ class App extends React.Component {
 
                         <Switch>
                             <Route exact path="/about" component={InfoAboutYourself}/>
-                            <Route exact path="/albom" component={Album}/>
-                            <Route exact path="/posts" component={Posts}/>
+                            <Route exact path="/albom" component={Album} />
+                            <Route exact path="/posts" component={Posts} />
                         </Switch>
                     </div>
                 </div>

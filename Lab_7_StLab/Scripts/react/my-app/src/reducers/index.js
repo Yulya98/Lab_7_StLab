@@ -139,7 +139,7 @@ var images =[];
         }
     }
 
-    if(action.type === "RETURN_IN_INITIAL_STATE_IMAGE"){
+    if(action.type === "RETURN_IN_INITIAL_STATE_ALBUM_PAGE"){
         debugger;
         return{
             ...state,
@@ -206,6 +206,7 @@ var images =[];
     // }
 
     if(action.type === "CHANGE_POSTS"){
+        debugger;
         return{
             ...state,
             posts:[...state.posts,action.posts]
@@ -341,6 +342,42 @@ var images =[];
             isVisiblePosts: action.isVisiblePosts,
             flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile,
             activeUserId: action.activeUserId
+        }
+    }
+    if(action.type === "CHANGE_VISIBLE"){
+        return{
+            ...state,
+            isVisibleAlbum: action.isVisibleAlbum,
+            isVisiblePosts: action.isVisiblePosts
+        }
+    }
+
+    if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
+        return{
+            author:action.author,
+            data: action.data,
+        }
+    }
+
+    if(action.type === "RETURN_IN_INITIAL_STATE_ALBUM_PAGE"){
+        return{
+            isVisibleAlbum: action.isVisibleAlbum
+        }
+    }
+
+    if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
+        return{
+            isVisibleAlbum: action.isVisibleAlbum,
+            isVisiblePosts: action.isVisiblePosts,
+            isVisiblePost: action.isVisiblePost
+        }
+    }
+
+    if(action.type === "START_POST_PAGE"){
+        return{
+            isVisiblePosts: action.isVisiblePosts,
+            isVisiblePost: action.isVisiblePost,
+            isVisibleAlbum: action.isVisibleAlbum
         }
     }
 

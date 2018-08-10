@@ -5,6 +5,11 @@ import Album from "../components/Albom"
 
 
 class ContainerAboutYourself extends React.Component{
+    constructor(){
+        super();
+
+    }
+
     render(){
         debugger;
         return(

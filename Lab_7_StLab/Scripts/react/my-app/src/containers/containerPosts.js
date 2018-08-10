@@ -7,6 +7,12 @@ import Comments from "../containers/containerComments"
 
 
 class ContainerPosts extends React.Component{
+    constructor(props){
+        super(props);
+        debugger;
+        this.props.visiblePosts();
+    }
+
     render(){
         debugger;
         return(
