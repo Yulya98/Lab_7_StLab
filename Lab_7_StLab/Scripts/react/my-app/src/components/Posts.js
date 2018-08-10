@@ -75,8 +75,9 @@ export default class Posts extends React.Component {
         this.props.changeCurrentImage(currentImage);
     }
 
-    goToAlbum(){
-        this.props.goToAlbuum();
+    goToAlbum(idUser){
+        debugger;
+        this.props.goToAlbuum(idUser);
     }
 
     callbackFunction(response){

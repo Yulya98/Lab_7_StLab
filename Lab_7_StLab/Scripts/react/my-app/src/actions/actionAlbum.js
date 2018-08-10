@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export function componentWillMount(flagForCheckPage){
+    debugger;
     return(dispatch)=>{
         if(!flagForCheckPage) {
             axios.post('searchActiveUserId')
@@ -122,7 +123,10 @@ export function returnImagesInInitialState() {
     debugger;
     return{
         type:"RETURN_IN_INITIAL_STATE_IMAGE",
-        images: []
+        images: [],
+        isVisiblePosts: true,
+        isVisiblePost: false,
+        flagForCheckAlbumInPosts: false
     }
 }
 

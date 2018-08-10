@@ -54,3 +54,17 @@ export function isVisibleProfile(data) {
         isVisibleAuthorization: flag
     }
 }
+
+export function isVisibleRegistrations(){
+    return (dispatch) =>{
+        dispatch(changeVisibleRegistration());
+    }
+}
+
+export function changeVisibleRegistration(){
+    return{
+        type:"CHANGE_VISIBLE_REGISTRATION",
+        isVisibleRegistration: true,
+        isVisibleAuthorization: false
+    }
+}

@@ -9,6 +9,7 @@ let defaultState={
     emailUser:"",
     sphere:"",
     city:"",
+    pseoudonym:"",
     images:[],
     deleteItem: "",
     nameImg: "",
@@ -25,7 +26,11 @@ let defaultState={
     author: [],
     data: [],
     comment:"",
-    flagForCheckPageCommentsOrProfile: false
+    flagForCheckPageCommentsOrProfile: false,
+    RETURN_IN_INITIAL_STATE_IMAGE: false,
+    isVisibleRegistration: false,
+    registrationEmail:"",
+    registrationPassword:""
 }
 
 
@@ -79,7 +84,9 @@ var images =[];
         return{
             ...state,
             isVisibleProfile: action.isVisibleProfile,
-            isVisibleAuthorization: action.isVisibleAuthorization
+            isVisibleAuthorization: action.isVisibleAuthorization,
+            activeUserId: action.activeUserId,
+            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile
         }
     }
 
@@ -136,7 +143,10 @@ var images =[];
         debugger;
         return{
             ...state,
-            images: action.images
+            images: action.images,
+            isVisiblePosts: action.isVisiblePosts,
+            isVisiblePost: action.isVisiblePost,
+            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
         }
     }
 
@@ -320,8 +330,89 @@ var images =[];
             ...state,
             isVisiblePost: action.isVisiblePost,
             isVisibleAlbum: action.isVisibleAlbum,
+        }
+    }
+
+    if(action.type === "CHANGE_VISIBLE"){
+        debugger;
+        return{
+            ...state,
+            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts,
+            isVisiblePosts: action.isVisiblePosts,
             flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile,
             activeUserId: action.activeUserId
+        }
+    }
+
+    if(action.type === "CHANGE_FLAG_FOR_POSTS_ALBUM"){
+        return{
+            ...state,
+            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
+        }
+    }
+
+    if(action.type === "CHANGE_NAME_REGISTRATION"){
+        return{
+            ...state,
+            name:action.name
+        }
+    }
+
+    if(action.type === "CHANGE__SURNAME_REGISTRATION"){
+        return{
+            ...state,
+            surname: action.surname
+        }
+    }
+
+    if(action.type === "CHANGE__PSEOUDONYM_REGISTRATION"){
+        return{
+            ...state,
+            pseoudonym: action.pseoudonym
+        }
+    }
+
+    if(action.type === "CHANGE__EMAIL_REGISTRATION"){
+        return{
+            ...state,
+            registrationEmail: action.registrationEmail
+        }
+    }
+
+    if(action.type === "CHANGE__SPHERE_REGISTRATION"){
+        return{
+            ...state,
+            sphere: action.sphere
+        }
+    }
+
+    if(action.type === "CHANGE__CITY_REGISTRATION"){
+        return{
+            ...state,
+            city: action.city
+        }
+    }
+
+    if(action.type === "CHANGE__PASSWORD_REGISTRATION"){
+        return{
+            ...state,
+            registrationPassword: action.registrationPassword
+        }
+    }
+
+    if(action.type === "CHANGE_VISIBLE_PROFILE_FROM_AUTHORIZATION"){
+        return{
+            ...state,
+            isVisibleProfile: action.isVisibleProfile,
+            isVisibleRegistration: action.isVisibleRegistration
+        }
+    }
+
+    if(action.type === "CHANGE_VISIBLE_REGISTRATION"){
+        return{
+            ...state,
+            isVisibleRegistration: action.isVisibleRegistration,
+            isVisibleAuthorization: action.isVisibleAuthorization
         }
     }
 

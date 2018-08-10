@@ -97,7 +97,7 @@ export default class Comments extends React.Component {
                         onClickNext={()=>this.props.gotoNext}
                         currentImage={this.props.currentImage}
                         isOpen={this.props.lightboxIsOpen}
-                    /><button onClick={()=>this.props.goToAlbum(item.idUser)}>Add comment</button></div>)}
+                    /><button onClick={()=>this.props.goToAlbum(item.idUser)}>To Album</button></div>)}
                 {this.props.data.map(item => <div><span>{item.author}</span>
                     <p>{item.text}</p></div>)}
                     <div>

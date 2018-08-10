@@ -11,6 +11,7 @@ import "../../node_modules/react-image-gallery/styles/css/image-gallery-no-icon.
 
 export default class Album extends React.Component {
     constructor(props) {
+        debugger;
         super(props);
         this.deleteButton = this.deleteButton.bind(this);
     }
@@ -26,6 +27,7 @@ export default class Album extends React.Component {
     }
 
     componentDidMount() {
+        debugger;
         this.props.loadData(this.props.flagForCheckPageCommentsOrProfile);
         setTimeout(() => { this.props.loadImages(this.props.activeUserId)}, 4000);
 

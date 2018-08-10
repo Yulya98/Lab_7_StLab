@@ -8,7 +8,7 @@ class ContainerAuthorization extends React.Component{
     render(){
         return(
             <div>
-                {this.props.isVisibleAuthorization && <Authorization email={this.props.email} password={this.props.password} handleSubmit={this.props.handleSubmit} changeEmail={this.props.onChangeEmail} changePassword={this.props.onChangePassword}></Authorization>}
+                {this.props.isVisibleAuthorization && <Authorization visibleProfile={this.props.isVisibleRegistrations} email={this.props.email} password={this.props.password} handleSubmit={this.props.handleSubmit} changeEmail={this.props.onChangeEmail} changePassword={this.props.onChangePassword}></Authorization>}
             </div>
         )
     }

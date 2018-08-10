@@ -18,6 +18,7 @@ class UserForm extends React.Component {
                     <input type="password" name="password" value={this.props.password} onChange={this.props.changePassword} />
                 </p>
                 <button onClick={()=>{this.props.handleSubmit(this.props.email, this.props.password)}}>Sign in</button>
+                <button onClick={() => {this.props.visibleProfile()}}>Registration</button>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
+import * as actionCreators from "../actions/actionProfile"
 import Profile from "../components/Profile"
 
 
@@ -17,4 +18,4 @@ const mapStateToProps=(state)=>{
     return state
 };
 
-export default connect (mapStateToProps)(ContainerProfile);
+export default connect (mapStateToProps,actionCreators)(ContainerProfile);
