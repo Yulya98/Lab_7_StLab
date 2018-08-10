@@ -27,35 +27,24 @@ export default class RegistrtionForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <p>
-                    <label>Name:</label><br />
-                    <input type="text" name="name" value={this.props.name} onChange={this.props.onChangeName} />
-                </p>
-                <p>
-                    <label>Surname:</label><br />
-                    <input type="text" name="surname" value={this.props.surname} onChange={this.props.onChangeSurname} />
-                </p>
-                <p>
-                    <label>Pseoudonym:</label><br />
-                    <input type="text" name="pseoudonym" value={this.props.pseoudonym} onChange={this.props.onChangepPseoudonym} />
-                </p>
-                <p>
-                    <label>E-mail:</label><br />
-                    <input type="text" name="email" value={this.props.email} onChange={this.props.onChangepEmail} />
-                </p>
-                <p>
-                    <label>Sphere of Activity:</label><br />
-                    <input type="text" name="sphere" value={this.props.sphere} onChange={this.props.onChangepSphere} />
-                </p>
-                <p>
-                    <label>City:</label><br />
-                    <input type="text" name="city" value={this.props.city} onChange={this.props.onChangepCity} />
-                </p>
-                <p>
-                    <label>Password:</label><br />
-                    <input type="password" name="password" value={this.props.password} onChange={this.props.onChangepPassword} />
-                </p>
-                <input type="submit" value="Sign In" />
+                <div className="container">
+                    <div id="signup">
+                        <div className="headers">
+                            <h3>Sign Up</h3><br /><br />
+                        </div>
+                        <div className="sep"></div>
+                        <div className="inputs">
+                            <input type="text" name="name" value={this.props.name} onChange={this.props.onChangeName} placeholder="name" autoFocus/><br />
+                            <input type="text" name="surname" value={this.props.surname} placeholder="surname" onChange={this.props.onChangeSurname} /><br />
+                            <input type="text" name="pseoudonym" value={this.props.pseoudonym} placeholder="pseoudonym" onChange={this.props.onChangepPseoudonym} /><br />
+                            <input type="text" name="email" value={this.props.email} onChange={this.props.onChangepEmail} placeholder="e-mail" /><br />
+                            <input type="text" name="sphere" value={this.props.sphere} onChange={this.props.onChangepSphere} placeholder="sphere" /><br />
+                            <input type="text" name="city" value={this.props.city} onChange={this.props.onChangepCity} placeholder="city"/><br />
+                            <input type="password" name="password" value={this.props.password} onChange={this.props.onChangepPassword} placeholder="Password"/><br />
+                            <input type="submit" value="Sign Up" />
+                        </div>
+                    </div>
+                </div>
             </form>
         );
     }
