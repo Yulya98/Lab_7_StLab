@@ -2,10 +2,8 @@
 var axios = require('axios');
 import Gallery from 'react-photo-gallery';
 import Lightbox from 'react-images';
-var ReactDOM = require('react-dom');
+import "../resources/css/posts/posts.css"
 import InfiniteScroll from 'react-bidirectional-infinite-scroll'
-import Comments from './Comments'
-import MyComponent from './Albom'
 
 
 
@@ -26,8 +24,6 @@ export default class Posts extends React.Component {
 
         this.callbackFunction = this.callbackFunction.bind(this);
 
-        this.handleScrollUp = this.handleScrollUp.bind(this);
-
         this.handleScrollDown = this.handleScrollDown.bind(this);
 
         this.handleOnScroll = this.handleOnScroll.bind(this);
@@ -38,11 +34,6 @@ export default class Posts extends React.Component {
     }
 
     handleClick(postId){
-        // debugger;
-        // ReactDOM.render(
-        //     <Comments idPost={idPost}/>,
-        //     document.getElementById("app")
-        // )
         debugger;
         this.props.visiblePost(postId);
     }
@@ -87,7 +78,7 @@ export default class Posts extends React.Component {
             const obj = {postId:response.data[i], authorName: response.data[i+1], image: [{src: response.data[i + 2], width:1, height:1 }], idUser:response.data[i+3]};
             this.props.changePosts(obj);
         }
-        var subPosts = [].concat(this.getItems());
+        var subPosts = [].concat(this.getItems()).concat(this.getItems());
         this.props.changeSubPosts(subPosts);
     }
 
@@ -96,10 +87,18 @@ export default class Posts extends React.Component {
     componentDidMount() {
         debugger;
         var context = this;
-        axios.post('searchPosts')
-            .then((response) => {
-                context.callbackFunction(response);
-            });
+
+        let promise = new Promise((resolve,reject )=> {
+            axios.post('defineRegistrationUser')
+                .then((response) => {
+                    context.props.changeRegistrationUser(response.data);
+                });
+            axios.post('searchPosts')
+                .then((response) => {
+                    debugger;
+                    context.callbackFunction(response);
+                });
+        });
     }
 
     getItems() {
@@ -108,16 +107,14 @@ export default class Posts extends React.Component {
             i++;
             debugger;
             return (
-                <div><span>{this.props.posts[i].authorName}</span>
-                    <Gallery photos={this.props.posts[i].image} onClick={this.openLightbox}/>
-                    <Lightbox images={this.props.posts[i].image}
-                              onClose={this.closeLightbox}
-                              onClickPrev={this.gotoPrevious}
-                              onClickNext={this.gotoNext}
-                              currentImage={this.props.currentImage}
-                              isOpen={this.props.lightboxIsOpen}
-                    /><button onClick={() => this.handleClick(this.props.posts[i].postId)}>Add comment</button>
-                    <button onClick={() => this.goToAlbum(this.props.posts[i].idUser)}>To Album</button></div>
+                <div className="post_style"><div className="spanMedium"><span>Author name:{this.props.posts[i].authorName}</span></div>
+                    <img className="image_style" src="/Scripts/react/my-app/src/zatup.jpg" />
+                    <div className="button_style_1">
+                         <button className="button_style" onClick={() => this.handleClick(this.props.posts[i].postId)}>Add comment</button>
+                    </div>
+                    <button className="button_style" onClick={() => this.goToAlbum(this.props.posts[i].idUser)}>To Album</button>
+
+                </div>
             )
         }
         return(
@@ -125,11 +122,6 @@ export default class Posts extends React.Component {
         )
     }
 
-    handleScrollUp() {
-        debugger;
-        const subPosts = [].concat(this.getItems()).concat(this.props.subPosts)
-        setTimeout(() => { this.props.changeSubPosts(subPosts)}, 500)
-    }
 
     handleScrollDown() {
         debugger;
@@ -148,30 +140,60 @@ export default class Posts extends React.Component {
     }
 
     componentWillUnmount(){
+        debugger;
         this.props.returnInInitialState();
     }
 
     render() {
         debugger;
         if (typeof this.props.posts[0] != "undefined") {
+            if(this.props.isRegistrationUser != false) {
+                return (
+                    <div className="posts_style">
+                        <div style={{
+                            height: '510px',
+                            width: '1080px',
+                            WebkitOverflowScrolling: 'touch'
+                        }}>
+                            <InfiniteScroll onReachBottom={this.handleScrollDown}
+                                            onScroll={this.handleOnScroll}
+                                            position={10}>
+                                {this.props.subPosts}
+                            </InfiniteScroll>
+                        </div>
+                    </div>
+                )
+            }
+            else{
+                return (
+                    <div>
+                    <button onClick={()=>this.props.changeVisibleAuthorization()}>Registration</button>
+                    <div className="posts_style_mini">
+                        <div style={{
+                            height: '510px',
+                            width: '1080px',
+                            WebkitOverflowScrolling: 'touch'
+                        }}>
+                            <InfiniteScroll onReachBottom={this.handleScrollDown}
+                                            onScroll={this.handleOnScroll}
+                                            position={10}>
+                                {this.props.subPosts}
+                            </InfiniteScroll>
+                        </div>
+                    </div>
+                    </div>
+                )
+            }
+        }
+        if(this.props.isRegistrationUser != false) {
             return (
-                <div
-                    style={{
-                        height: '500px',
-                        width: '1230px',
-                        WebkitOverflowScrolling: 'touch'
-                    }}>
-                    <InfiniteScroll onReachBottom={this.handleScrollDown}
-                                    onReachTop={this.handleScrollUp}
-                                    onScroll={this.handleOnScroll}
-                                    position={50}>
-                        {this.props.subPosts}
-                    </InfiniteScroll>
-                </div>
+                <div className="load_style">Loading...</div>
             )
         }
-        return(
-            <div>Loading...</div>
-        )
+        else{
+            return (
+                <div className="load_style_mini">Loading...</div>
+            )
+        }
     }
 }

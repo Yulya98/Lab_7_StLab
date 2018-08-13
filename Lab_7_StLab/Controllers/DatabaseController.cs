@@ -84,6 +84,15 @@ namespace Lab_7_StLab.Controllers
             WorkWithDb.AddComment(Convert.ToInt32(photo["idPost"]), photo["text"].ToString());
         }
 
+        [Route("defineRegistrationUser")]
+        public bool DefineRegistrationUser(Newtonsoft.Json.Linq.JObject photo)
+        {
+            int id = Users.ActiveUser;
+            if (Users.ActiveUser != -1)
+                return true;
+            else
+                return false;
+        }
     }
 }
                                                             

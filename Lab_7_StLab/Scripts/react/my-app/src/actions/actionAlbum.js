@@ -92,16 +92,20 @@ export function loadImages(activeUserId) {
         var obj = {};
         obj.idActiveUers = activeUserId;
         debugger;
-        axios.post('searchphoto', obj)
-            .then((response) => {
-                debugger;
-                for (var i = 0; i < response.data.length; i += 2) {
-                    const obj = {
-                        'original': response.data[i], 'thumbnail': response.data[i], 'description': response.data[i + 1]
+        let promise = new Promise((resolve,reject )=> {
+            axios.post('searchphoto', obj)
+                .then((response) => {
+                    debugger;
+                    for (var i = 0; i < response.data.length; i += 2) {
+                        const obj = {
+                            'original': response.data[i],
+                            'thumbnail': response.data[i],
+                            'description': response.data[i + 1]
+                        }
+                        dispatch(loadImg(obj));
                     }
-                    dispatch(loadImg(obj));
-                }
-            });
+                });
+        });
     }
 }
 
@@ -124,9 +128,8 @@ export function returnImagesInInitialState() {
     return{
         type:"RETURN_IN_INITIAL_STATE_IMAGE",
         images: [],
-        isVisiblePosts: true,
-        isVisiblePost: false,
-        flagForCheckAlbumInPosts: false
+        flagForCheckAlbumInPosts: false,
+        flagForCheckPageCommentsOrProfile: false
     }
 }
 

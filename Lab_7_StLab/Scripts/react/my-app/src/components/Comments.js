@@ -1,19 +1,17 @@
 import React from 'react';
-var axios = require('axios')
 import { render } from 'react-dom';
 import Gallery from 'react-photo-gallery';
 import Lightbox from 'react-images';
+import '../resources/css/comments/commentsStyle.css'
 
 export default class Comments extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = { data: [], idPost:this.props.idPost, currentImage: 0, author: [], comment:""};
-        // this.closeLightbox = this.closeLightbox.bind(this);
-        // this.openLightbox = this.openLightbox.bind(this);
-        // this.gotoNext = this.gotoNext.bind(this);
-        // this.gotoPrevious = this.gotoPrevious.bind(this)
-        // this.onChange = this.onChange.bind(this);
-        // this.addComment = this.addComment.bind(this);
+        this.state = { data: [], idPost:this.props.idPost, currentImage: 0, author: [], comment:""};
+        this.closeLightbox = this.closeLightbox.bind(this);
+        this.openLightbox = this.openLightbox.bind(this);
+        this.gotoNext = this.gotoNext.bind(this);
+        this.gotoPrevious = this.gotoPrevious.bind(this)
     }
 
     componentDidMount() {
@@ -43,31 +41,31 @@ export default class Comments extends React.Component {
         // debugger;
     }
 
-    // openLightbox(event, obj) {
-    //     this.setState({
-    //         currentImage: obj.index,
-    //         lightboxIsOpen: true,
-    //     });
-    // }
+    openLightbox(event, obj) {
+        this.setState({
+            currentImage: obj.index,
+            lightboxIsOpen: true,
+        });
+    }
     //
-    // closeLightbox() {
-    //     this.setState({
-    //         currentImage: 0,
-    //         lightboxIsOpen: false,
-    //     });
-    // }
+    closeLightbox() {
+        this.setState({
+            currentImage: 0,
+            lightboxIsOpen: false,
+        });
+    }
     //
-    // gotoPrevious() {
-    //     this.setState({
-    //         currentImage: this.state.currentImage - 1,
-    //     });
-    // }
-    //
-    // gotoNext() {
-    //     this.setState({
-    //         currentImage: this.state.currentImage + 1,
-    //     });
-    // }
+    gotoPrevious() {
+        this.setState({
+            currentImage: this.state.currentImage - 1,
+        });
+    }
+
+    gotoNext() {
+        this.setState({
+            currentImage: this.state.currentImage + 1,
+        });
+    }
     //
     // onChange(e) {
     //     this.setState({ [e.target.name]: e.target.value });
@@ -93,21 +91,25 @@ export default class Comments extends React.Component {
     render() {
         debugger;
         return (
-            <div>
+            <div className="commentsStyle">
                 {this.props.author.map(item => <div><span>{item.authorName}</span>
-                    <Gallery photos={item.pathToPage} onClick={() => this.props.openLightbox} />
+                    <Gallery photos={item.pathToPage} onClick={this.openLightbox} />
                     <Lightbox images={item.pathToPage}
-                        onClose={()=>this.props.closeLightbox}
-                        onClickPrev={()=>this.props.gotoPrevious}
-                        onClickNext={()=>this.props.gotoNext}
+                        onClose={this.closeLightbox}
+                        onClickPrev={this.gotoPrevious}
+                        onClickNext={this.gotoNext}
                         currentImage={this.props.currentImage}
-                        isOpen={this.props.lightboxIsOpen}
-                    /><button onClick={()=>this.props.goToAlbum(item.idUser)}>To Album</button></div>)}
+                        isOpen={this.state.lightboxIsOpen}
+                    /></div>)}
                 {this.props.data.map(item => <div><span>{item.author}</span>
                     <p>{item.text}</p></div>)}
                     <div>
-                        <input typae="text" name="comment" value={this.props.comment} onChange={this.props.onChange}/>
-                        <button onClick={()=>this.props.addComment(this.props.idPost,this.props.comment, this.props.idActiveUser)}>Add comment</button>
+                        <div className="change_position_input">
+                             <input className="edit_input" type="text" name="comment" value={this.props.comment} onChange={this.props.onChange}/><br /><br />
+                        </div>
+                        <div className="change_position_button">
+                             <button className="edit_button" onClick={()=>this.props.addComment(this.props.idPost,this.props.comment, this.props.idActiveUser)}>Add comment</button>
+                        </div>
                     </div>
             </div>
          )

@@ -2,6 +2,7 @@
 import Posts from '../containers/containerPosts'
 import InfoAboutYourself from "../containers/containerAboutYourself"
 import Album from "../containers/containerAlbum"
+import "../resources/css/profileStyle/profile.css"
 
 import {
     BrowserRouter as Router,
@@ -19,15 +20,16 @@ class App extends React.Component {
 
     render() {
         return (
+            <div>
+                <div className="header"></div>
             <Router>
-                <div className="App">
-                    <div className="container">
+                <div className="container-menu">
+                    <div className="menu">
                         <ul>
                             <li><Link to="/about">Information</Link></li>
                             <li><Link to="/albom">My albom</Link></li>
-                            <li><Link to="/posts">Last posts</Link></li>
+                            <li><Link to="/posts" id="menu_none">Last posts</Link></li>
                         </ul>
-                        <hr/>
 
                         <Switch>
                             <Route exact path="/about" component={InfoAboutYourself}/>
@@ -37,6 +39,7 @@ class App extends React.Component {
                     </div>
                 </div>
             </Router>
+            </div>
         );
     }
 }

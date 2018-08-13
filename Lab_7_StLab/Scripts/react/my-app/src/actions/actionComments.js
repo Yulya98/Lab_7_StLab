@@ -6,21 +6,23 @@ export function componentDidMount(idPost) {
         const objPost = {idPost: idPost};
         debugger;
         debugger;
-        axios.post('searchAuthor', objPost)
-            .then((response) => {
-                debugger;
-                for (var j = 0; j < response.data.length; j += 3) {
+        let promise = new Promise((resolve,reject )=> {
+            axios.post('searchAuthor', objPost)
+                .then((response) => {
                     debugger;
-                    const obj = {
-                        authorName: response.data[j],
-                        pathToPage: [{src: response.data[j + 1], width: 1, height: 1}],
-                        idUser: response.data[j+2]
-                    };
-                    dispatch(changeAuthor(obj));
-                }
-            });
+                    for (var j = 0; j < response.data.length; j += 3) {
+                        debugger;
+                        const obj = {
+                            authorName: response.data[j],
+                            pathToPage: [{src: response.data[j + 1], width: 1, height: 1}],
+                            idUser: response.data[j + 2]
+                        };
+                        dispatch(changeAuthor(obj));
+                    }
+                });
+        });
         debugger;
-        setTimeout(() => {
+        promise.then(result=> {
             axios.post('searchComments', objPost)
                 .then((response) => {
                     debugger;
@@ -30,7 +32,7 @@ export function componentDidMount(idPost) {
                         dispatch(changeData(obj));
                     }
                 });
-        },4000);
+        });
     }
 }
 
@@ -81,62 +83,6 @@ export function commentAdd(comment){
     }
 }
 
-export function openLightbox(event, obj) {
-    return (dispatch) => {
-        var currentImage = obj.index;
-        var lightboxIsOpen = true;
-        dispatch(changeLightbox(currentImage,lightboxIsOpen));
-    }
-}
-
-export function changeLightbox(currentImage,lightboxIsOpen) {
-    return{
-        type:"CHANGE_LIGTBOX",
-        currentImage: currentImage,
-        lightboxIsOpen: lightboxIsOpen
-    }
-}
-
-export function closeLightbox() {
-    return (dispatch)=> {
-        dispatch(closeImg());
-    }
-}
-
-export function closeImg(){
-    return{
-        type:"CLOSE_IMAGE",
-        currentImage: 0,
-        lightboxIsOpen: false
-    }
-}
-
-export function gotoPrevious(){
-   return (dispatch) => {
-       dispatch(toPreviosPhoto());
-   }
-}
-
-export function toPreviosPhoto() {
-    return{
-        type:"TO_PREVIOUS_PHOTO",
-        currentImage: this.props.currentImage-1
-    }
-}
-
-export function gotoNext() {
-    return (dispatch) => {
-        dispatch(gotoNextPhoto());
-    }
-}
-
-export function gotoNextPhoto() {
-    return{
-        type:"GO_TO_NEXT_PHOTO",
-        currentImage: this.props.currentImage + 1
-    }
-}
-
 export function goToAlbums(idUser) {
     debugger;
     return (dispatch) =>{
@@ -166,7 +112,7 @@ export function changeInitialState() {
         type:"RETURN_IN_INITIAL_STATE_COMMENTS_PAGE",
         author:[],
         data: [],
-        isVisiblePost: false,
-        isVisiblePosts: true
+        isVisiblePosts: true,
+        isVisiblePost: false
     }
 }

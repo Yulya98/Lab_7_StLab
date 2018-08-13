@@ -61,25 +61,26 @@ export function visiblePost(postId){
 export function changeVisiblePost(postId){
     return{
         type:"VISIBLE_POST",
-        type:"VISIBLE_POST",
         isVisiblePost: true,
         isVisiblePosts: false,
         idPost: postId
     }
 }
 
-export function goToAlbuum(){
+export function goToAlbuum(userId){
     return (dispatch) =>{
-        dispatch(changeIsVisibleAlbum())
+        dispatch(changeIsVisibleAlbum(userId))
     }
 }
 
-export function changeIsVisibleAlbum(){
+export function changeIsVisibleAlbum(userId){
 debugger;
     return{
         type:"CHANGE_VISIBLE",
-        isVisibleAlbum: true,
-        isVisiblePosts: false
+        flagForCheckAlbumInPosts: true,
+        isVisiblePosts: false,
+        activeUserId: userId,
+        flagForCheckPageCommentsOrProfile: true
     }
 }
 

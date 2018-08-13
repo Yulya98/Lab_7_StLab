@@ -7,17 +7,11 @@ import Comments from "../containers/containerComments"
 
 
 class ContainerPosts extends React.Component{
-    constructor(props){
-        super(props);
-        debugger;
-        this.props.visiblePosts();
-    }
-
     render(){
         debugger;
         return(
             <div>
-                {this.props.isVisiblePosts && <Posts returnInInitialState={this.props.returnInInitialState} changeCurrentImage={this.props.changeCurrentImage} changeLightboxIsOpen={this.props.changeLightboxIsOpen} changeSubPosts={this.props.changeSubPosts} goToAlbuum={this.props.goToAlbum} changePosts={this.props.changePosts} changeSubPosts={this.props.changeSubPosts} visiblePost={this.props.visiblePost} posts={this.props.posts} currentImage={this.props.currentImage} subPosts={this.props.subPosts} postId={this.props.postId} ></Posts>}
+                {this.props.isVisiblePosts && <Posts isVisiblePosts={this.props.isVisiblePosts} isRegistrationUser={this.props.isRegistrationUser} changeRegistrationUser={this.props.changeRegistrationUser} changeVisibleAuthorization={this.props.changeVisibleAuthorization} returnInInitialState={this.props.returnInInitialState} changeCurrentImage={this.props.changeCurrentImage} changeLightboxIsOpen={this.props.changeLightboxIsOpen} changeSubPosts={this.props.changeSubPosts} goToAlbuum={this.props.goToAlbum} changePosts={this.props.changePosts} changeSubPosts={this.props.changeSubPosts} visiblePost={this.props.visiblePost} posts={this.props.posts} currentImage={this.props.currentImage} subPosts={this.props.subPosts} postId={this.props.postId} ></Posts>}
                 {this.props.isVisiblePost && <Comments></Comments>}
                 {this.props.flagForCheckAlbumInPosts && <Album/>}
             </div>

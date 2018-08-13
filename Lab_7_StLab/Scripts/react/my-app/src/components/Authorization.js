@@ -1,6 +1,21 @@
 ﻿var React = require('react');
-import "../resources/css/authorizationStyle.css"
-import "../resources/css/authorizationAndRegistration.css"
+import "../resources/css/authorizationStyle/authorizationStyle.css"
+import "../resources/css/authorizationStyle/authorization.scss"
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
+import validator from 'validator';
+
+const required = (value) => {
+    if (!value.toString().trim().length) {
+        return 'please, input value';
+    }
+};
+
+const email = (value) => {
+    if (!validator.isEmail(value)) {
+        return `${value} is not a valid email.`
+    }
+};
 
 class UserForm extends React.Component {
 
@@ -11,38 +26,19 @@ class UserForm extends React.Component {
     render() {
         return (
             <div>
-                <div className="header">PHOTO GALLERY</div>
-                <div className="container">
-
-                    <div id="signup">
-                         <div className="headers">
-                             <h3>Sign In</h3>
-                             <p>If you haven't account click on Registration button</p>
-                         </div>
-                    <div className="sep"></div>
-                        <div className="inputs">
-
-                            <input type="email" name="email" value={this.props.email} onChange={this.props.changeEmail} placeholder="e-mail" autoFocus/><br />
-
-                            <input type="password" placeholder="Password" onChange={this.props.changePassword} name="password" value={this.props.password} /><br />
-
-                            <button className="btn-style" onClick={()=>{this.props.handleSubmit(this.props.email, this.props.password)}}>Sign in</button>
-                            <button className="btn-style" onClick={() => {this.props.visibleProfile()}}>Registration</button>
-
-                       </div>
+                <div className="login-wrap">
+                    <h2>Login</h2>
+                    <div className="form">
+                        <Form>
+                            <label>E-mail:</label><br />
+                            <Input type="text" name="email" placeholder="email" validations={[required, email]} value={this.props.email} onChange={this.props.changeEmail} /><br />
+                            <label>Password:</label><br />
+                            <Input type="password" validations={[required]} name="password" placeholder="password" value={this.props.password} onChange={this.props.changePassword} /><br />`
+                        </Form>
+                        <button onClick={()=>{this.props.handleSubmit(this.props.email, this.props.password)}}>Sign in</button>
+                        <button onClick={() => {this.props.visibleProfile()}}>Registration</button>
                     </div>
                 </div>
-
-                {/*<p>*/}
-                    {/*<label>E-mail:</label><br />*/}
-                    {/*<input type="text" name="email" value={this.props.email} onChange={this.props.changeEmail} />*/}
-                {/*</p>*/}
-                {/*<p>*/}
-                    {/*<label>Password:</label><br />*/}
-                    {/*<input type="password" name="password" value={this.props.password} onChange={this.props.changePassword} />*/}
-                {/*</p>*/}
-                {/*<button onClick={()=>{this.props.handleSubmit(this.props.email, this.props.password)}}>Sign in</button>*/}
-                {/*<button onClick={() => {this.props.visibleProfile()}}>Registration</button>*/}
             </div>
         );
     }

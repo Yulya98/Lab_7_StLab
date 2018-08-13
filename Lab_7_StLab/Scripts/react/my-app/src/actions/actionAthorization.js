@@ -31,12 +31,16 @@ export function handleSubmit(email,password){
         obj.Email = email;
         debugger;
         obj.Password = password;
-        axios.post('registrationform', obj)
-            .then((response) => {
-                if (!response.data)
-                    alert("Vas netu");
-                dispatch(isVisibleProfile(response.data));
-            });
+        let promise = new Promise((resolve,reject )=>{
+            debugger;
+            axios.post('registrationform', obj)
+                .then((response) => {
+                    if (!response.data)
+                        alert("Vas netu");
+                    dispatch(isVisibleProfile(response.data));
+                });
+        });
+
     }
 }
 

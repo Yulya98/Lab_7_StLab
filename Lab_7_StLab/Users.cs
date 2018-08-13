@@ -29,7 +29,7 @@ namespace Lab_7_StLab
         public string FieldOfActivity { get; set; }
         public string City { get; set; }
         public string Password { get; set; }
-        public static int ActiveUser { get; set; }
+        public static int ActiveUser { get; set; } = -1;
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersImages> UsersImages { get; set; }

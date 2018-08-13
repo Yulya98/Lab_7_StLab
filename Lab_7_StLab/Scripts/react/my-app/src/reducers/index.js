@@ -3,7 +3,7 @@ let defaultState={
     password: "",
     activeUserId: "",
     isVisibleProfile: false,
-    isVisibleAuthorization: true,
+    isVisibleAuthorization: false,
     name: "",
     surname:"",
     emailUser:"",
@@ -11,14 +11,12 @@ let defaultState={
     city:"",
     pseoudonym:"",
     images:[],
-    deleteItem: "",
-    nameImg: "",
-    path:"",
+    deleteItem: "Enter the name of image...",
+    nameImg: "Enter the name of image...",
+    path:"Enter the path of image...",
     idPost:"",
     isVisiblePost: false,
     isVisiblePosts: true,
-    lightboxIsOpen: false,
-    currentImage: 0,
     subPosts:[],
     idUser: 0,
     isVisibleAlbum: false,
@@ -30,7 +28,8 @@ let defaultState={
     RETURN_IN_INITIAL_STATE_IMAGE: false,
     isVisibleRegistration: false,
     registrationEmail:"",
-    registrationPassword:""
+    registrationPassword:"",
+    isRegistrationUser: false
 }
 
 
@@ -344,16 +343,10 @@ var images =[];
             activeUserId: action.activeUserId
         }
     }
-    if(action.type === "CHANGE_VISIBLE"){
-        return{
-            ...state,
-            isVisibleAlbum: action.isVisibleAlbum,
-            isVisiblePosts: action.isVisiblePosts
-        }
-    }
 
     if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
         return{
+            ...state,
             author:action.author,
             data: action.data,
         }
@@ -361,12 +354,14 @@ var images =[];
 
     if(action.type === "RETURN_IN_INITIAL_STATE_ALBUM_PAGE"){
         return{
+            ...state,
             isVisibleAlbum: action.isVisibleAlbum
         }
     }
 
     if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
         return{
+            ...state,
             isVisibleAlbum: action.isVisibleAlbum,
             isVisiblePosts: action.isVisiblePosts,
             isVisiblePost: action.isVisiblePost
@@ -375,6 +370,7 @@ var images =[];
 
     if(action.type === "START_POST_PAGE"){
         return{
+            ...state,
             isVisiblePosts: action.isVisiblePosts,
             isVisiblePost: action.isVisiblePost,
             isVisibleAlbum: action.isVisibleAlbum
@@ -450,6 +446,50 @@ var images =[];
             ...state,
             isVisibleRegistration: action.isVisibleRegistration,
             isVisibleAuthorization: action.isVisibleAuthorization
+        }
+    }
+
+    if(action.type === "RETURN_IN_INITIAL_STATE_COMMENTS_PAGE"){
+        return{
+            ...state,
+            author: action.author,
+            data:action.data,
+            isVisiblePosts: action.isVisiblePosts,
+            isVisiblePost: action.isVisiblePost
+        }
+    }
+
+    if(action.type === "POSTS_VISIBLE"){
+        return{
+            ...state,
+            isVisiblePosts: action.isVisiblePosts,
+            isVisiblePost: action.isVisiblePost,
+            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
+        }
+    }
+
+    if(action.type === "RETURN_IN_INITIAL_STATE_IMAGE"){
+        return{
+            ...state,
+            images: action.images,
+            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts,
+            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile
+        }
+    }
+
+    if(action.type === "CHANGE_REGISTR_USER"){
+        return{
+            ...state,
+            isRegistrationUser: action.isRegistrationUser,
+            isVisibleProfile: action.isVisibleProfile
+        }
+    }
+
+    if(action.type === "VISIBLE_AUTHORIZATION"){
+        return{
+            ...state,
+            isVisibleAuthorization: action.isVisibleAuthorization,
+            isVisiblePosts: action.isVisiblePosts
         }
     }
 

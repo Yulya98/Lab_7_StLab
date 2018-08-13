@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-var axios = require('axios')
+import "../resources/css/informationCard/information.css"
 
 
 class InfoAboutYourself extends React.Component {
@@ -7,13 +7,21 @@ class InfoAboutYourself extends React.Component {
         super(props);
     }
 
+    componentWillUnmount(){
+
+    }
+
     componentDidMount() {
          this.props.loadData();
     }
 
     render() {
+        debugger;
         return (
-            <div>
+            <div className="profile_card">
+                <p>Abou you</p>
+                <img src="/Scripts/react/my-app/src/resources/depositphotos_190007376-stock-illustration-rooster-head-icon-black-color.jpg" />
+                <hr />
                 <p><label>Name: {this.props.name}</label></p><br />
                 <p><label>Surname: {this.props.surname}</label></p> <br />
                 <p><label>Email: {this.props.email}</label></p><br />

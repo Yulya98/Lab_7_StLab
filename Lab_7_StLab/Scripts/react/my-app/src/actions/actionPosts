@@ -316,7 +316,6 @@ export function visiblePost(postId){
 export function changeVisiblePost(postId){
     return{
         type:"VISIBLE_POST",
-        type:"VISIBLE_POST",
         isVisiblePost: true,
         isVisiblePosts: false,
         idPost: postId
@@ -325,7 +324,6 @@ export function changeVisiblePost(postId){
 
 export function goToAlbum(idUser){
     return (dispatch) =>{
-        dispatch(changeIsVisibleAlbum(idUser))
         dispatch(changeIsVisibleAlbum(idUser))
     }
 }
@@ -340,6 +338,20 @@ export function changeIsVisibleAlbum(idUser){
     }
 }
 
+export function visiblePosts() {
+    return (dispatch) =>{
+        dispatch(returnInInitialStatePosts());
+    }
+}
+
+export function returnInInitialStatePosts(){
+    return{
+        type:"POSTS_VISIBLE",
+        isVisiblePosts: true,
+        isVisiblePost: false,
+        flagForCheckAlbumInPosts: false
+    }
+}
 
 export function returnInInitialState(){
     return (dispatch) =>{
@@ -352,5 +364,36 @@ export function changeInitialState(){
         type:"CHANGE_IN_INITIAL_STATE_IMAGES",
         posts: [],
         subPosts:[]
+    }
+}
+
+export function changeRegistrationUser(flag){
+    return (dispatch)=>{
+        dispatch(defineUser(flag))
+    }
+}
+
+export function defineUser(flag) {
+    var flagForVisibleProfile = false;
+    if(flag)
+        flagForVisibleProfile = true;
+    return{
+        type:"CHANGE_REGISTR_USER",
+        isRegistrationUser: flag,
+        isVisibleProfile: flagForVisibleProfile
+    }
+}
+
+export function changeVisibleAuthorization(){
+    return (dispatch)=>{
+        dispatch(visibleAuthorization())
+    }
+}
+
+export function visibleAuthorization() {
+    return{
+        type:"VISIBLE_AUTHORIZATION",
+        isVisibleAuthorization: true,
+        isVisiblePosts: false
     }
 }

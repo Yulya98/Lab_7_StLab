@@ -1,0 +1,21 @@
+.profile_card{
+    margin: 10vw auto;
+    background-color: white;
+    width: 20vw;
+    text-align: center;
+    box-shadow: -0.8vw 0.8vw 0vw 0vw #D3D3D3;
+    border-radius: 2vw 0vw 2vw 0.3vw;
+}
+
+
+
+.profile_card p {
+    font-family: Inspiration, cursive ;
+}
+
+
+.profile_card img {
+    width: 12vw;
+    margin-bottom: 1vw;
+}
+

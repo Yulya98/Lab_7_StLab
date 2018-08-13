@@ -8,6 +8,7 @@ import reducers from "./reducers/index.js";
 import ContainerAuthorization from './containers/containerAuthorization';
 import Profile from './containers/containerProfile'
 import Registration from "./containers/containerRegistration"
+import Posts from "./containers/containerPosts"
 
 let store = createStore(reducers, applyMiddleware(thunk));
 
@@ -21,6 +22,7 @@ class App extends React.Component{
                 <Profile></Profile>
                 <ContainerAuthorization></ContainerAuthorization>
                 <Registration></Registration>
+                <Posts></Posts>
             </div>
         )
     }
