@@ -85,7 +85,8 @@ var images =[];
             isVisibleProfile: action.isVisibleProfile,
             isVisibleAuthorization: action.isVisibleAuthorization,
             activeUserId: action.activeUserId,
-            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile
+            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile,
+            isRegistrationUser: action.isRegistrationUser
         }
     }
 
@@ -298,7 +299,8 @@ var images =[];
         return{
             ...state,
             posts: action.posts,
-            subPosts:action.subPosts
+            subPosts:action.subPosts,
+            isVisiblePosts:action.isVisiblePosts
         }
     }
 
@@ -437,7 +439,8 @@ var images =[];
         return{
             ...state,
             isVisibleProfile: action.isVisibleProfile,
-            isVisibleRegistration: action.isVisibleRegistration
+            isVisibleRegistration: action.isVisibleRegistration,
+            isRegistrationUser:action.isRegistrationUser
         }
     }
 
@@ -490,6 +493,31 @@ var images =[];
             ...state,
             isVisibleAuthorization: action.isVisibleAuthorization,
             isVisiblePosts: action.isVisiblePosts
+        }
+    }
+
+    if(action.type === "VISIBLE_AUTHORIZATION_FROM_COMMENTS"){
+        return{
+            ...state,
+            isVisibleAuthorization: action.isVisibleAuthorization,
+            isVisiblePosts: action.isVisiblePosts
+        }
+    }
+
+    if(action.type === "CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER"){
+        return{
+            ...state,
+            isVisibleAuthorization: action.isVisibleAuthorization,
+            isVisiblePost: action.isVisiblePost
+        }
+    }
+
+    if(action.type === "CHANGE_INITIAL_STATE_POSTS"){
+        return{
+            ...state,
+            isVisibleAlbum: action.isVisibleAlbum,
+            isVisiblePosts: action.isVisiblePosts,
+            isVisiblePost: action.isVisiblePost
         }
     }
 

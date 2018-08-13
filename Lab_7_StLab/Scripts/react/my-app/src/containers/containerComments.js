@@ -8,7 +8,7 @@ class containerComments extends React.Component{
     render(){
         return(
             <div>
-                <Comments returnInInitialState={this.props.returnInInitialState} componentDidMount={this.props.componentDidMount} idPost={this.props.idPost} addComment={this.props.addComment} comment={this.props.comment} activeUserId={this.props.activeUserId} author={this.props.author} data={this.props.data} comment={this.props.comment} onChange={this.props.onChange} addComment={this.props.addComment}></Comments>
+                <Comments changeVisibleAuthorization={this.props.changeVisibleAuthorization} changeVisibleCommentsFromNotAuthorization={this.props.changeVisibleCommentsFromNotAuthorization} isRegistrationUser={this.props.isRegistrationUser}  returnInInitialState={this.props.returnInInitialState} componentDidMount={this.props.componentDidMount} idPost={this.props.idPost} addComment={this.props.addComment} comment={this.props.comment} activeUserId={this.props.activeUserId} author={this.props.author} data={this.props.data} comment={this.props.comment} onChange={this.props.onChange} addComment={this.props.addComment}></Comments>
             </div>
         )
     }

@@ -116,3 +116,33 @@ export function changeInitialState() {
         isVisiblePost: false
     }
 }
+
+export function changeVisibleAuthorization(){
+    return (dispatch)=>{
+        dispatch(visibleAuthorization())
+    }
+}
+
+export function visibleAuthorization() {
+    return{
+        type:"VISIBLE_AUTHORIZATION_FROM_COMMENTS",
+        isVisibleAuthorization: true,
+        isVisiblePosts: false
+    }
+}
+
+export function changeVisibleCommentsFromNotAuthorization(){
+    debugger;
+    return (dispatch) =>{
+        debugger;
+        dispatch(visibleComments())
+    }
+}
+
+export function visibleComments(){
+    return{
+        type:"CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER",
+        isVisiblePosts: true,
+        isVisiblePost: false
+    }
+}

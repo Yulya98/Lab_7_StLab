@@ -1,12 +1,18 @@
 import React from 'react';
 import {connect} from "react-redux";
-import * as actionCreators from "../actions/actionPosts"
+import * as actionCreators from "../actions/actionPosts.js"
 import Posts from "../components/Posts"
 import Album from "../containers/containerAlbum"
 import Comments from "../containers/containerComments"
 
-
 class ContainerPosts extends React.Component{
+    constructor(props) {
+        debugger;
+        super(props);
+        this.props.returnInInitialStatePages();
+        debugger;
+    }
+
     render(){
         debugger;
         return(

@@ -6,9 +6,10 @@ import "../resources/css/posts/posts.css"
 import InfiniteScroll from 'react-bidirectional-infinite-scroll'
 
 
-
 var i = -1;
 export default class Posts extends React.Component {
+
+
     constructor(props) {
         super(props);
 
@@ -91,6 +92,7 @@ export default class Posts extends React.Component {
         let promise = new Promise((resolve,reject )=> {
             axios.post('defineRegistrationUser')
                 .then((response) => {
+                    debugger;
                     context.props.changeRegistrationUser(response.data);
                 });
             axios.post('searchPosts')
@@ -106,16 +108,38 @@ export default class Posts extends React.Component {
         if(typeof this.props.posts[0] != "undefined") {
             i++;
             debugger;
-            return (
-                <div className="post_style"><div className="spanMedium"><span>Author name:{this.props.posts[i].authorName}</span></div>
-                    <img className="image_style" src="/Scripts/react/my-app/src/zatup.jpg" />
-                    <div className="button_style_1">
-                         <button className="button_style" onClick={() => this.handleClick(this.props.posts[i].postId)}>Add comment</button>
-                    </div>
-                    <button className="button_style" onClick={() => this.goToAlbum(this.props.posts[i].idUser)}>To Album</button>
+            if(this.props.isRegistrationUser == false) {
+                return (
+                    <div className="post_style_mini">
+                        <div className="spanMedium_mini"><span>Author name:{this.props.posts[i].authorName}</span></div>
+                        <img className="image_style" src="/Scripts/react/my-app/src/zatup.jpg"/>
+                        <div className="button_style_mini">
+                            <button className="button_style"
+                                    onClick={() => this.handleClick(this.props.posts[i].postId)}>Add comment
+                            </button>
+                        </div>
+                        <button className="button_style" onClick={() => this.goToAlbum(this.props.posts[i].idUser)}>To
+                            Album
+                        </button>
 
-                </div>
-            )
+                    </div>
+                )
+            }
+            else{
+                return(<div className="post_style">
+                    <div className="spanMedium"><span>Author name:{this.props.posts[i].authorName}</span></div>
+                    <img className="image_style" src="/Scripts/react/my-app/src/zatup.jpg"/>
+                    <div className="button_style_position">
+                        <button className="button_style"
+                                onClick={() => this.handleClick(this.props.posts[i].postId)}>Add comment
+                        </button>
+                    </div>
+                    <button className="button_style" onClick={() => this.goToAlbum(this.props.posts[i].idUser)}>To
+                        Album
+                    </button>
+
+                </div>)
+            }
         }
         return(
             <div>Loading...</div>
@@ -141,20 +165,18 @@ export default class Posts extends React.Component {
 
     componentWillUnmount(){
         debugger;
+        i=-1;
         this.props.returnInInitialState();
     }
 
     render() {
         debugger;
         if (typeof this.props.posts[0] != "undefined") {
+            debugger;
             if(this.props.isRegistrationUser != false) {
                 return (
                     <div className="posts_style">
-                        <div style={{
-                            height: '510px',
-                            width: '1080px',
-                            WebkitOverflowScrolling: 'touch'
-                        }}>
+                        <div className="post_scroll">
                             <InfiniteScroll onReachBottom={this.handleScrollDown}
                                             onScroll={this.handleOnScroll}
                                             position={10}>
@@ -167,13 +189,9 @@ export default class Posts extends React.Component {
             else{
                 return (
                     <div>
-                    <button onClick={()=>this.props.changeVisibleAuthorization()}>Registration</button>
+                        <div className="change_location_button"> <button className="button_style_not_authorization_user" onClick={()=>this.props.changeVisibleAuthorization()}>Registration</button></div>
                     <div className="posts_style_mini">
-                        <div style={{
-                            height: '510px',
-                            width: '1080px',
-                            WebkitOverflowScrolling: 'touch'
-                        }}>
+                        <div className="post_scroll_mini">
                             <InfiniteScroll onReachBottom={this.handleScrollDown}
                                             onScroll={this.handleOnScroll}
                                             position={10}>

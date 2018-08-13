@@ -150,7 +150,6 @@ C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\bin\ru\System.Web.Ra
 C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\bin\ru\System.Web.WebPages.resources.dll
 C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\bin\ru\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\bin\ru\System.Web.WebPages.Razor.resources.dll
-C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLab.csprojAssemblyReference.cache
 C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLab.csproj.CoreCompileInputs.cache
 C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLab.csproj.CopyComplete
 C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLab.dll

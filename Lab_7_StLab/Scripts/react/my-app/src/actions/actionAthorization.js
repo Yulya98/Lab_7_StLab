@@ -55,7 +55,8 @@ export function isVisibleProfile(data) {
     return{
         type: "CHANGE_VISIBLE_PROFILE",
         isVisibleProfile: data,
-        isVisibleAuthorization: flag
+        isVisibleAuthorization: flag,
+        isRegistrationUser: true
     }
 }
 
@@ -72,3 +73,5 @@ export function changeVisibleRegistration(){
         isVisibleAuthorization: false
     }
 }
+
+

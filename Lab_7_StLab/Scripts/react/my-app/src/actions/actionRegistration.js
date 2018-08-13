@@ -100,7 +100,8 @@ export function changeProfile(){
     return{
         type:"CHANGE_VISIBLE_PROFILE_FROM_AUTHORIZATION",
         isVisibleProfile: true,
-        isVisibleRegistration: false
+        isVisibleRegistration: false,
+        isRegistrationUser: true
     }
 }
 
