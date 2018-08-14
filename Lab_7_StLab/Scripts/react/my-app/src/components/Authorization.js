@@ -6,6 +6,7 @@ import Input from 'react-validation/build/input';
 import validator from 'validator';
 
 const required = (value) => {
+
     if (!value.toString().trim().length) {
         return 'please, input value';
     }
@@ -35,7 +36,7 @@ class UserForm extends React.Component {
                             <label>Password:</label><br />
                             <Input type="password" validations={[required]} name="password" placeholder="password" value={this.props.password} onChange={this.props.changePassword} /><br />`
                         </Form>
-                        <button onClick={()=>{this.props.handleSubmit(this.props.email, this.props.password)}}>Sign in</button>
+                        <button disabled={!this.props.password || !this.props.email} onClick={()=>{this.props.handleSubmit(this.props.email, this.props.password)}}>Sign in</button>
                         <button onClick={() => {this.props.visibleProfile()}}>Registration</button>
                     </div>
                 </div>

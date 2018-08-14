@@ -1,275 +1,19 @@
-// import axios from "axios";
-//
-// var i = -1;
-//
-// export function handleClick(idPost){
-//     return (dispatch) =>{
-//         dispatch(changeIdPost(idPost));
-//     }
-// }
-//
-// export function changeIdPost(idPost){
-//     return{
-//         type:"CHANGE_ID_POST_AND_VISIBLE",
-//         idPost: idPost,
-//         isVisiblePost: true,
-//         isVisiblePosts: false
-//     }
-// }
-//
-// export function openLightbox(event, obj) {
-//     return (dispatch)=> {
-//         const subPosts = this.props.subPosts;
-//         setTimeout(() => {
-//             dispatch(changeSubPosts(subPosts, obj));
-//         }, 500)
-//     }
-// }
-//
-// export function changeSubPosts(subPosts,obj ) {
-//     return{
-//         type:"ADD_ITEM",
-//         currentImage: obj.index,
-//         lightboxIsOpen: true,
-//         subPosts:subPosts
-//     }
-// }
-//
-// export function closeLightbox() {
-//     return (dispatch)=> {
-//         dispatch(closeImg());
-//     }
-// }
-//
-// export function closeImg(){
-//     return{
-//         type:"CLOSE_IMAGE",
-//         currentImage: 0,
-//         lightboxIsOpen: false
-//     }
-// }
-//
-// export function gotoPrevious(){
-//    return (dispatch) => {
-//        dispatch(toPreviosPhoto());
-//    }
-// }
-//
-// export function toPreviosPhoto() {
-//     return{
-//         type:"TO_PREVIOUS_PHOTO",
-//         currentImage: this.props.currentImage-1
-//     }
-// }
-//
-// export function gotoNext() {
-//     return (dispatch) => {
-//         dispatch(gotoNextPhoto());
-//     }
-// }
-//
-// export function gotoNextPhoto() {
-//     return{
-//         type:"GO_TO_NEXT_PHOTO",
-//         currentImage: this.props.currentImage + 1
-//     }
-// }
-//
-// export function goToAlbum(idUser){
-//     return (dispatch) => {
-//         dispatch(idUserChange(idUser));
-//     }
-// }
-//
-// export  function idUserChange(idUser) {
-//     return{
-//         type:"CHANGE_ID_USER",
-//         idUser: idUser,
-//         isVisibleAlbum: true,
-//         isVisiblePosts: false
-//     }
-// }
-//
-// export function componentWillMount(context) {
-//     return (dispatch) => {
-//         axios.post('searchPosts')
-//             .then((response) => {
-//                 debugger;
-//                 for (var i = 0; i < response.data.length; i += 4) {
-//                     debugger;
-//                     const obj = {
-//                         postId: response.data[i],
-//                         authorName: response.data[i + 1],
-//                         image: [{src: response.data[i + 2], width: 1, height: 1}],
-//                         idUser: response.data[i + 3]
-//                     };
-//                     dispatch(changePosts(obj));
-//                 }
-//                 var subPosts = [].concat(context.getItems(context)).concat(context.getItems(context));
-//                 dispatch(changeSubPostss(subPosts));
-//             });
-//     }
-// }
-//
-// export function changePosts(data){
-//     return {
-//         type: "CHANGE_POSTS",
-//         posts: data
-//     }
-// }
-//
-// function getItems(context) {
-//     return (dispatch)=>
-//     {
-//         if (typeof context.props.posts[0] != "undefined") {
-//             i++;
-//             debugger;
-//             return (
-//                 <div><span>{context.props.posts[i].authorName}</span>
-//                     <Gallery photos={context.props.posts[i].image} onClick={context.props.openLightbox()}/>
-//                     <Lightbox images={context.props.posts[i].image}
-//                               onClose={context.props.closeLightbox()}
-//                               onClickPrev={context.props.gotoPrevious()}
-//                               onClickNext={context.props.gotoNext()}
-//                               currentImage={context.props.currentImage}
-//                               isOpen={context.props.lightboxIsOpen}
-//                     />
-//                     <button onClick={() => context.props.handleClick(context.props.posts[i].postId, context)}>Add
-//                         comment
-//                     </button>
-//                     <button onClick={() => context.props.goToAlbum(context.props.posts[i].idUser)}>To Album</button>
-//                 </div>
-//             )
-//         }
-//         return (
-//             <div>Loading...</div>
-//         );
-//         dispatch({type: "GET_ITEMS"});
-//     }
-// }
-//
-// export function handleScrollUp(context){
-//     return (dispatch)=> {
-//         const subPosts = [].concat(context.getItems(context)).concat(context.props.subPosts)
-//         setTimeout(() => {
-//             dispatch(scrollUp(subPosts));
-//         }, 500)
-//     }
-// }
-//
-// export function scrollUp(data){
-//     return{
-//         type:"SCROLL_UP_EVENT",
-//         subPosts: data
-//     }
-// }
-//
-// export function handleScrollDown(context) {
-//     return (dispatch) => {
-//         const subPosts = context.props.subPosts.concat(context.getItems(context))
-//         setTimeout(() => {
-//             dispatch(scrollDown(subPosts));
-//         }, 500)
-//     }
-// }
-//
-// export function scrollDown(data){
-//     return{
-//         type:"SCROLL_DOWN_EVENT",
-//         subPosts: data
-//     }
-// }
-//
-//
-// export function changeSubPostss(data){
-//     return {
-//         type: "CHANGE_SUBPOSTS",
-//         subPosts: data
-//     }
-// }
-//
-// export function  handleClick(e,context) {
-//     return (dispatch) => {
-//         e.preventDefault();
-//         var obj = {};
-//         obj.NameImg = context.state.nameImg;
-//         obj.Path = context.state.value;
-//         axios.post('addPhoto', obj);
-//         const objs = {'original': obj.NameImg, 'thumbnail': obj.NameImg, 'description': obj.Path}
-//         dispatch(changeState(obj));
-//     }
-// }
-//
-// export function changeState(data){
-//     return{
-//         type:"CHANGE_IMAGES",
-//         images: data
-//     }
-// }
-//
-// export function onChangeDeleteItem(e) {
-//     return (dispatch)=>
-//     {
-//         dispatch(changeDeleteItem)(e);
-//     }
-// }
-//
-// export function changeDeleteItem(e){
-//     return{
-//         type:"CHANGE_DELETE_ITEM",
-//         deleteItem: e
-//     }
-// }
-//
-// export function onChangeNameImage(e) {
-//     return (dispatch)=> {
-//         dispatch(changeNameImage(e));
-//     };
-// }
-//
-// export function changeNameImage(e){
-//     return{
-//         type:"CHANGE_NAME_IMAGE",
-//         nameImg: e
-//     }
-// }
-//
-// export function onChangePath(e) {
-//       return (dispatch) =>{
-//           dispatch(changePath(e));
-//       }
-// }
-//
-// export function changePath(e){
-//     return{
-//         type:"CHANGE_PATH",
-//         path: e
-//     }
-// }
-//
-// export function deleteButton(deleteItem){
-//     var obj = {};
-//     obj.nameImg = deleteItem;
-//     axios.post('deletePhoto',obj);
-// }
 import * as constants from "../constants/constantsPosts"
 
 export function changePosts(posts){
-    debugger;
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(post(posts))
     }
 }
 
 export function post(post){
     return{
-        type:constants.CHANGE_POSTS,
+        type: constants.CHANGE_POSTS,
         posts: post
     }
 }
 
 export function changeSubPosts(subposts){
-    debugger;
     return (dispatch) => {
         dispatch(subpost(subposts));
     }
@@ -277,26 +21,26 @@ export function changeSubPosts(subposts){
 
 export function subpost(subposts) {
     return{
-        type:constants.CHANGE_SUBPOSTS,
+        type: constants.CHANGE_SUBPOSTS,
         subposts: subposts
     }
 }
 
 export function changeCurrentImage(currentImage){
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(currentImages(currentImage))
     }
 }
 
 export function currentImages(currentImage){
     return{
-        type:constants.CHANGE_CURRENT_IMAGE,
+        type: constants.CHANGE_CURRENT_IMAGE,
         currentImage: currentImage
     }
 }
 
 export function changeLightboxIsOpen(lightboxIsOpen) {
-    return (dispatch)=>{
+    return (dispatch) =>{
         dispatch(lightboxesIsOpen(lightboxIsOpen))
     }
 }
@@ -316,7 +60,7 @@ export function visiblePost(postId){
 
 export function changeVisiblePost(postId){
     return{
-        type:constants.VISIBLE_POST,
+        type: constants.VISIBLE_POST,
         isVisiblePost: true,
         isVisiblePosts: false,
         idPost: postId
@@ -324,14 +68,14 @@ export function changeVisiblePost(postId){
 }
 
 export function goToAlbum(idUser){
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(changeIsVisibleAlbum(idUser))
     }
 }
 
 export function changeIsVisibleAlbum(idUser){
     return{
-        type:constants.CHANGE_VISIBLE,
+        type: constants.CHANGE_VISIBLE,
         flagForCheckAlbumInPosts: true,
         isVisiblePosts: false,
         activeUserId: idUser,
@@ -340,14 +84,14 @@ export function changeIsVisibleAlbum(idUser){
 }
 
 export function visiblePosts() {
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(returnInInitialStatePosts());
     }
 }
 
 export function returnInInitialStatePosts(){
     return{
-        type:constants.POSTS_VISIBLE,
+        type: constants.POSTS_VISIBLE,
         isVisiblePosts: true,
         isVisiblePost: false,
         flagForCheckAlbumInPosts: false
@@ -355,14 +99,14 @@ export function returnInInitialStatePosts(){
 }
 
 export function returnInInitialState(){
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(changeInitialState());
     }
 }
 
 export function changeInitialState(){
     return{
-        type:constants.CHANGE_IN_INITIAL_STATE_IMAGES,
+        type: constants.CHANGE_IN_INITIAL_STATE_IMAGES,
         posts: [],
         subPosts:[],
         isVisiblePosts: false
@@ -370,39 +114,37 @@ export function changeInitialState(){
 }
 
 export function changeRegistrationUser(flag){
-    return (dispatch)=>{
+    return (dispatch) => {
         dispatch(defineUser(flag))
     }
 }
 
 export function defineUser(flag) {
-    debugger;
     var flagForVisibleProfile = false;
     if(flag)
         flagForVisibleProfile = true;
     return{
-        type:constants.CHANGE_REGISTR_USER,
+        type: constants.CHANGE_REGISTR_USER,
         isRegistrationUser: flag,
         isVisibleProfile: flagForVisibleProfile
     }
 }
 
 export function changeVisibleAuthorization(){
-    return (dispatch)=>{
+    return (dispatch) => {
         dispatch(visibleAuthorization())
     }
 }
 
 export function visibleAuthorization() {
     return{
-        type:constants.VISIBLE_AUTHORIZATION,
+        type: constants.VISIBLE_AUTHORIZATION,
         isVisibleAuthorization: true,
         isVisiblePosts: false
     }
 }
 
 export function returnInInitialStatePages(){
-    debugger;
     return (dispatch) =>{
         dispatch(initialState())
     }
@@ -410,9 +152,25 @@ export function returnInInitialStatePages(){
 
 export function initialState() {
     return{
-        type:constants.CHANGE_INITIAL_STATE_POSTS,
+        type: constants.CHANGE_INITIAL_STATE_POSTS,
         isVisibleAlbum: false,
         isVisiblePosts: true,
         isVisiblePost: false
+    }
+}
+
+export function changeBiggerPhotoPath(src) {
+    return (dispatch) =>{
+        dispatch(changeBiggerPhoto(src))
+    }
+}
+
+export function changeBiggerPhoto(src) {
+    debugger;
+    return{
+        type: "CHANGE_BIGGER_PHOTO_PATH",
+        srcPhotoBigger: src,
+        isVisibleBiggerPhoto: true,
+        isVisiblePosts: false
     }
 }

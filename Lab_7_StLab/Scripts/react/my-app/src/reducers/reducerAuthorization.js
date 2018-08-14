@@ -1,22 +1,23 @@
-import {defaultState} from "./defaultState"
+import defaultState from "./defaultState"
+import * as constants from "../constants/constantsAuthorization"
 
 const reducerAuthorization=(state=defaultState,action)=>{
 
-    if(action.type === "CHANGE_EMAIL"){
+    if(action.type === constants.CHANGE_EMAIL){
         return {
             ...state,
             email: action.email
         }
     }
 
-    if(action.type === "CHANGE_PASSWORD"){
+    if(action.type === constants.CHANGE_PASSWORD){
         return{
             ...state,
             password: action.password
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_PROFILE"){
+    if(action.type === constants.CHANGE_VISIBLE_PROFILE){
         return{
             ...state,
             isVisibleProfile: action.isVisibleProfile,
@@ -27,7 +28,7 @@ const reducerAuthorization=(state=defaultState,action)=>{
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_REGISTRATION"){
+    if(action.type === constants.CHANGE_VISIBLE_REGISTRATION){
         return{
             ...state,
             isVisibleRegistration: action.isVisibleRegistration,

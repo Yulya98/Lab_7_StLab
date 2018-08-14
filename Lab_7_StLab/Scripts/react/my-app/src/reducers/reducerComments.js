@@ -1,36 +1,36 @@
-import {defaultState} from "./defaultState"
+import defaultState from "./defaultState"
+import * as constants from "../constants/constsComments";
 
 const reducerCommentss=(state=defaultState,action)=>{
-    if(action.type === "CHANGE_AUTHOR"){
+    if(action.type === constants.CHANGE_AUTHOR){
         return{
             ...state,
             author: [...state.author,action.author]
         }
     }
 
-    if(action.type === "CHANGE_DATA"){
+    if(action.type === constants.CHANGE_DATA){
         return{
             ...state,
-            data:[...state.data,action.data]
+            data: [...state.data,action.data]
         }
     }
 
-    if(action.type === "CHANGE_COMMENT"){
+    if(action.type === constants.CHANGE_COMMENT){
         return{
             ...state,
             comment: action.comment
         }
     }
 
-    if(action.type === "ADD_COMMENT"){
+    if(action.type === constants.ADD_COMMENT){
         return{
             ...state,
             data: [...state.data, action.data]
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_COMMENTS"){
-        debugger;
+    if(action.type === constants.CHANGE_VISIBLE_COMMENTS){
         return{
             ...state,
             isVisiblePost: action.isVisiblePost,
@@ -38,7 +38,7 @@ const reducerCommentss=(state=defaultState,action)=>{
         }
     }
 
-    if(action.type === "RETURN_IN_INITIAL_STATE_COMMENTS_PAGE"){
+    if(action.type === constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE){
         return{
             ...state,
             author: action.author,
@@ -48,7 +48,7 @@ const reducerCommentss=(state=defaultState,action)=>{
         }
     }
 
-    if(action.type === "VISIBLE_AUTHORIZATION_FROM_COMMENTS"){
+    if(action.type === constants.VISIBLE_AUTHORIZATION_FROM_COMMENTS){
         return{
             ...state,
             isVisibleAuthorization: action.isVisibleAuthorization,
@@ -56,7 +56,7 @@ const reducerCommentss=(state=defaultState,action)=>{
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER"){
+    if(action.type === constants.CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER){
         return{
             ...state,
             isVisibleAuthorization: action.isVisibleAuthorization,

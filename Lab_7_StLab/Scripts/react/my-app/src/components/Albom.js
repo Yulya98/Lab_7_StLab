@@ -11,16 +11,14 @@ import "../../node_modules/react-image-gallery/styles/css/image-gallery-no-icon.
 
 
 export default class Album extends React.Component {
+
     constructor(props) {
-        debugger;
         super(props);
-        debugger;
         this.deleteButton = this.deleteButton.bind(this);
 
     }
 
     deleteButton(){
-        debugger;
         var obj = {};
         obj.nameImg = this.props.deleteItem;
         console.log(obj.nameImg);
@@ -30,22 +28,19 @@ export default class Album extends React.Component {
     }
 
     componentDidMount() {
-        debugger;
         this.props.loadData(this.props.flagForCheckPageCommentsOrProfile);
         setTimeout(() => { this.props.loadImages(this.props.activeUserId)}, 4000);
     }
 
     componentWillUnmount(){
-        debugger;
         this.props.returnInInitialState();
     }
 
     render() {
-        debugger;
         if (this.props.images.length == 0) {
             return (
                 <div>
-                    <div className="image_gallery_style">
+                    <div className="image_gallery_style_without_photo">
                          <input className="edit_input" type="text" name="value" value={this.props.path} onChange={this.props.onChangePath} /><br /><br />
                          <input className="edit_input" type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage} /><br /><br />
                          <button className="edit_button" onClick={() => this.props.handleClicks(this.props.nameImg, this.props.path)}>Add photo</button>
@@ -57,7 +52,7 @@ export default class Album extends React.Component {
         else {
             return (
                 <div>
-                    <div className="image_gallery_style">
+                    <div className="image_gallery_style_with_photo">
                         <ImageGallery items={this.props.images} />
                     </div>
                     <div className="inputs">

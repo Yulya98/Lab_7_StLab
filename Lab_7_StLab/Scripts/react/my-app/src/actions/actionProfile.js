@@ -1,40 +1,40 @@
 import * as constantsProfile from "../constants/constantsProfile"
 
 export function changeVisibleAlbom(){
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(visibleAlbum())
     }
 }
 
 export function visibleAlbum() {
     return{
-        type:constantsProfile.CHANGE_VISIBLE_ALBUM_FROM_PROFILE,
+        type: constantsProfile.CHANGE_VISIBLE_ALBUM_FROM_PROFILE,
         isVisibleAlbum: true,
-        isVisiblePosts:false,
-        isVisibleInformation:false,
-        flagForCheckAlbumInPosts:false
+        isVisiblePosts: false,
+        isVisibleInformation: false,
+        flagForCheckAlbumInPosts: false
     }
 }
 
 export function changeVisibleInformation(){
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(visibleInformation())
     }
 }
 
 export function visibleInformation() {
     return{
-        type:constantsProfile.CHANGE_VISIBLE_INFORMATION,
+        type: constantsProfile.CHANGE_VISIBLE_INFORMATION,
         isVisibleInformation: true,
         isVisibleAlbum: false,
-        isVisiblePosts:false,
-        flagForCheckAlbumInPosts:false
+        isVisiblePosts: false,
+        flagForCheckAlbumInPosts: false
     }
 }
 
 
 export function changeVisiblePosts(){
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(visiblePosts())
     }
 }
@@ -44,7 +44,7 @@ export function visiblePosts() {
         type:constantsProfile.CHANGE_VISIBLE_POSTS_FROM_PROFILE,
         isVisibleAlbum: false,
         isVisiblePosts: true,
-        isVisibleInformation:false,
-        flagForCheckAlbumInPosts:false
+        isVisibleInformation: false,
+        flagForCheckAlbumInPosts: false
     }
 }

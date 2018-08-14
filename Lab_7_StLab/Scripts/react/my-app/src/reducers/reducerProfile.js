@@ -1,35 +1,34 @@
-import {defaultState} from "./defaultState"
+import defaultState from "./defaultState"
+import * as constants from "../constants/constantsProfile";
 
 
 const reducerProfile=(state=defaultState,action)=>{
-    if(action.type === "CHANGE_VISIBLE_ALBUM_FROM_PROFILE"){
+    if(action.type === constants.CHANGE_VISIBLE_ALBUM_FROM_PROFILE){
         return {
             ...state,
             isVisibleAlbum: action.isVisibleAlbum,
-            isVisiblePosts:action.isVisiblePosts,
-            isVisibleInformation:action.isVisibleInformation,
-            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts
+            isVisiblePosts: action.isVisiblePosts,
+            isVisibleInformation: action.isVisibleInformation,
+            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_INFORMATION"){
-        debugger;
+    if(action.type === constants.CHANGE_VISIBLE_INFORMATION){
         return{
             ...state,
             isVisibleInformation: action.isVisibleInformation,
-            isVisibleAlbum:action.isVisibleAlbum,
-            isVisiblePosts:action.isVisiblePosts,
-            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts
+            isVisibleAlbum: action.isVisibleAlbum,
+            isVisiblePosts: action.isVisiblePosts,
+            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_POSTS_FROM_PROFILE"){
-        debugger;
+    if(action.type === constants.CHANGE_VISIBLE_POSTS_FROM_PROFILE){
         return{
             ...state,
             isVisibleInformation: action.isVisibleInformation,
-            isVisibleAlbum:action.isVisibleAlbum,
-            isVisiblePosts:action.isVisiblePosts,
+            isVisibleAlbum: action.isVisibleAlbum,
+            isVisiblePosts: action.isVisiblePosts,
             flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
         }
     }

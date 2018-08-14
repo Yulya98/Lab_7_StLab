@@ -3,12 +3,9 @@ import "../resources/css/informationCard/information.css"
 
 
 class InfoAboutYourself extends React.Component {
+
     constructor(props) {
         super(props);
-    }
-
-    componentWillUnmount(){
-
     }
 
     componentDidMount() {
@@ -16,11 +13,10 @@ class InfoAboutYourself extends React.Component {
     }
 
     render() {
-        debugger;
         return (
             <div className="profile_card">
-                <p>Abou you</p>
-                <img src="/Scripts/react/my-app/src/resources/depositphotos_190007376-stock-illustration-rooster-head-icon-black-color.jpg" />
+                <p>About you</p>
+                <img src="../Scripts/react/my-app/src/resources/photo/profile.png" />
                 <hr />
                 <p><label>Name: {this.props.name}</label></p><br />
                 <p><label>Surname: {this.props.surname}</label></p> <br />

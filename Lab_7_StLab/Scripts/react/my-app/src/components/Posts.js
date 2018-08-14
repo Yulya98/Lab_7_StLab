@@ -1,7 +1,5 @@
 ﻿import React, { Component } from 'react';
 var axios = require('axios');
-import Gallery from 'react-photo-gallery';
-import Lightbox from 'react-images';
 import "../resources/css/posts/posts.css"
 import InfiniteScroll from 'react-bidirectional-infinite-scroll'
 
@@ -13,18 +11,6 @@ export default class Posts extends React.Component {
     constructor(props) {
         super(props);
 
-        debugger;
-
-        this.closeLightbox = this.closeLightbox.bind(this);
-
-        this.openLightbox = this.openLightbox.bind(this);
-
-        this.gotoNext = this.gotoNext.bind(this);
-
-        this.gotoPrevious = this.gotoPrevious.bind(this);
-
-        this.callbackFunction = this.callbackFunction.bind(this);
-
         this.handleScrollDown = this.handleScrollDown.bind(this);
 
         this.handleOnScroll = this.handleOnScroll.bind(this);
@@ -35,100 +21,54 @@ export default class Posts extends React.Component {
     }
 
     handleClick(postId){
-        debugger;
         this.props.visiblePost(postId);
     }
 
-    openLightbox(event, obj) {
-        debugger;
-        var currentImage = obj.index;
-        var lightboxIsOpen = true;
-        this.posts.changeCurrentImage(currentImage);
-        this.props.changeLightboxIsOpen(lightboxIsOpen);
-        const subPosts = this.state.subPosts;
-        setTimeout(() => { this.props.changeSubPosts(subPosts)}, 500)
-
-    }
-
-    closeLightbox() {
-        var currentImage = 0;
-        var lightboxIsOpen = false;
-        this.posts.changeCurrentImage(currentImage);
-        this.props.changeLightboxIsOpen(lightboxIsOpen);
-    }
-
-    gotoPrevious() {
-        var currentImage = this.props.currentImage - 1;
-        this.props.changeCurrentImage(currentImage);
-    }
-
-    gotoNext() {
-        var currentImage = this.props.currentImage + 1;
-        this.props.changeCurrentImage(currentImage);
-    }
-
     goToAlbum(idUser){
-        debugger;
         this.props.goToAlbum(idUser);
     }
 
-    callbackFunction(response){
-        debugger;
-        for (var i = 0; i < response.data.length; i+=4) {
-            debugger;
-            const obj = {postId:response.data[i], authorName: response.data[i+1], image: [{src: response.data[i + 2], width:1, height:1 }], idUser:response.data[i+3]};
-            this.props.changePosts(obj);
-        }
-        var subPosts = [].concat(this.getItems()).concat(this.getItems());
-        this.props.changeSubPosts(subPosts);
-    }
-
-
 
     componentDidMount() {
-        debugger;
         var context = this;
 
         let promise = new Promise((resolve,reject )=> {
             axios.post('defineRegistrationUser')
                 .then((response) => {
-                    debugger;
                     context.props.changeRegistrationUser(response.data);
                 });
             axios.post('searchPosts')
                 .then((response) => {
-                    debugger;
-                    context.callbackFunction(response);
+                    for (var i = 0; i < response.data.length; i+=4) {
+                        const obj = {postId:response.data[i], authorName: response.data[i+1], src: response.data[i + 2] , idUser:response.data[i+3]};
+                        this.props.changePosts(obj);
+                    }
+                    var subPosts = [].concat(this.getItems()).concat(this.getItems());
+                    this.props.changeSubPosts(subPosts);
                 });
         });
     }
 
     getItems() {
-        debugger;
         if(typeof this.props.posts[0] != "undefined") {
             i++;
-            debugger;
             if(this.props.isRegistrationUser == false) {
                 return (
                     <div className="post_style_mini">
                         <div className="spanMedium_mini"><span>Author name:{this.props.posts[i].authorName}</span></div>
-                        <img className="image_style" src="/Scripts/react/my-app/src/zatup.jpg"/>
+                        <img className="image_style" src={this.props.posts[i].src} onClick={()=>this.props.changeBiggerPhotoPath(this.props.posts[i].src)}/>
                         <div className="button_style_mini">
-                            <button className="button_style"
-                                    onClick={() => this.handleClick(this.props.posts[i].postId)}>Add comment
+                            <button className="button_style" onClick={() => this.handleClick(this.props.posts[i].postId)}>
+                                To comment
                             </button>
                         </div>
-                        <button className="button_style" onClick={() => this.goToAlbum(this.props.posts[i].idUser)}>To
-                            Album
-                        </button>
-
                     </div>
                 )
             }
             else{
                 return(<div className="post_style">
                     <div className="spanMedium"><span>Author name:{this.props.posts[i].authorName}</span></div>
-                    <img className="image_style" src="/Scripts/react/my-app/src/zatup.jpg"/>
+                    <img className="image_style" src={this.props.posts[i].src} onClick={()=>this.props.changeBiggerPhotoPath(this.props.posts[i].src)}/>
                     <div className="button_style_position">
                         <button className="button_style"
                                 onClick={() => this.handleClick(this.props.posts[i].postId)}>Add comment
@@ -148,13 +88,11 @@ export default class Posts extends React.Component {
 
 
     handleScrollDown() {
-        debugger;
         const subPosts = this.props.subPosts.concat(this.getItems())
         setTimeout(() => { this.props.changeSubPosts(subPosts)}, 500)
     }
 
     handleOnScroll (position, previousPosition) {
-        debugger;
         const diffScroll = position - previousPosition
         const direction = diffScroll > 0
             ? 'down'
@@ -164,15 +102,12 @@ export default class Posts extends React.Component {
     }
 
     componentWillUnmount(){
-        debugger;
         i=-1;
         this.props.returnInInitialState();
     }
 
     render() {
-        debugger;
         if (typeof this.props.posts[0] != "undefined") {
-            debugger;
             if(this.props.isRegistrationUser != false) {
                 return (
                     <div className="posts_style">

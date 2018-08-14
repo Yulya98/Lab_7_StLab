@@ -1,7 +1,14 @@
-.image_gallery_style{
+.image_gallery_style_without_photo{
     width: 40%;
-    margin-top: 10vw;
-    margin-left: -17vw;
+    margin-top: 15vw;
+    margin-left: 3vw;
+    position: absolute;
+}
+
+.image_gallery_style_with_photo{
+    width: 30%;
+    margin-top: 0vw;
+    margin-left: 34vw;
 }
 
 .edit_button{
@@ -185,17 +192,19 @@ edit_button:active{
 }
 
 .inputs{
-    margin-left: -17vw;
-    margin-top: -56vw;
+    margin-left: 7vw;
+    margin-top: -35vw;
 }
 
 .margin_block{
-    margin-left: 9vw;
+    margin-left: 7vw;
     margin-bottom: 4vw;
 }
 
 .span_style{
-    margin-left: 13vw;
+    margin-left: 32vw;
+    position: absolute;
+    margin-top: 17vw;
 }
 
 .span_style_span{

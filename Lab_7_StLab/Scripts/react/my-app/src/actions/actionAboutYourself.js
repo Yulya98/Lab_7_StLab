@@ -3,7 +3,6 @@ import {INFO_ABOUT_USER} from "../constants/constantsAboutYoiurself"
 
 
 export function componentDidMount() {
-    debugger;
     return (dispatch)=> {
         let promise = new Promise((resolve,reject )=> {
             axios.post('aktiveusersearch')
@@ -20,7 +19,7 @@ export function changeState(data) {
         name: data[0],
         surname: data[1],
         emailUser: data[2],
-        sphere:data[3],
-        city:data[4]
+        sphere: data[3],
+        city: data[4]
     }
 }

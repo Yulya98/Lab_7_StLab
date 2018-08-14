@@ -4,14 +4,10 @@ import * as constants from "../constants/constsComments"
 export function componentDidMount(idPost) {
     return (dispatch)=> {
         const objPost = {idPost: idPost};
-        debugger;
-        debugger;
         let promise = new Promise((resolve,reject )=> {
             axios.post('searchAuthor', objPost)
                 .then((response) => {
-                    debugger;
                     for (var j = 0; j < response.data.length; j += 3) {
-                        debugger;
                         const obj = {
                             authorName: response.data[j],
                             pathToPage: [{src: response.data[j + 1], width: 1, height: 1}],
@@ -21,13 +17,10 @@ export function componentDidMount(idPost) {
                     }
                 });
         });
-        debugger;
         promise.then(result=> {
             axios.post('searchComments', objPost)
                 .then((response) => {
-                    debugger;
                     for (var j = 0; j < response.data.length; j += 2) {
-                        debugger;
                         const obj = {author: response.data[j], text: response.data[j + 1]}
                         dispatch(changeData(obj));
                     }
@@ -84,14 +77,12 @@ export function commentAdd(comment){
 }
 
 export function goToAlbums(idUser) {
-    debugger;
     return (dispatch) =>{
         dispatch(changeVisibleComments(idUser))
     }
 }
 
 export function changeVisibleComments(idUser) {
-    debugger;
     return{
         type:constants.CHANGE_VISIBLE_COMMENTS,
         isVisiblePost: false,
@@ -102,14 +93,14 @@ export function changeVisibleComments(idUser) {
 }
 
 export function returnInInitialState(){
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(changeInitialState())
     }
 }
 
 export function changeInitialState() {
     return{
-        type:constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE,
+        type: constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE,
         author:[],
         data: [],
         isVisiblePosts: true,
@@ -118,7 +109,7 @@ export function changeInitialState() {
 }
 
 export function changeVisibleAuthorization(){
-    return (dispatch)=>{
+    return (dispatch) => {
         dispatch(visibleAuthorization())
     }
 }
@@ -132,9 +123,7 @@ export function visibleAuthorization() {
 }
 
 export function changeVisibleCommentsFromNotAuthorization(){
-    debugger;
-    return (dispatch) =>{
-        debugger;
+    return (dispatch) => {
         dispatch(visibleComments())
     }
 }

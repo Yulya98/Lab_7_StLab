@@ -83,12 +83,18 @@
 }
 
 .post_style{
-    width: 40%;
-    margin-left: 31vw;
+    width: 30%;
+    margin-left: 35vw;
     margin-top: 3vw;
 }
 
 .post_style span{
+    color: cornsilk;
+    font-family: EuropaTextC,serif;
+    font-size: 2vw;
+}
+
+.post_style_mini span{
     color: cornsilk;
     font-family: EuropaTextC,serif;
     font-size: 2vw;
@@ -102,7 +108,7 @@
 
 .button_style_position{
     float: left;
-    margin-left: 14.5vw;
+    margin-left: 13.5vw;
     margin-right: 1vw;
 }
 
@@ -125,28 +131,32 @@
 }
 
 .load_style_mini{
-
+    margin: auto;
+    width: 15vw;
+    margin-top: 23vw;
+    font-size: 4vw;
+    font-family: sans-serif;
 }
 
 .posts_style_mini{
     width: 50%;
-    margin: 5vw auto;
+    margin: 2vw auto;
     margin-left: 17vw;
 }
 
 .post_scroll_mini{
-    height: 710px;
-    width: 1400px;
+    height: 780px;
+    width: 1440px;
 }
 
 .post_scroll{
-    height: 710px;
-    width: 1350px;
+    height: 740px;
+    width: 1740px;
 }
 
 .button_style_mini{
     float: left;
-    margin-left: 15.5vw;
+    margin-left: 23vw;
     margin-right: 1vw;
 }
 

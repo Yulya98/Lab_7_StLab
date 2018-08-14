@@ -5,6 +5,7 @@ import Lightbox from 'react-images';
 import '../resources/css/comments/commentsStyle.css'
 
 export default class Comments extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = { data: [], idPost:this.props.idPost, currentImage: 0, author: [], comment:""};
@@ -16,29 +17,6 @@ export default class Comments extends React.Component {
 
     componentDidMount() {
         this.props.componentDidMount(this.props.idPost);
-        // const objPost = {idPost: this.state.idPost};
-        // debugger;
-        // axios.post('searchAuthor',objPost)
-        //     .then((response)=> {
-        //         debugger;
-        //         for(var j=0;j<response.data.length;j+=2){
-        //             debugger;
-        //             const obj ={ authorName:response.data[j],pathToPage:[{src: response.data[j+1], width:1, height:1} ] }
-        //             this.setState({
-        //                 author: [...this.state.author, obj]
-        //             });
-        //         }});
-        // axios.post('searchComments',objPost)
-        //     .then((response)=> {
-        //         debugger;
-        //         for(var j=0;j<response.data.length;j+=2){
-        //             debugger;
-        //             const obj ={ author:response.data[j],text:response.data[j+1]  }
-        //             this.setState({
-        //                 data: [...this.state.data, obj]
-        //             });
-        //         }});
-        // debugger;
     }
 
     openLightbox(event, obj) {
@@ -47,14 +25,14 @@ export default class Comments extends React.Component {
             lightboxIsOpen: true,
         });
     }
-    //
+
     closeLightbox() {
         this.setState({
             currentImage: 0,
             lightboxIsOpen: false,
         });
     }
-    //
+
     gotoPrevious() {
         this.setState({
             currentImage: this.state.currentImage - 1,
@@ -66,34 +44,16 @@ export default class Comments extends React.Component {
             currentImage: this.state.currentImage + 1,
         });
     }
-    //
-    // onChange(e) {
-    //     this.setState({ [e.target.name]: e.target.value });
-    // }
-
-    // addComment(){
-    //     this.props.addComment(this.props.idPost,this.props.comment, this.props.idActiveUser);
-    //     // var obj = {};
-    //     // obj.idPost = this.state.idPost;
-    //     // obj.text = this.state.comment;
-    //     // axios.post('addComment', obj);
-    //     // ReactDOM.render(
-    //     //     <MyComponent idActiveUser={idUser}/>,
-    //     //     document.getElementById("app")
-    //     // );
-    // }
 
     componentWillUnmount(){
-        debugger;
         this.props.returnInInitialState();
     }
 
     render() {
-        debugger;
         if(this.props.isRegistrationUser != false) {
             return (
                 <div className="commentsStyle">
-                    {this.props.author.map(item => <div><span>{item.authorName}</span>
+                    {this.props.author.map(item => <div><div className="span_margin"><span className="span_style_mini">Author name: {item.authorName}</span></div>
                         <Gallery photos={item.pathToPage} onClick={this.openLightbox}/>
                         <Lightbox images={item.pathToPage}
                                   onClose={this.closeLightbox}
@@ -122,7 +82,7 @@ export default class Comments extends React.Component {
         else{
             return (
                 <div>
-                    <div className="change_location_buttons"><button className="button_style_not_authorization_user" onClick={()=>{debugger; this.props.changeVisibleCommentsFromNotAuthorization()}}>Return to posts</button></div>
+                    <div className="change_location_buttons"><button className="button_style_not_authorization_user" onClick={()=>{this.props.changeVisibleCommentsFromNotAuthorization()}}>Return to posts</button></div>
                     <button className="button_style_not_authorization_user" onClick={()=>this.props.changeVisibleAuthorization()}>Registration</button>
                     <div className="commentsStyle">
                         {this.props.author.map(item => <div><div className="span_margin"><span className="span_style_mini">Author name: {item.authorName}</span></div>

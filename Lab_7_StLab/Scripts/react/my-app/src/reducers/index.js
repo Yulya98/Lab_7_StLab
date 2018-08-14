@@ -1,11 +1,5 @@
-import {combineReducers} from "redux";
-import reducerRegistration from "../reducers/reducerRegistration";
-import reducerProfile from "../reducers/reducerProfile";
-import reducerPosts from "../reducers/reducerPosts";
-import reducerComments from "../reducers/reducerComments";
-import reducerAuthorization from "../reducers/reducerAuthorization";
-import reducerAlbum from "../reducers/reducerAlbum";
-import reducerAboutYourself from "../reducers/reducerAboutYourself"
+//region no separate reducer
+
 import * as constantsRegistration from "../constants/constantsRegistration";
 import * as constantsProfile from "../constants/constantsProfile";
 import * as constantsComments from "../constants/constsComments";
@@ -13,6 +7,7 @@ import * as constantsAlbum from "../constants/constantsAlbum";
 import {INFO_ABOUT_USER} from "../constants/constantsAboutYoiurself";
 import * as constantsAuthorization from "../constants/constantsAuthorization";
 import * as constantsPosts from "../constants/constantsPosts";
+import * as constantsBiggerPhoto from "../constants/constantsBiggerPhoto"
 
 let defaultState= {
     email: "",
@@ -46,31 +41,13 @@ let defaultState= {
     isVisibleRegistration: false,
     registrationEmail: "",
     registrationPassword: "",
-    isRegistrationUser: false
+    isRegistrationUser: false,
+    srcPhotoBigger:"",
+    isVisibleBiggerPhoto: false
 };
 
-//  const rootReducer = combineReducers({
-//     reducerRegistration,
-//     reducerProfile,
-//     reducerPosts,
-//     reducerComments,
-//     reducerAuthorization,
-//     reducerAlbum,
-//     reducerAboutYourself
-// });
-//
-// export default rootReducer;
-
-
 const mainReducer=(state=defaultState,action)=>{
-debugger;
-var images =[];
-    // if(action.type === "CHECK_USER" || action.type === "GET_ITEMS"){
-    //     debugger;
-    //     return {
-    //             ...state
-    //     }
-    // }
+    debugger;
 
     if(action.type === constantsAuthorization.CHANGE_EMAIL){
         return {
@@ -79,13 +56,13 @@ var images =[];
         }
     }
 
-    // if(action.type === "CHANGE_LIGTBOX"){
-    //     return{
-    //         ...state,
-    //         currentImage: action.currentImage,
-    //         lightboxIsOpen: action.lightboxIsOpen
-    //     }
-    // }
+    if(action.type === constantsAlbum.CHANGE_ACTIVE_USER){
+        return{
+            ...state,
+            activeUserId: action.activeUserId,
+            flagForCheckPage: action.flagForCheckPage
+        }
+    }
 
     if(action.type === constantsAuthorization.CHANGE_PASSWORD){
         return{
@@ -99,13 +76,6 @@ var images =[];
             activeUserId: action.activeUserId
         }
     }
-
-    // if(action.type === "CHANGE_ACTIVE_USER_FROM_COMMENTS"){
-    //     return{
-    //         ...state,
-    //         flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile
-    //     }
-    // }
 
     if(action.type === constantsAuthorization.CHANGE_VISIBLE_PROFILE){
         return{
@@ -167,72 +137,6 @@ var images =[];
         }
     }
 
-    // if(action.type === "RETURN_IN_INITIAL_STATE_ALBUM_PAGE"){
-    //     debugger;
-    //     return{
-    //         ...state,
-    //         images: action.images,
-    //         isVisiblePosts: action.isVisiblePosts,
-    //         isVisiblePost: action.isVisiblePost,
-    //         flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
-    //     }
-    // }
-    //
-    // if(action.type === "CHANGE_ID_POST_AND_VISIBLE"){
-    //     return{
-    //         ...state,
-    //         idPost:action.idPost,
-    //         isVisiblePost: action.isVisiblePost,
-    //         isVisiblePosts: action.isVisiblePosts
-    //     }
-    // }
-
-    // if(action.type === "ADD_ITEM") {
-    //     return {
-    //         ...state,
-    //         currentImage: action.currentImage,
-    //         lightboxIsOpen: action.lightboxIsOpen,
-    //         subPosts: action.subPosts
-    //     }
-    // }
-    //
-    // if(action.type === "CLOSE_IMAGE"){
-    //     return{
-    //         ...state,
-    //         currentImage: action.currentImage,
-    //         lightboxIsOpen: action.lightboxIsOpen
-    //     }
-    // }
-    //
-    // if(action.type === "TO_PREVIOUS_PHOTO"){
-    //     return{
-    //         ...state,
-    //         currentImage: action.currentImage
-    //     }
-    // }
-    // if(action.type === "GO_TO_NEXT_PHOTO"){
-    //     return{
-    //         ...state,
-    //         currentImage: action.currentImage
-    //     }
-    // }
-    //
-    // if(action.type === "CHANGE_ID_USER"){
-    //     return{
-    //         ...state,
-    //         isVisibleAlbum: action.isVisibleAlbum,
-    //         idUser: action.idUser,
-    //         isVisiblePosts: action.isVisiblePosts
-    //     }
-    // }
-
-    // if(action.type === "CHANGE_POSTS"){
-    //     return{
-    //         ...state,
-    //         posts:action.posts
-    //     }
-    // }
-
     if(action.type === constantsPosts.CHANGE_POSTS){
         debugger;
         return{
@@ -241,13 +145,6 @@ var images =[];
         }
     }
 
-    // if(action.type === "CHANGE_SUBPOSTS"){
-    //     return {
-    //         ...state,
-    //         subPosts: action.subPosts
-    //     }
-    // }
-
     if(action.type === constantsPosts.CHANGE_SUBPOSTS){
         debugger;
         return {
@@ -255,20 +152,6 @@ var images =[];
             subPosts: [...state.subPosts,action.subposts]
         }
     }
-
-    // if(action.type === "SCROLL_UP_EVENT"){
-    //     return{
-    //         ...state,
-    //         subPosts:action.subPosts
-    //     }
-    // }
-    //
-    // if(action.type === "SCROLL_DOWN_EVENT"){
-    //     return{
-    //         ...state,
-    //         subPosts: action.subPosts
-    //     }
-    // }
 
     if(action.type === constantsComments.CHANGE_AUTHOR){
         return{
@@ -315,14 +198,6 @@ var images =[];
         }
     }
 
-    // if(action.type === "CHANGE_VISIBLE_ALBUM"){
-    //     return{
-    //         ...state,
-    //         isVisibleAlbum: action.isVisibleAlbum,
-    //         isVisiblePosts: action.isVisiblePosts
-    //     }
-    // }
-
     if(action.type === constantsPosts.CHANGE_IN_INITIAL_STATE_IMAGES){
         return{
             ...state,
@@ -341,11 +216,6 @@ var images =[];
         }
     }
 
-    // if(action.type === "DELETE_PHOTOS"){
-    //     return{
-    //         ...state
-    //     }
-    // }
 
     if(action.type === constantsComments.ADD_COMMENT){
         return{
@@ -373,46 +243,6 @@ var images =[];
             activeUserId: action.activeUserId
         }
     }
-
-    // if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
-    //     return{
-    //         ...state,
-    //         author:action.author,
-    //         data: action.data,
-    //     }
-    // }
-    //
-    // if(action.type === "RETURN_IN_INITIAL_STATE_ALBUM_PAGE"){
-    //     return{
-    //         ...state,
-    //         isVisibleAlbum: action.isVisibleAlbum
-    //     }
-    // }
-    //
-    // if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
-    //     return{
-    //         ...state,
-    //         isVisibleAlbum: action.isVisibleAlbum,
-    //         isVisiblePosts: action.isVisiblePosts,
-    //         isVisiblePost: action.isVisiblePost
-    //     }
-    // }
-    //
-    // if(action.type === "START_POST_PAGE"){
-    //     return{
-    //         ...state,
-    //         isVisiblePosts: action.isVisiblePosts,
-    //         isVisiblePost: action.isVisiblePost,
-    //         isVisibleAlbum: action.isVisibleAlbum
-    //     }
-    // }
-    //
-    // if(action.type === "CHANGE_FLAG_FOR_POSTS_ALBUM"){
-    //     return{
-    //         ...state,
-    //         flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
-    //     }
-    // }
 
     if(action.type === constantsRegistration.CHANGE_NAME_REGISTRATION){
         return{
@@ -581,9 +411,58 @@ var images =[];
         }
     }
 
+    if(action.type === constantsBiggerPhoto.CHANGE_VISIBLE_BIGGER_PHOTO){
+        return{
+            ...state,
+            isVisibleBiggerPhoto: action.isVisibleBiggerPhoto,
+            isVisiblePosts: action.isVisiblePosts
+        }
+    }
+
+    if(action.type === constantsPosts.CHANGE_BIGGER_PHOTO_PATH){
+        return{
+            ...state,
+            srcPhotoBigger: action.srcPhotoBigger,
+            isVisibleBiggerPhoto: action.isVisibleBiggerPhoto,
+            isVisiblePosts: action.isVisiblePosts
+        }
+    }
+
     return{
         ...state
     }
 };
 export default mainReducer;
+
+//endregion
+
+
+
+//region separate reducer doesn't work
+
+// import {combineReducers} from "redux";
+// import reducerRegistration from "../reducers/reducerRegistration";
+// import reducerProfile from "../reducers/reducerProfile";
+// import reducerPosts from "../reducers/reducerPosts";
+// import reducerComments from "../reducers/reducerComments";
+// import reducerAuthorization from "../reducers/reducerAuthorization";
+// import reducerAlbum from "../reducers/reducerAlbum";
+// import reducerAboutYourself from "../reducers/reducerAboutYourself"
+// import reducerBiggerPhoto from "../reducers/reducerBigerPhoto"
+
+//  const rootReducer = combineReducers({
+//     reducerRegistration,
+//     reducerProfile,
+//     reducerPosts,
+//     reducerComments,
+//     reducerAuthorization,
+//     reducerAlbum,
+//     reducerAboutYourself,
+//     reducerBiggerPhoto
+// });
+//
 // export default rootReducer;
+
+//endregion
+
+

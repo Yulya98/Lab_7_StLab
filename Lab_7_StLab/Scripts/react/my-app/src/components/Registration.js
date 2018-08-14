@@ -1,7 +1,5 @@
 var React = require('react')
-var ReactDOM = require('react-dom')
 var axios = require('axios')
-import App from "./Profile.js"
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import validator from 'validator';
@@ -19,15 +17,14 @@ const email = (value) => {
 };
 
 export default class RegistrtionForm extends React.Component {
+
     constructor(props) {
         super(props);
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(e) {
-        var obj = {}
-        debugger;
+    handleSubmit() {
+        var obj = {};
         obj.Name = this.props.name;
         obj.Surname = this.props.surname;
         obj.Pseudonym = this.props.pseoudonym;
@@ -62,7 +59,7 @@ export default class RegistrtionForm extends React.Component {
                         <label>Password:</label><br />
                         <Input type="password" validations={[required]} name="password" value={this.props.password} onChange={this.props.onChangepPassword} placeholder="Password"/><br />
                     </Form>
-                    <button type="submit" >Sign up</button>
+                    <button disabled={!this.props.name || !this.props.surname || !this.props.pseoudonym || !this.props.email || !this.props.sphere || !this.props.city || !this.props.password} type="submit" >Sign up</button>
                 </div>
             </form>
             </div>

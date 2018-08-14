@@ -2,12 +2,10 @@ import axios from "axios";
 import * as constants from "../constants/constantsAuthorization"
 
 export function onChangeEmail(e){
-    debugger;
-    return(dispatch)=>{dispatch(changeEmail(e.target.value))};
+    return(dispatch) => {dispatch(changeEmail(e.target.value))};
 }
 
 export function changeEmail(e){
-    debugger;
     return{
         type: constants.CHANGE_EMAIL,
         email: e
@@ -15,7 +13,7 @@ export function changeEmail(e){
 }
 
 export function onChangePassword(e){
-    return(dispatch)=>{dispatch(changePassword(e.target.value))};
+    return(dispatch) => {dispatch(changePassword(e.target.value))};
 }
 
 export function changePassword(e){
@@ -27,17 +25,15 @@ export function changePassword(e){
 }
 
 export function handleSubmit(email,password){
-    return(dispatch)=> {
+    return(dispatch) => {
         var obj = {};
         obj.Email = email;
-        debugger;
         obj.Password = password;
         let promise = new Promise((resolve,reject )=>{
-            debugger;
             axios.post('registrationform', obj)
                 .then((response) => {
                     if (!response.data)
-                        alert("Vas netu");
+                        alert("Incorrect data");
                     dispatch(isVisibleProfile(response.data));
                 });
         });

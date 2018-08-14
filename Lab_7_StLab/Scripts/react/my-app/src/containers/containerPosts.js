@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import * as actionCreators from "../actions/actionPosts.js"
 import Posts from "../components/Posts"
-import Album from "../containers/containerAlbum"
 import Comments from "../containers/containerComments"
+import BiggerPhoto from "../containers/containerBigerPhoto"
 
 class ContainerPosts extends React.Component{
     constructor(props) {
@@ -17,16 +17,16 @@ class ContainerPosts extends React.Component{
         debugger;
         return(
             <div>
-                {this.props.isVisiblePosts && <Posts isVisiblePosts={this.props.isVisiblePosts} isRegistrationUser={this.props.isRegistrationUser} changeRegistrationUser={this.props.changeRegistrationUser} changeVisibleAuthorization={this.props.changeVisibleAuthorization} returnInInitialState={this.props.returnInInitialState} changeCurrentImage={this.props.changeCurrentImage} changeLightboxIsOpen={this.props.changeLightboxIsOpen} changeSubPosts={this.props.changeSubPosts} goToAlbum={this.props.goToAlbum} changePosts={this.props.changePosts} changeSubPosts={this.props.changeSubPosts} visiblePost={this.props.visiblePost} posts={this.props.posts} currentImage={this.props.currentImage} subPosts={this.props.subPosts} postId={this.props.postId} ></Posts>}
+                {this.props.isVisiblePosts && <Posts changeBiggerPhotoPath={this.props.changeBiggerPhotoPath} isVisiblePosts={this.props.isVisiblePosts} isRegistrationUser={this.props.isRegistrationUser} changeRegistrationUser={this.props.changeRegistrationUser} changeVisibleAuthorization={this.props.changeVisibleAuthorization} returnInInitialState={this.props.returnInInitialState} changeCurrentImage={this.props.changeCurrentImage} changeLightboxIsOpen={this.props.changeLightboxIsOpen} changeSubPosts={this.props.changeSubPosts} goToAlbum={this.props.goToAlbum} changePosts={this.props.changePosts} changeSubPosts={this.props.changeSubPosts} visiblePost={this.props.visiblePost} posts={this.props.posts} currentImage={this.props.currentImage} subPosts={this.props.subPosts} postId={this.props.postId} ></Posts>}
+                {this.props.isVisibleBiggerPhoto && <BiggerPhoto />}
                 {this.props.isVisiblePost && <Comments></Comments>}
-                {/*{this.props.flagForCheckAlbumInPosts && <Album/>}*/}
             </div>
         )
     }
 }
 
 
-const mapStateToProps=(state)=>{
+const mapStateToProps = (state) => {
     return state
 };
 
