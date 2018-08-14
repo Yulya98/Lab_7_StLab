@@ -8,7 +8,7 @@ class ContainerProfile extends React.Component{
     render(){
         return(
             <div>
-                {this.props.isVisibleProfile && <Profile ></Profile>}
+                {this.props.isVisibleProfile && <Profile changeVisiblePosts={this.props.changeVisiblePosts} changeVisibleInformation={this.props.changeVisibleInformation} changeVisibleAlbom={this.props.changeVisibleAlbom}></Profile>}
             </div>
         )
     }

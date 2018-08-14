@@ -1,4 +1,6 @@
 import axios from "axios";
+import {INFO_ABOUT_USER} from "../constants/constantsAboutYoiurself"
+
 
 export function componentDidMount() {
     debugger;
@@ -14,7 +16,7 @@ export function componentDidMount() {
 
 export function changeState(data) {
     return{
-        type: "INFO_ABOUT_USER",
+        type: INFO_ABOUT_USER,
         name: data[0],
         surname: data[1],
         emailUser: data[2],

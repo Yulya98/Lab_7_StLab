@@ -1,85 +1,113 @@
-let defaultState={
+import {combineReducers} from "redux";
+import reducerRegistration from "../reducers/reducerRegistration";
+import reducerProfile from "../reducers/reducerProfile";
+import reducerPosts from "../reducers/reducerPosts";
+import reducerComments from "../reducers/reducerComments";
+import reducerAuthorization from "../reducers/reducerAuthorization";
+import reducerAlbum from "../reducers/reducerAlbum";
+import reducerAboutYourself from "../reducers/reducerAboutYourself"
+import * as constantsRegistration from "../constants/constantsRegistration";
+import * as constantsProfile from "../constants/constantsProfile";
+import * as constantsComments from "../constants/constsComments";
+import * as constantsAlbum from "../constants/constantsAlbum";
+import {INFO_ABOUT_USER} from "../constants/constantsAboutYoiurself";
+import * as constantsAuthorization from "../constants/constantsAuthorization";
+import * as constantsPosts from "../constants/constantsPosts";
+
+let defaultState= {
     email: "",
     password: "",
     activeUserId: "",
     isVisibleProfile: false,
+    isVisibleInformation: false,
     isVisibleAuthorization: false,
     name: "",
-    surname:"",
-    emailUser:"",
-    sphere:"",
-    city:"",
-    pseoudonym:"",
-    images:[],
+    surname: "",
+    emailUser: "",
+    sphere: "",
+    city: "",
+    pseoudonym: "",
+    images: [],
     deleteItem: "Enter the name of image...",
     nameImg: "Enter the name of image...",
-    path:"Enter the path of image...",
-    idPost:"",
+    path: "Enter the path of image...",
+    idPost: "",
     isVisiblePost: false,
     isVisiblePosts: true,
-    subPosts:[],
+    subPosts: [],
     idUser: 0,
     isVisibleAlbum: false,
     posts: [],
     author: [],
     data: [],
-    comment:"",
+    comment: "",
     flagForCheckPageCommentsOrProfile: false,
     RETURN_IN_INITIAL_STATE_IMAGE: false,
     isVisibleRegistration: false,
-    registrationEmail:"",
-    registrationPassword:"",
+    registrationEmail: "",
+    registrationPassword: "",
     isRegistrationUser: false
-}
+};
 
+//  const rootReducer = combineReducers({
+//     reducerRegistration,
+//     reducerProfile,
+//     reducerPosts,
+//     reducerComments,
+//     reducerAuthorization,
+//     reducerAlbum,
+//     reducerAboutYourself
+// });
+//
+// export default rootReducer;
 
 
 const mainReducer=(state=defaultState,action)=>{
 debugger;
 var images =[];
-    if(action.type === "CHECK_USER" || action.type === "GET_ITEMS"){
-        debugger;
-        return {
-                ...state
-        }
-    }
+    // if(action.type === "CHECK_USER" || action.type === "GET_ITEMS"){
+    //     debugger;
+    //     return {
+    //             ...state
+    //     }
+    // }
 
-    if(action.type === "CHANGE_EMAIL"){
+    if(action.type === constantsAuthorization.CHANGE_EMAIL){
         return {
             ...state,
             email: action.email
         }
     }
 
-    if(action.type === "CHANGE_LIGTBOX"){
-        return{
-            ...state,
-            currentImage: action.currentImage,
-            lightboxIsOpen: action.lightboxIsOpen
-        }
-    }
+    // if(action.type === "CHANGE_LIGTBOX"){
+    //     return{
+    //         ...state,
+    //         currentImage: action.currentImage,
+    //         lightboxIsOpen: action.lightboxIsOpen
+    //     }
+    // }
 
-    if(action.type === "CHANGE_PASSWORD"){
+    if(action.type === constantsAuthorization.CHANGE_PASSWORD){
         return{
             ...state,
             password: action.password
         }
     }
-    if(action.type === "CHANGE_ACTIVE_USER"){
+    if(action.type === constantsAlbum.HANGE_ACTIVE_USER){
         return{
             ...state,
             activeUserId: action.activeUserId
         }
     }
 
-    if(action.type === "CHANGE_ACTIVE_USER_FROM_COMMENTS"){
-        return{
-            ...state,
-            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile
-        }
-    }
+    // if(action.type === "CHANGE_ACTIVE_USER_FROM_COMMENTS"){
+    //     return{
+    //         ...state,
+    //         flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile
+    //     }
+    // }
 
-    if(action.type === "CHANGE_VISIBLE_PROFILE"){
+    if(action.type === constantsAuthorization.CHANGE_VISIBLE_PROFILE){
         return{
             ...state,
             isVisibleProfile: action.isVisibleProfile,
@@ -90,7 +118,7 @@ var images =[];
         }
     }
 
-    if(action.type === "INFO_ABOUT_USER"){
+    if(action.type === INFO_ABOUT_USER){
         return{
             ...state,
             name:action.name,
@@ -101,7 +129,7 @@ var images =[];
         }
     }
 
-    if(action.type === "CHANGE_IMAGES"){
+    if(action.type === constantsAlbum.CHANGE_IMAGES){
         return{
             ...state,
             images: [...state.images,action.images],
@@ -111,92 +139,92 @@ var images =[];
         }
     }
 
-    if(action.type === "LOAD_IMAGES"){
+    if(action.type === constantsAlbum.LOAD_IMAGES){
         return{
             ...state,
             images:[...state.images,action.images]
         }
     }
 
-    if(action.type === "CHANGE_DELETE_ITEM"){
+    if(action.type === constantsAlbum.CHANGE_DELETE_ITEM){
         return{
             ...state,
             deleteItem: action.deleteItem
         }
     }
 
-    if(action.type === "CHANGE_NAME_IMAGE"){
+    if(action.type === constantsAlbum.CHANGE_NAME_IMAGE){
         return{
             ...state,
             nameImg: action.nameImg
         }
     }
 
-    if(action.type === "CHANGE_PATH"){
+    if(action.type === constantsAlbum.CHANGE_PATH){
         return{
             ...state,
             path: action.path
         }
     }
 
-    if(action.type === "RETURN_IN_INITIAL_STATE_ALBUM_PAGE"){
-        debugger;
-        return{
-            ...state,
-            images: action.images,
-            isVisiblePosts: action.isVisiblePosts,
-            isVisiblePost: action.isVisiblePost,
-            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
-        }
-    }
+    // if(action.type === "RETURN_IN_INITIAL_STATE_ALBUM_PAGE"){
+    //     debugger;
+    //     return{
+    //         ...state,
+    //         images: action.images,
+    //         isVisiblePosts: action.isVisiblePosts,
+    //         isVisiblePost: action.isVisiblePost,
+    //         flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
+    //     }
+    // }
+    //
+    // if(action.type === "CHANGE_ID_POST_AND_VISIBLE"){
+    //     return{
+    //         ...state,
+    //         idPost:action.idPost,
+    //         isVisiblePost: action.isVisiblePost,
+    //         isVisiblePosts: action.isVisiblePosts
+    //     }
+    // }
 
-    if(action.type === "CHANGE_ID_POST_AND_VISIBLE"){
-        return{
-            ...state,
-            idPost:action.idPost,
-            isVisiblePost: action.isVisiblePost,
-            isVisiblePosts: action.isVisiblePosts
-        }
-    }
-
-    if(action.type === "ADD_ITEM") {
-        return {
-            ...state,
-            currentImage: action.currentImage,
-            lightboxIsOpen: action.lightboxIsOpen,
-            subPosts: action.subPosts
-        }
-    }
-
-    if(action.type === "CLOSE_IMAGE"){
-        return{
-            ...state,
-            currentImage: action.currentImage,
-            lightboxIsOpen: action.lightboxIsOpen
-        }
-    }
-
-    if(action.type === "TO_PREVIOUS_PHOTO"){
-        return{
-            ...state,
-            currentImage: action.currentImage
-        }
-    }
-    if(action.type === "GO_TO_NEXT_PHOTO"){
-        return{
-            ...state,
-            currentImage: action.currentImage
-        }
-    }
-
-    if(action.type === "CHANGE_ID_USER"){
-        return{
-            ...state,
-            isVisibleAlbum: action.isVisibleAlbum,
-            idUser: action.idUser,
-            isVisiblePosts: action.isVisiblePosts
-        }
-    }
+    // if(action.type === "ADD_ITEM") {
+    //     return {
+    //         ...state,
+    //         currentImage: action.currentImage,
+    //         lightboxIsOpen: action.lightboxIsOpen,
+    //         subPosts: action.subPosts
+    //     }
+    // }
+    //
+    // if(action.type === "CLOSE_IMAGE"){
+    //     return{
+    //         ...state,
+    //         currentImage: action.currentImage,
+    //         lightboxIsOpen: action.lightboxIsOpen
+    //     }
+    // }
+    //
+    // if(action.type === "TO_PREVIOUS_PHOTO"){
+    //     return{
+    //         ...state,
+    //         currentImage: action.currentImage
+    //     }
+    // }
+    // if(action.type === "GO_TO_NEXT_PHOTO"){
+    //     return{
+    //         ...state,
+    //         currentImage: action.currentImage
+    //     }
+    // }
+    //
+    // if(action.type === "CHANGE_ID_USER"){
+    //     return{
+    //         ...state,
+    //         isVisibleAlbum: action.isVisibleAlbum,
+    //         idUser: action.idUser,
+    //         isVisiblePosts: action.isVisiblePosts
+    //     }
+    // }
 
     // if(action.type === "CHANGE_POSTS"){
     //     return{
@@ -205,7 +233,7 @@ var images =[];
     //     }
     // }
 
-    if(action.type === "CHANGE_POSTS"){
+    if(action.type === constantsPosts.CHANGE_POSTS){
         debugger;
         return{
             ...state,
@@ -220,7 +248,7 @@ var images =[];
     //     }
     // }
 
-    if(action.type === "CHANGE_SUBPOSTS"){
+    if(action.type === constantsPosts.CHANGE_SUBPOSTS){
         debugger;
         return {
             ...state,
@@ -228,56 +256,56 @@ var images =[];
         }
     }
 
-    if(action.type === "SCROLL_UP_EVENT"){
-        return{
-            ...state,
-            subPosts:action.subPosts
-        }
-    }
+    // if(action.type === "SCROLL_UP_EVENT"){
+    //     return{
+    //         ...state,
+    //         subPosts:action.subPosts
+    //     }
+    // }
+    //
+    // if(action.type === "SCROLL_DOWN_EVENT"){
+    //     return{
+    //         ...state,
+    //         subPosts: action.subPosts
+    //     }
+    // }
 
-    if(action.type === "SCROLL_DOWN_EVENT"){
-        return{
-            ...state,
-            subPosts: action.subPosts
-        }
-    }
-
-    if(action.type === "CHANGE_AUTHOR"){
+    if(action.type === constantsComments.CHANGE_AUTHOR){
         return{
             ...state,
             author: [...state.author,action.author]
         }
     }
 
-    if(action.type === "CHANGE_DATA"){
+    if(action.type === constantsComments.CHANGE_DATA){
         return{
             ...state,
             data:[...state.data,action.data]
         }
     }
 
-    if(action.type === "CHANGE_COMMENT"){
+    if(action.type === constantsComments.CHANGE_COMMENT){
         return{
             ...state,
             comment: action.comment
         }
     }
 
-    if(action.type === "CHANGE_CURRENT_IMAGE"){
+    if(action.type === constantsPosts.CHANGE_CURRENT_IMAGE){
         return{
             ...state,
             currentImage: action.currentImage
         }
     }
 
-    if(action.type === "CHANGE_LIGHTBOXES"){
+    if(action.type === constantsPosts.CHANGE_LIGHTBOXES){
         return{
             ...state,
             lightboxIsOpen: action.lightboxIsOpen
         }
     }
 
-    if(action.type === "VISIBLE_POST"){
+    if(action.type === constantsPosts.VISIBLE_POST){
         debugger;
         return{
             ...state,
@@ -287,15 +315,15 @@ var images =[];
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_ALBUM"){
-        return{
-            ...state,
-            isVisibleAlbum: action.isVisibleAlbum,
-            isVisiblePosts: action.isVisiblePosts
-        }
-    }
+    // if(action.type === "CHANGE_VISIBLE_ALBUM"){
+    //     return{
+    //         ...state,
+    //         isVisibleAlbum: action.isVisibleAlbum,
+    //         isVisiblePosts: action.isVisiblePosts
+    //     }
+    // }
 
-    if(action.type ==="CHANGE_IN_INITIAL_STATE_IMAGES"){
+    if(action.type === constantsPosts.CHANGE_IN_INITIAL_STATE_IMAGES){
         return{
             ...state,
             posts: action.posts,
@@ -304,7 +332,7 @@ var images =[];
         }
     }
 
-    if(action.type === "DELETE_PHOTO_FROM_IMAGES"){
+    if(action.type === constantsAlbum.DELETE_PHOTO_FROM_IMAGES){
         debugger;
         return{
             ...state,
@@ -313,20 +341,20 @@ var images =[];
         }
     }
 
-    if(action.type === "DELETE_PHOTOS"){
-        return{
-            ...state
-        }
-    }
+    // if(action.type === "DELETE_PHOTOS"){
+    //     return{
+    //         ...state
+    //     }
+    // }
 
-    if(action.type === "ADD_COMMENT"){
+    if(action.type === constantsComments.ADD_COMMENT){
         return{
             ...state,
             data: [...state.data, action.data]
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_COMMENTS"){
+    if(action.type === constantsComments.CHANGE_VISIBLE_COMMENTS){
         debugger;
         return{
             ...state,
@@ -335,7 +363,7 @@ var images =[];
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE"){
+    if(action.type === constantsPosts.CHANGE_VISIBLE){
         debugger;
         return{
             ...state,
@@ -346,96 +374,96 @@ var images =[];
         }
     }
 
-    if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
-        return{
-            ...state,
-            author:action.author,
-            data: action.data,
-        }
-    }
+    // if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
+    //     return{
+    //         ...state,
+    //         author:action.author,
+    //         data: action.data,
+    //     }
+    // }
+    //
+    // if(action.type === "RETURN_IN_INITIAL_STATE_ALBUM_PAGE"){
+    //     return{
+    //         ...state,
+    //         isVisibleAlbum: action.isVisibleAlbum
+    //     }
+    // }
+    //
+    // if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
+    //     return{
+    //         ...state,
+    //         isVisibleAlbum: action.isVisibleAlbum,
+    //         isVisiblePosts: action.isVisiblePosts,
+    //         isVisiblePost: action.isVisiblePost
+    //     }
+    // }
+    //
+    // if(action.type === "START_POST_PAGE"){
+    //     return{
+    //         ...state,
+    //         isVisiblePosts: action.isVisiblePosts,
+    //         isVisiblePost: action.isVisiblePost,
+    //         isVisibleAlbum: action.isVisibleAlbum
+    //     }
+    // }
+    //
+    // if(action.type === "CHANGE_FLAG_FOR_POSTS_ALBUM"){
+    //     return{
+    //         ...state,
+    //         flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
+    //     }
+    // }
 
-    if(action.type === "RETURN_IN_INITIAL_STATE_ALBUM_PAGE"){
-        return{
-            ...state,
-            isVisibleAlbum: action.isVisibleAlbum
-        }
-    }
-
-    if(action.type === "RETURN_IN_INITIAL_STATE_POSTS_PAGE"){
-        return{
-            ...state,
-            isVisibleAlbum: action.isVisibleAlbum,
-            isVisiblePosts: action.isVisiblePosts,
-            isVisiblePost: action.isVisiblePost
-        }
-    }
-
-    if(action.type === "START_POST_PAGE"){
-        return{
-            ...state,
-            isVisiblePosts: action.isVisiblePosts,
-            isVisiblePost: action.isVisiblePost,
-            isVisibleAlbum: action.isVisibleAlbum
-        }
-    }
-
-    if(action.type === "CHANGE_FLAG_FOR_POSTS_ALBUM"){
-        return{
-            ...state,
-            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
-        }
-    }
-
-    if(action.type === "CHANGE_NAME_REGISTRATION"){
+    if(action.type === constantsRegistration.CHANGE_NAME_REGISTRATION){
         return{
             ...state,
             name:action.name
         }
     }
 
-    if(action.type === "CHANGE__SURNAME_REGISTRATION"){
+    if(action.type === constantsRegistration.CHANGE__SURNAME_REGISTRATION){
         return{
             ...state,
             surname: action.surname
         }
     }
 
-    if(action.type === "CHANGE__PSEOUDONYM_REGISTRATION"){
+    if(action.type === constantsRegistration.CHANGE__PSEOUDONYM_REGISTRATION){
         return{
             ...state,
             pseoudonym: action.pseoudonym
         }
     }
 
-    if(action.type === "CHANGE__EMAIL_REGISTRATION"){
+    if(action.type === constantsRegistration.CHANGE__EMAIL_REGISTRATION){
         return{
             ...state,
             registrationEmail: action.registrationEmail
         }
     }
 
-    if(action.type === "CHANGE__SPHERE_REGISTRATION"){
+    if(action.type === constantsRegistration.CHANGE__SPHERE_REGISTRATION){
         return{
             ...state,
             sphere: action.sphere
         }
     }
 
-    if(action.type === "CHANGE__CITY_REGISTRATION"){
+    if(action.type === constantsRegistration.CHANGE__CITY_REGISTRATION){
         return{
             ...state,
             city: action.city
         }
     }
 
-    if(action.type === "CHANGE__PASSWORD_REGISTRATION"){
+    if(action.type === constantsRegistration.CHANGE__PASSWORD_REGISTRATION){
         return{
             ...state,
             registrationPassword: action.registrationPassword
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_PROFILE_FROM_AUTHORIZATION"){
+    if(action.type === constantsRegistration.CHANGE_VISIBLE_PROFILE_FROM_AUTHORIZATION){
         return{
             ...state,
             isVisibleProfile: action.isVisibleProfile,
@@ -444,7 +472,7 @@ var images =[];
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_REGISTRATION"){
+    if(action.type === constantsAuthorization.CHANGE_VISIBLE_REGISTRATION){
         return{
             ...state,
             isVisibleRegistration: action.isVisibleRegistration,
@@ -452,7 +480,7 @@ var images =[];
         }
     }
 
-    if(action.type === "RETURN_IN_INITIAL_STATE_COMMENTS_PAGE"){
+    if(action.type === constantsComments.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE){
         return{
             ...state,
             author: action.author,
@@ -462,7 +490,7 @@ var images =[];
         }
     }
 
-    if(action.type === "POSTS_VISIBLE"){
+    if(action.type === constantsPosts.POSTS_VISIBLE){
         return{
             ...state,
             isVisiblePosts: action.isVisiblePosts,
@@ -471,7 +499,7 @@ var images =[];
         }
     }
 
-    if(action.type === "RETURN_IN_INITIAL_STATE_IMAGE"){
+    if(action.type === constantsAlbum.RETURN_IN_INITIAL_STATE_IMAGE){
         return{
             ...state,
             images: action.images,
@@ -480,7 +508,7 @@ var images =[];
         }
     }
 
-    if(action.type === "CHANGE_REGISTR_USER"){
+    if(action.type === constantsPosts.CHANGE_REGISTR_USER){
         return{
             ...state,
             isRegistrationUser: action.isRegistrationUser,
@@ -488,7 +516,7 @@ var images =[];
         }
     }
 
-    if(action.type === "VISIBLE_AUTHORIZATION"){
+    if(action.type === constantsPosts.VISIBLE_AUTHORIZATION){
         return{
             ...state,
             isVisibleAuthorization: action.isVisibleAuthorization,
@@ -496,7 +524,7 @@ var images =[];
         }
     }
 
-    if(action.type === "VISIBLE_AUTHORIZATION_FROM_COMMENTS"){
+    if(action.type === constantsComments.VISIBLE_AUTHORIZATION_FROM_COMMENTS){
         return{
             ...state,
             isVisibleAuthorization: action.isVisibleAuthorization,
@@ -504,7 +532,7 @@ var images =[];
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER"){
+    if(action.type === constantsComments.CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER){
         return{
             ...state,
             isVisibleAuthorization: action.isVisibleAuthorization,
@@ -512,7 +540,7 @@ var images =[];
         }
     }
 
-    if(action.type === "CHANGE_INITIAL_STATE_POSTS"){
+    if(action.type === constantsPosts.CHANGE_INITIAL_STATE_POSTS){
         return{
             ...state,
             isVisibleAlbum: action.isVisibleAlbum,
@@ -521,9 +549,41 @@ var images =[];
         }
     }
 
+    if(action.type === constantsProfile.CHANGE_VISIBLE_ALBUM_FROM_PROFILE){
+        return {
+            ...state,
+            isVisibleAlbum: action.isVisibleAlbum,
+            isVisiblePosts:action.isVisiblePosts,
+            isVisibleInformation:action.isVisibleInformation,
+            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts
+        }
+    }
+
+    if(action.type === constantsProfile.CHANGE_VISIBLE_INFORMATION){
+        debugger;
+        return{
+            ...state,
+            isVisibleInformation: action.isVisibleInformation,
+            isVisibleAlbum:action.isVisibleAlbum,
+            isVisiblePosts:action.isVisiblePosts,
+            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts
+        }
+    }
+
+    if(action.type === constantsProfile.CHANGE_VISIBLE_POSTS_FROM_PROFILE){
+        debugger;
+        return{
+            ...state,
+            isVisibleInformation: action.isVisibleInformation,
+            isVisibleAlbum:action.isVisibleAlbum,
+            isVisiblePosts:action.isVisiblePosts,
+            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
+        }
+    }
+
     return{
         ...state
     }
 };
-
 export default mainReducer;
+// export default rootReducer;

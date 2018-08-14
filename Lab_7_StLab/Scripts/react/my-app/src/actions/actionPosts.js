@@ -252,6 +252,7 @@
 //     obj.nameImg = deleteItem;
 //     axios.post('deletePhoto',obj);
 // }
+import * as constants from "../constants/constantsPosts"
 
 export function changePosts(posts){
     debugger;
@@ -262,7 +263,7 @@ export function changePosts(posts){
 
 export function post(post){
     return{
-        type:"CHANGE_POSTS",
+        type:constants.CHANGE_POSTS,
         posts: post
     }
 }
@@ -276,7 +277,7 @@ export function changeSubPosts(subposts){
 
 export function subpost(subposts) {
     return{
-        type:"CHANGE_SUBPOSTS",
+        type:constants.CHANGE_SUBPOSTS,
         subposts: subposts
     }
 }
@@ -289,7 +290,7 @@ export function changeCurrentImage(currentImage){
 
 export function currentImages(currentImage){
     return{
-        type:"CHANGE_CURRENT_IMAGE",
+        type:constants.CHANGE_CURRENT_IMAGE,
         currentImage: currentImage
     }
 }
@@ -302,7 +303,7 @@ export function changeLightboxIsOpen(lightboxIsOpen) {
 
 export function lightboxesIsOpen(lightboxIsOpen) {
     return{
-        type: "CHANGE_LIGHTBOXES",
+        type: constants.CHANGE_LIGHTBOXES,
         lightboxIsOpen: lightboxIsOpen
     }
 }
@@ -315,7 +316,7 @@ export function visiblePost(postId){
 
 export function changeVisiblePost(postId){
     return{
-        type:"VISIBLE_POST",
+        type:constants.VISIBLE_POST,
         isVisiblePost: true,
         isVisiblePosts: false,
         idPost: postId
@@ -330,7 +331,7 @@ export function goToAlbum(idUser){
 
 export function changeIsVisibleAlbum(idUser){
     return{
-        type:"CHANGE_VISIBLE",
+        type:constants.CHANGE_VISIBLE,
         flagForCheckAlbumInPosts: true,
         isVisiblePosts: false,
         activeUserId: idUser,
@@ -346,7 +347,7 @@ export function visiblePosts() {
 
 export function returnInInitialStatePosts(){
     return{
-        type:"POSTS_VISIBLE",
+        type:constants.POSTS_VISIBLE,
         isVisiblePosts: true,
         isVisiblePost: false,
         flagForCheckAlbumInPosts: false
@@ -361,7 +362,7 @@ export function returnInInitialState(){
 
 export function changeInitialState(){
     return{
-        type:"CHANGE_IN_INITIAL_STATE_IMAGES",
+        type:constants.CHANGE_IN_INITIAL_STATE_IMAGES,
         posts: [],
         subPosts:[],
         isVisiblePosts: false
@@ -380,7 +381,7 @@ export function defineUser(flag) {
     if(flag)
         flagForVisibleProfile = true;
     return{
-        type:"CHANGE_REGISTR_USER",
+        type:constants.CHANGE_REGISTR_USER,
         isRegistrationUser: flag,
         isVisibleProfile: flagForVisibleProfile
     }
@@ -394,7 +395,7 @@ export function changeVisibleAuthorization(){
 
 export function visibleAuthorization() {
     return{
-        type:"VISIBLE_AUTHORIZATION",
+        type:constants.VISIBLE_AUTHORIZATION,
         isVisibleAuthorization: true,
         isVisiblePosts: false
     }
@@ -409,7 +410,7 @@ export function returnInInitialStatePages(){
 
 export function initialState() {
     return{
-        type:"CHANGE_INITIAL_STATE_POSTS",
+        type:constants.CHANGE_INITIAL_STATE_POSTS,
         isVisibleAlbum: false,
         isVisiblePosts: true,
         isVisiblePost: false

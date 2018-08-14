@@ -69,7 +69,7 @@ export default class Posts extends React.Component {
 
     goToAlbum(idUser){
         debugger;
-        this.props.goToAlbuum(idUser);
+        this.props.goToAlbum(idUser);
     }
 
     callbackFunction(response){

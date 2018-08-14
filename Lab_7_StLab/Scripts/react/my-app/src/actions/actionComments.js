@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import * as constants from "../constants/constsComments"
 
 export function componentDidMount(idPost) {
     return (dispatch)=> {
@@ -38,14 +38,14 @@ export function componentDidMount(idPost) {
 
 export function changeAuthor(data){
     return{
-        type: "CHANGE_AUTHOR",
+        type: constants.CHANGE_AUTHOR,
         author: data
     }
 }
 
 export function changeData(data) {
     return{
-        type:"CHANGE_DATA",
+        type:constants.CHANGE_DATA,
         data: data
     }
 }
@@ -58,7 +58,7 @@ export function onChange(e) {
 
 export function changeComment(data){
     return{
-        type:"CHANGE_COMMENT",
+        type:constants.CHANGE_COMMENT,
         comment: data
     }
 }
@@ -78,7 +78,7 @@ export function addComment(idPost, comment,idActiveUser){
 
 export function commentAdd(comment){
     return{
-        type:"ADD_COMMENT",
+        type:constants.ADD_COMMENT,
         data: comment
     }
 }
@@ -93,7 +93,7 @@ export function goToAlbums(idUser) {
 export function changeVisibleComments(idUser) {
     debugger;
     return{
-        type:"CHANGE_VISIBLE_COMMENTS",
+        type:constants.CHANGE_VISIBLE_COMMENTS,
         isVisiblePost: false,
         isVisibleAlbum: true,
         flagForCheckPageCommentsOrProfile: true,
@@ -109,7 +109,7 @@ export function returnInInitialState(){
 
 export function changeInitialState() {
     return{
-        type:"RETURN_IN_INITIAL_STATE_COMMENTS_PAGE",
+        type:constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE,
         author:[],
         data: [],
         isVisiblePosts: true,
@@ -125,7 +125,7 @@ export function changeVisibleAuthorization(){
 
 export function visibleAuthorization() {
     return{
-        type:"VISIBLE_AUTHORIZATION_FROM_COMMENTS",
+        type:constants.VISIBLE_AUTHORIZATION_FROM_COMMENTS,
         isVisibleAuthorization: true,
         isVisiblePosts: false
     }
@@ -141,7 +141,7 @@ export function changeVisibleCommentsFromNotAuthorization(){
 
 export function visibleComments(){
     return{
-        type:"CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER",
+        type:constants.CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER,
         isVisiblePosts: true,
         isVisiblePost: false
     }

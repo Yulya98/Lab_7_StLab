@@ -4,15 +4,15 @@ import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
-import reducers from "./reducers/index.js";
-import ContainerAuthorization from './containers/containerAuthorization';
+import mainReducer from "./reducers/index.js";
+import Authorization from './containers/containerAuthorization';
 import Profile from './containers/containerProfile'
 import Registration from "./containers/containerRegistration"
 import Posts from "./containers/containerPosts"
+import Album from "./containers/containerAlbum"
+import InformationAboutUser from "./containers/containerAboutYourself"
 
-let store = createStore(reducers, applyMiddleware(thunk));
-
-
+let store = createStore(mainReducer, applyMiddleware(thunk));
 
 
 class App extends React.Component{
@@ -20,9 +20,11 @@ class App extends React.Component{
         return(
             <div>
                 <Profile></Profile>
-                <ContainerAuthorization></ContainerAuthorization>
+                <Authorization></Authorization>
                 <Registration></Registration>
                 <Posts></Posts>
+                <Album></Album>
+                <InformationAboutUser></InformationAboutUser>
             </div>
         )
     }

@@ -1,3 +1,5 @@
+import * as constants from "../constants/constantsRegistration"
+
 export function onChangeName(e){
     return (dispatch) =>{
         dispatch(changeName(e.target.value));
@@ -6,7 +8,7 @@ export function onChangeName(e){
 
 export function changeName(data){
     return{
-        type:"CHANGE_NAME_REGISTRATION",
+        type:constants.CHANGE_NAME_REGISTRATION,
         name: data
     }
 }
@@ -19,7 +21,7 @@ export function onChangeSurname(e){
 
 export function changeSurname(data){
     return{
-        type:"CHANGE__SURNAME_REGISTRATION",
+        type:constants.CHANGE__SURNAME_REGISTRATION,
         surname: data
     }
 }
@@ -32,7 +34,7 @@ export function onChangepPseoudonym(e){
 
 export function changePseoudonym(data){
     return{
-        type:"CHANGE__PSEOUDONYM_REGISTRATION",
+        type:constants.CHANGE__PSEOUDONYM_REGISTRATION,
         pseoudonym: data
     }
 }
@@ -45,7 +47,7 @@ export function onChangepEmail(e){
 
 export function changeEmail(data){
     return{
-        type:"CHANGE__EMAIL_REGISTRATION",
+        type:constants.CHANGE__EMAIL_REGISTRATION,
         registrationEmail: data
     }
 }
@@ -58,7 +60,7 @@ export function onChangepSphere(e){
 
 export function changeSphere(data){
     return{
-        type:"CHANGE__SPHERE_REGISTRATION",
+        type:constants.CHANGE__SPHERE_REGISTRATION,
         sphere: data
     }
 }
@@ -71,7 +73,7 @@ export function onChangepCity(e){
 
 export function changeCity(data){
     return{
-        type:"CHANGE__CITY_REGISTRATION",
+        type:constants.CHANGE__CITY_REGISTRATION,
         city: data
     }
 }
@@ -84,7 +86,7 @@ export function onChangepPassword(e){
 
 export function changePassword(data){
     return{
-        type:"CHANGE__PASSWORD_REGISTRATION",
+        type:constants.CHANGE__PASSWORD_REGISTRATION,
         registrationPassword: data
     }
 }
@@ -98,7 +100,7 @@ export function visibleProfile(){
 
 export function changeProfile(){
     return{
-        type:"CHANGE_VISIBLE_PROFILE_FROM_AUTHORIZATION",
+        type:constants.CHANGE_VISIBLE_PROFILE_FROM_AUTHORIZATION,
         isVisibleProfile: true,
         isVisibleRegistration: false,
         isRegistrationUser: true

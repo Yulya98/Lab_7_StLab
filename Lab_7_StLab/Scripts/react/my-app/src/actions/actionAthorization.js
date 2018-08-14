@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as constants from "../constants/constantsAuthorization"
 
 export function onChangeEmail(e){
     debugger;
@@ -8,7 +9,7 @@ export function onChangeEmail(e){
 export function changeEmail(e){
     debugger;
     return{
-        type: "CHANGE_EMAIL",
+        type: constants.CHANGE_EMAIL,
         email: e
     }
 }
@@ -20,7 +21,7 @@ export function onChangePassword(e){
 export function changePassword(e){
     console.log(e);
     return{
-        type: "CHANGE_PASSWORD",
+        type: constants.CHANGE_PASSWORD,
         password: e
     }
 }
@@ -53,7 +54,7 @@ export function isVisibleProfile(data) {
         flag = true;
     }
     return{
-        type: "CHANGE_VISIBLE_PROFILE",
+        type: constants.CHANGE_VISIBLE_PROFILE,
         isVisibleProfile: data,
         isVisibleAuthorization: flag,
         isRegistrationUser: true
@@ -68,7 +69,7 @@ export function isVisibleRegistrations(){
 
 export function changeVisibleRegistration(){
     return{
-        type:"CHANGE_VISIBLE_REGISTRATION",
+        type: constants.CHANGE_VISIBLE_REGISTRATION,
         isVisibleRegistration: true,
         isVisibleAuthorization: false
     }

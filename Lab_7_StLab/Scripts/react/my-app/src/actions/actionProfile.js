@@ -1,12 +1,50 @@
-export function changeFlagForPostsAlbob(){
-    return (dispatch)=>{
-        dispatch()
+import * as constantsProfile from "../constants/constantsProfile"
+
+export function changeVisibleAlbom(){
+    return (dispatch) =>{
+        dispatch(visibleAlbum())
     }
 }
 
-export function chngeState() {
+export function visibleAlbum() {
     return{
-        type:"CHANGE_FLAG_FOR_POSTS_ALBUM",
-        flagForCheckAlbumInPosts: false
+        type:constantsProfile.CHANGE_VISIBLE_ALBUM_FROM_PROFILE,
+        isVisibleAlbum: true,
+        isVisiblePosts:false,
+        isVisibleInformation:false,
+        flagForCheckAlbumInPosts:false
+    }
+}
+
+export function changeVisibleInformation(){
+    return (dispatch) =>{
+        dispatch(visibleInformation())
+    }
+}
+
+export function visibleInformation() {
+    return{
+        type:constantsProfile.CHANGE_VISIBLE_INFORMATION,
+        isVisibleInformation: true,
+        isVisibleAlbum: false,
+        isVisiblePosts:false,
+        flagForCheckAlbumInPosts:false
+    }
+}
+
+
+export function changeVisiblePosts(){
+    return (dispatch) =>{
+        dispatch(visiblePosts())
+    }
+}
+
+export function visiblePosts() {
+    return{
+        type:constantsProfile.CHANGE_VISIBLE_POSTS_FROM_PROFILE,
+        isVisibleAlbum: false,
+        isVisiblePosts: true,
+        isVisibleInformation:false,
+        flagForCheckAlbumInPosts:false
     }
 }

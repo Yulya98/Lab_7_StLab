@@ -13,7 +13,9 @@ class ContainerAboutYourself extends React.Component{
     render(){
         debugger;
         return(
-            <Album flagForCheckPageCommentsOrProfile={this.props.flagForCheckPageCommentsOrProfile} deletePhoto={this.props.deletePhoto} deleteItemFromArray={this.props.deleteItemFromArray} returnInInitialState={this.props.returnInInitialState} activeUserId={this.props.activeUserId} loadImages={this.props.loadImages} deleteItem={this.props.deleteItem} nameImg={this.props.nameImg} path={this.props.path} images={this.props.images} loadData={this.props.componentWillMount} handleClicks={this.props.handleClick} onChangeDeleteItem={this.props.onChangeDeleteItem} onChangeNameImage={this.props.onChangeNameImage} onChangePath={this.props.onChangePath} deleteButton={this.props.deleteButton}></Album>
+            <div>
+                {(this.props.isVisibleAlbum || this.props.flagForCheckAlbumInPosts) && <Album flagForCheckPageCommentsOrProfile={this.props.flagForCheckPageCommentsOrProfile} deletePhoto={this.props.deletePhoto} deleteItemFromArray={this.props.deleteItemFromArray} returnInInitialState={this.props.returnInInitialState} activeUserId={this.props.activeUserId} loadImages={this.props.loadImages} deleteItem={this.props.deleteItem} nameImg={this.props.nameImg} path={this.props.path} images={this.props.images} loadData={this.props.componentWillMount} handleClicks={this.props.handleClick} onChangeDeleteItem={this.props.onChangeDeleteItem} onChangeNameImage={this.props.onChangeNameImage} onChangePath={this.props.onChangePath} deleteButton={this.props.deleteButton}></Album>}
+            </div>
         )
     }
 }

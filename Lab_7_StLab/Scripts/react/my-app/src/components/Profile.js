@@ -26,16 +26,16 @@ class App extends React.Component {
                 <div className="container-menu">
                     <div className="menu">
                         <ul>
-                            <li><Link to="/about">Information</Link></li>
-                            <li><Link to="/albom">My albom</Link></li>
-                            <li><Link to="/posts" id="menu_none">Last posts</Link></li>
+                            <li><Link onClick={()=>this.props.changeVisibleInformation()} to="/about">Information</Link></li>
+                            <li><Link onClick={()=>this.props.changeVisibleAlbom()} to="/albom">My albom</Link></li>
+                            <li><Link onClick={()=>this.props.changeVisiblePosts()} to="/posts" id="menu_none">Last posts</Link></li>
                         </ul>
 
-                        <Switch>
-                            <Route exact path="/about" component={InfoAboutYourself}/>
-                            <Route exact path="/albom" component={Album} />
-                            <Route exact path="/posts" component={Posts} />
-                        </Switch>
+                        {/*<Switch>*/}
+                            {/*<Route exact path="/about" component={InfoAboutYourself}/>*/}
+                            {/*<Route exact path="/albom" component={Album} />*/}
+                            {/*<Route exact path="/posts" component={Posts} />*/}
+                        {/*</Switch>*/}
                     </div>
                 </div>
             </Router>
