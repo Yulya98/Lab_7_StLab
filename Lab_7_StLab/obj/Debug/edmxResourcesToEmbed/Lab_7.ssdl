@@ -61,7 +61,7 @@
     <Property Name="IdUser" Type="int" Nullable="false" />
     <Property Name="Comment" Type="text" Nullable="false" />
   </EntityType>
-  <Association Name="FK__UserAlbum__Album__58D1301D">
+  <Association Name="FK__UserAlbum__Album__4F7CD00D">
     <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
     <End Role="UserAlbum" Type="Self.UserAlbum" Multiplicity="*" />
     <ReferentialConstraint>
@@ -73,8 +73,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UserAlbum__IdPos__5D95E53A">
-    <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="0..1" />
+  <Association Name="FK__UserAlbum__IdPos__571DF1D5">
+    <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UserAlbumPosts" Type="Self.UserAlbumPosts" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UsersImages">
@@ -85,8 +87,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UserAlbum__IdUse__5CA1C101">
-    <End Role="UserAlbum" Type="Self.UserAlbum" Multiplicity="0..1" />
+  <Association Name="FK__UserAlbum__IdUse__5629CD9C">
+    <End Role="UserAlbum" Type="Self.UserAlbum" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UserAlbumPosts" Type="Self.UserAlbumPosts" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserAlbum">
@@ -97,7 +101,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UserAlbum__UserI__57DD0BE4">
+  <Association Name="FK__UserAlbum__UserI__4E88ABD4">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="UserAlbum" Type="Self.UserAlbum" Multiplicity="*" />
     <ReferentialConstraint>
@@ -109,7 +113,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UsersImag__IdIma__46B27FE2">
+  <Association Name="FK__UsersImag__IdIma__3C69FB99">
     <End Role="Images" Type="Self.Images" Multiplicity="1" />
     <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="*" />
     <ReferentialConstraint>
@@ -121,8 +125,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UsersImag__IdPos__498EEC8D">
-    <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="1" />
+  <Association Name="FK__UsersImag__IdPos__5441852A">
+    <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UsersImagesComments" Type="Self.UsersImagesComments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UsersImages">
@@ -133,7 +139,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UsersImag__IdUse__45BE5BA9">
+  <Association Name="FK__UsersImag__IdUse__3B75D760">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="*" />
     <ReferentialConstraint>
@@ -145,8 +151,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UsersImag__IdUse__4A8310C6">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+  <Association Name="FK__UsersImag__IdUse__5535A963">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UsersImagesComments" Type="Self.UsersImagesComments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -165,35 +173,35 @@
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsersImages" EntityType="Self.UsersImages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsersImagesComments" EntityType="Self.UsersImagesComments" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__UserAlbum__Album__58D1301D" Association="Self.FK__UserAlbum__Album__58D1301D">
+    <AssociationSet Name="FK__UserAlbum__Album__4F7CD00D" Association="Self.FK__UserAlbum__Album__4F7CD00D">
       <End Role="Album" EntitySet="Album" />
       <End Role="UserAlbum" EntitySet="UserAlbum" />
     </AssociationSet>
-    <AssociationSet Name="FK__UserAlbum__IdPos__5D95E53A" Association="Self.FK__UserAlbum__IdPos__5D95E53A">
+    <AssociationSet Name="FK__UserAlbum__IdPos__571DF1D5" Association="Self.FK__UserAlbum__IdPos__571DF1D5">
       <End Role="UsersImages" EntitySet="UsersImages" />
       <End Role="UserAlbumPosts" EntitySet="UserAlbumPosts" />
     </AssociationSet>
-    <AssociationSet Name="FK__UserAlbum__IdUse__5CA1C101" Association="Self.FK__UserAlbum__IdUse__5CA1C101">
+    <AssociationSet Name="FK__UserAlbum__IdUse__5629CD9C" Association="Self.FK__UserAlbum__IdUse__5629CD9C">
       <End Role="UserAlbum" EntitySet="UserAlbum" />
       <End Role="UserAlbumPosts" EntitySet="UserAlbumPosts" />
     </AssociationSet>
-    <AssociationSet Name="FK__UserAlbum__UserI__57DD0BE4" Association="Self.FK__UserAlbum__UserI__57DD0BE4">
+    <AssociationSet Name="FK__UserAlbum__UserI__4E88ABD4" Association="Self.FK__UserAlbum__UserI__4E88ABD4">
       <End Role="Users" EntitySet="Users" />
       <End Role="UserAlbum" EntitySet="UserAlbum" />
     </AssociationSet>
-    <AssociationSet Name="FK__UsersImag__IdIma__46B27FE2" Association="Self.FK__UsersImag__IdIma__46B27FE2">
+    <AssociationSet Name="FK__UsersImag__IdIma__3C69FB99" Association="Self.FK__UsersImag__IdIma__3C69FB99">
       <End Role="Images" EntitySet="Images" />
       <End Role="UsersImages" EntitySet="UsersImages" />
     </AssociationSet>
-    <AssociationSet Name="FK__UsersImag__IdPos__498EEC8D" Association="Self.FK__UsersImag__IdPos__498EEC8D">
+    <AssociationSet Name="FK__UsersImag__IdPos__5441852A" Association="Self.FK__UsersImag__IdPos__5441852A">
       <End Role="UsersImages" EntitySet="UsersImages" />
       <End Role="UsersImagesComments" EntitySet="UsersImagesComments" />
     </AssociationSet>
-    <AssociationSet Name="FK__UsersImag__IdUse__45BE5BA9" Association="Self.FK__UsersImag__IdUse__45BE5BA9">
+    <AssociationSet Name="FK__UsersImag__IdUse__3B75D760" Association="Self.FK__UsersImag__IdUse__3B75D760">
       <End Role="Users" EntitySet="Users" />
       <End Role="UsersImages" EntitySet="UsersImages" />
     </AssociationSet>
-    <AssociationSet Name="FK__UsersImag__IdUse__4A8310C6" Association="Self.FK__UsersImag__IdUse__4A8310C6">
+    <AssociationSet Name="FK__UsersImag__IdUse__5535A963" Association="Self.FK__UsersImag__IdUse__5535A963">
       <End Role="Users" EntitySet="Users" />
       <End Role="UsersImagesComments" EntitySet="UsersImagesComments" />
     </AssociationSet>

@@ -13,10 +13,10 @@ namespace Lab_7_StLab
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Lab_7Entities10 : DbContext
+    public partial class Lab_7Entities13 : DbContext
     {
-        public Lab_7Entities10()
-            : base("name=Lab_7Entities10")
+        public Lab_7Entities13()
+            : base("name=Lab_7Entities13")
         {
         }
     

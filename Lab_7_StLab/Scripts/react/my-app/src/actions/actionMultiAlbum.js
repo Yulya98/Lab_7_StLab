@@ -1,5 +1,6 @@
 import axios from "axios";
-import * as constants from "../constants/constantsAlbum";
+import * as constantsAlbum from "../constants/constantsAlbum";
+import * as constantsMultiAlbum from "../constants/constantsMultiAlbum"
 
 
 export function componentWillMount(flagForCheckPage){
@@ -19,7 +20,7 @@ export function componentWillMount(flagForCheckPage){
 
 export function searchActiveUserIdFromProfile(data){
     return{
-        type: constants.CHANGE_ACTIVE_USER,
+        type: constantsAlbum.CHANGE_ACTIVE_USER,
         activeUserId: data,
         flagForCheckPage: false
     }
@@ -27,7 +28,7 @@ export function searchActiveUserIdFromProfile(data){
 
 export function searchActiveUserIdFromComments(){
     return{
-        type: constants.CHANGE_ACTIVE_USER_FROM_COMMENTS,
+        type: constantsAlbum.CHANGE_ACTIVE_USER_FROM_COMMENTS,
         flagForCheckPageCommentsOrProfile: false
     }
 }
@@ -52,7 +53,7 @@ export function getAlbum(activeUserId) {
 export function changeAlbumsData(data) {
     debugger;
     return{
-        type:"CHANGE_ALBUMS",
+        type: constantsMultiAlbum.CHANGE_ALBUMS,
         albums: data
     }
 }
@@ -74,7 +75,7 @@ export function addAlbum(activeUserId,nameOfAlbum) {
 
 export function addAlbumsData(obj) {
     return{
-        type:"ADD_ALBUMS",
+        type: constantsMultiAlbumADD_ALBUMS,
         albums: obj
     }
 }
@@ -87,10 +88,38 @@ export function changeVisibleMultiAlbums(activeAlbumId){
 
 export function visibleMultiAlbum(activeAlbumId) {
     return{
-        type:"CHANGE_VISIBLE_MULTI_ALBUMS",
+        type: constantsMultiAlbum.CHANGE_VISIBLE_MULTI_ALBUMS,
         isVisibleMultiAlbums: false,
         isVisibleAlbum: true,
         activeAlbumId: activeAlbumId
     }
 }
+
+export function returnInInitialState(){
+    return (dispatch) => {
+        dispatch(changeInitialState());
+    }
+}
+
+export function changeInitialState(){
+    return{
+        type: constantsMultiAlbum.CHANGE_INITIAL_STATE_MULTI_ALBUM,
+        albums: []
+    }
+}
+
+export function changeNewAlbumName(e) {
+    return (dispatch) => {
+        dispatch(changeAlbomName(e.target.value));
+    }
+}
+
+export function changeAlbomName(data) {
+    return{
+        type: constantsMultiAlbum.CHANGE_NEW_ALBUM_NAME,
+        nameOfNewAlbum: data
+    }
+}
+
+
 

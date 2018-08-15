@@ -75,7 +75,7 @@ namespace Lab_7_StLab.Controllers
         [Route("photoDelete")]
         public void PhotoDelete(Newtonsoft.Json.Linq.JObject photo)
         {
-            WorkWithDb.DeletePhoto(photo["nameImg"].ToString());
+            WorkWithDb.DeletePhoto(photo["nameImg"].ToString(),Convert.ToInt32(photo["idAlbum"]));
         }
 
         [Route("addComment")]

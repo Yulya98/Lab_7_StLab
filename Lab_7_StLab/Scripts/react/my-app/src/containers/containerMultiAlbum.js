@@ -9,7 +9,7 @@ class containerMultiAlbum extends React.Component{
         debugger;
         return(
             <div>
-                {this.props.isVisibleMultiAlbums && <MultiAlbum flagForCheckPageCommentsOrProfile={this.props.flagForCheckPageCommentsOrProfile} componentWillMount={this.props.componentWillMount} activeUserId={this.props.activeUserId} getAlbum={this.props.getAlbum} albums={this.props.albums} changeVisibleMultiAlbums={this.props.changeVisibleMultiAlbums}></MultiAlbum>}
+                {this.props.isVisibleMultiAlbums && <MultiAlbum addAlbum={this.props.addAlbum} changeNewAlbumName={this.props.changeNewAlbumName} nameOfNewAlbum={this.props.nameOfNewAlbum} returnInInitialState={this.props.returnInInitialState} flagForCheckPageCommentsOrProfile={this.props.flagForCheckPageCommentsOrProfile} componentWillMount={this.props.componentWillMount} activeUserId={this.props.activeUserId} getAlbum={this.props.getAlbum} albums={this.props.albums} changeVisibleMultiAlbums={this.props.changeVisibleMultiAlbums}></MultiAlbum>}
             </div>
         )
     }

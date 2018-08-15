@@ -21,6 +21,7 @@ export default class Album extends React.Component {
     deleteButton(){
         var obj = {};
         obj.nameImg = this.props.deleteItem;
+        obj.idAlbum = this.props.activeAlbumId;
         console.log(obj.nameImg);
         document.getElementsByName("deleteItem")[0].value = '';
         axios.post('photoDelete', obj);
@@ -28,8 +29,9 @@ export default class Album extends React.Component {
     }
 
     componentDidMount() {
+        debugger;
         this.props.loadData(this.props.flagForCheckPageCommentsOrProfile);
-        setTimeout(() => { this.props.loadImages(this.props.activeUserId)}, 4000);
+        setTimeout(() => { this.props.loadImages(this.props.activeUserId, this.props.activeAlbumId)}, 4000);
     }
 
     componentWillUnmount(){
@@ -43,7 +45,7 @@ export default class Album extends React.Component {
                     <div className="image_gallery_style_without_photo">
                          <input className="edit_input" type="text" name="value" value={this.props.path} onChange={this.props.onChangePath} /><br /><br />
                          <input className="edit_input" type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage} /><br /><br />
-                         <button className="edit_button" onClick={() => this.props.handleClicks(this.props.nameImg, this.props.path)}>Add photo</button>
+                         <button className="edit_button" onClick={() => this.props.handleClicks(this.props.nameImg, this.props.path, this.props.activeAlbumId)}>Add photo</button>
                     </div>
                     <div className="span_style"><spsn className="span_style_span">You haven't photos</spsn></div>
                 </div>
@@ -59,7 +61,7 @@ export default class Album extends React.Component {
                         <input className="edit_input" type="text" name="value" value={this.props.path} onChange={this.props.onChangePath} /><br /><br />
                         <input className="edit_input" type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage} /><br /><br />
                         <div className="margin_block">
-                             <button className="edit_button" onClick={() =>this.props.handleClicks(this.props.nameImg, this.props.path)}>Add photo</button><br /><br /><br />
+                             <button className="edit_button" onClick={() => this.props.handleClicks(this.props.nameImg, this.props.path, this.props.activeAlbumId)}>Add photo</button><br /><br /><br />
                         </div>
                         <input className="edit_input" type="text" name="deleteItem" value={this.props.deleteItem} onChange={this.props.onChangeDeleteItem} /><br /><br />
                         <div className="margin_block">

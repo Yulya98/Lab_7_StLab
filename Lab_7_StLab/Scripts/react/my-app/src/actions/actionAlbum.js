@@ -30,18 +30,20 @@ export function searchActiveUserIdFromComments(){
     }
 }
 
-export function  handleClick(nameImg,value) {
+export function  handleClicks(nameImg,value,idAlbum) {
     return (dispatch) => {
         var obj = {};
         obj.NameImg = nameImg;
         obj.Path = value;
+        obj.idAlbum = idAlbum;
+        debugger;
         axios.post('addPhoto', obj);
-        const objs = {'original': obj.NameImg, 'thumbnail': obj.NameImg, 'description': obj.Path};
+        const objs = {'original': obj.Path, 'thumbnail': obj.Path, 'description': obj.NameImg};
         dispatch(changeState(objs));
     }
 }
 
-export function changeState(data){m
+export function changeState(data){
     return{
         type: constants.CHANGE_IMAGES,
         images: data
@@ -87,10 +89,11 @@ export function changePath(e) {
     }
 }
 
-export function loadImages(activeUserId) {
+export function loadImages(activeUserId,idAlbum) {
     return (dispatch)=> {
         var obj = {};
         obj.idActiveUers = activeUserId;
+        obj.idAlbum = idAlbum;
         let promise = new Promise((resolve,reject )=> {
             axios.post('searchphoto', obj)
                 .then((response) => {

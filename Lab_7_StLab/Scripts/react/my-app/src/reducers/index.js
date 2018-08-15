@@ -1,5 +1,3 @@
-//region no separate reducer
-
 import * as constantsRegistration from "../constants/constantsRegistration";
 import * as constantsProfile from "../constants/constantsProfile";
 import * as constantsComments from "../constants/constsComments";
@@ -8,6 +6,7 @@ import {INFO_ABOUT_USER} from "../constants/constantsAboutYoiurself";
 import * as constantsAuthorization from "../constants/constantsAuthorization";
 import * as constantsPosts from "../constants/constantsPosts";
 import * as constantsBiggerPhoto from "../constants/constantsBiggerPhoto"
+import * as constantsMultiAlbum from "../constants/constantsMultiAlbum"
 
 let defaultState= {
     email: "",
@@ -46,12 +45,14 @@ let defaultState= {
     isVisibleBiggerPhoto: false,
     albums: [],
     isVisibleMultiAlbums: false,
-    activeAlbumId: 0
+    activeAlbumId: 0,
+    nameOfNewAlbum: ""
 };
 
 const mainReducer=(state=defaultState,action)=>{
     debugger;
-
+    console.log(action.type);
+    console.log(state.activeAlbumId);
     if(action.type === constantsAuthorization.CHANGE_EMAIL){
         return {
             ...state,
@@ -434,26 +435,40 @@ const mainReducer=(state=defaultState,action)=>{
         }
     }
 
-    if(action.type === "CHANGE_ALBUMS"){
+    if(action.type === constantsMultiAlbum.CHANGE_ALBUMS){
         return{
             ...state,
             albums: [...state.albums, action.albums]
         }
     }
 
-    if(action.type === "ADD_ALBUMS"){
+    if(action.type === constantsMultiAlbum.ADD_ALBUMS){
         return{
             ...state,
             albums: [...state.albums, action.albums]
         }
     }
 
-    if(action.type === "CHANGE_VISIBLE_MULTI_ALBUMS"){
+    if(action.type === constantsMultiAlbum.CHANGE_VISIBLE_MULTI_ALBUMS){
         return{
             ...state,
             isVisibleMultiAlbums: action.isVisibleMultiAlbums,
             isVisibleAlbum: action.isVisibleAlbum,
             activeAlbumId: action.activeAlbumId
+        }
+    }
+
+    if(action.type === constantsMultiAlbum.CHANGE_INITIAL_STATE_MULTI_ALBUM){
+        return{
+            ...state,
+            albums: action.albums
+        }
+    }
+
+    if(action.type === constantsMultiAlbum.CHANGE_NEW_ALBUM_NAME){
+        return{
+            ...state,
+            nameOfNewAlbum: action.nameOfNewAlbum
         }
     }
 
@@ -463,35 +478,5 @@ const mainReducer=(state=defaultState,action)=>{
 };
 export default mainReducer;
 
-//endregion
-
-
-
-//region separate reducer doesn't work
-
-// import {combineReducers} from "redux";
-// import reducerRegistration from "../reducers/reducerRegistration";
-// import reducerProfile from "../reducers/reducerProfile";
-// import reducerPosts from "../reducers/reducerPosts";
-// import reducerComments from "../reducers/reducerComments";
-// import reducerAuthorization from "../reducers/reducerAuthorization";
-// import reducerAlbum from "../reducers/reducerAlbum";
-// import reducerAboutYourself from "../reducers/reducerAboutYourself"
-// import reducerBiggerPhoto from "../reducers/reducerBigerPhoto"
-
-//  const rootReducer = combineReducers({
-//     reducerRegistration,
-//     reducerProfile,
-//     reducerPosts,
-//     reducerComments,
-//     reducerAuthorization,
-//     reducerAlbum,
-//     reducerAboutYourself,
-//     reducerBiggerPhoto
-// });
-//
-// export default rootReducer;
-
-//endregion
 
 
