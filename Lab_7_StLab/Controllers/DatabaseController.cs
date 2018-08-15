@@ -41,14 +41,14 @@ namespace Lab_7_StLab.Controllers
         [Route("searchphoto")]
         public string[] SearchPhoto(Newtonsoft.Json.Linq.JObject idUser)
         {
-            string[] array = WorkWithDb.PathPhoto(Convert.ToInt32(idUser["idActiveUers"])).ToArray();
+            string[] array = WorkWithDb.PathPhoto(Convert.ToInt32(idUser["idActiveUers"]), Convert.ToInt32(idUser["idAlbum"])).ToArray();
             return array;
         }
 
         [Route("addPhoto")]
         public void AddPhoto(Newtonsoft.Json.Linq.JObject photo)
         {
-            WorkWithDb.AddNewPhoto(photo["NameImg"].ToString(), photo["Path"].ToString());
+            WorkWithDb.AddNewPhoto(photo["NameImg"].ToString(), photo["Path"].ToString(),Convert.ToInt32(photo["idAlbum"]));
         }
 
         [Route("searchPosts")]
@@ -92,6 +92,21 @@ namespace Lab_7_StLab.Controllers
                 return true;
             else
                 return false;
+        }
+
+
+        [Route("addAlbum")]
+        public int AddAlbum(Newtonsoft.Json.Linq.JObject album)
+        {
+            int id = WorkWithDb.AddAlbum(Convert.ToInt32(album["userId"]), album["nameOfAlbum"].ToString());
+            return id;
+        }
+
+        [Route("searchAlbum")]
+        public string[] SearchAlbum(Newtonsoft.Json.Linq.JObject album)
+        {
+            string[] albums = WorkWithDb.SearchAlbum(Convert.ToInt32(album["userId"])).ToArray();
+            return albums;
         }
     }
 }

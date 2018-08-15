@@ -43,7 +43,10 @@ let defaultState= {
     registrationPassword: "",
     isRegistrationUser: false,
     srcPhotoBigger:"",
-    isVisibleBiggerPhoto: false
+    isVisibleBiggerPhoto: false,
+    albums: [],
+    isVisibleMultiAlbums: false,
+    activeAlbumId: 0
 };
 
 const mainReducer=(state=defaultState,action)=>{
@@ -385,7 +388,8 @@ const mainReducer=(state=defaultState,action)=>{
             isVisibleAlbum: action.isVisibleAlbum,
             isVisiblePosts:action.isVisiblePosts,
             isVisibleInformation:action.isVisibleInformation,
-            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts
+            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts,
+            isVisibleMultiAlbums: action.isVisibleMultiAlbums
         }
     }
 
@@ -396,7 +400,8 @@ const mainReducer=(state=defaultState,action)=>{
             isVisibleInformation: action.isVisibleInformation,
             isVisibleAlbum:action.isVisibleAlbum,
             isVisiblePosts:action.isVisiblePosts,
-            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts
+            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts,
+            isVisibleMultiAlbums:action.isVisibleMultiAlbums
         }
     }
 
@@ -407,7 +412,8 @@ const mainReducer=(state=defaultState,action)=>{
             isVisibleInformation: action.isVisibleInformation,
             isVisibleAlbum:action.isVisibleAlbum,
             isVisiblePosts:action.isVisiblePosts,
-            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
+            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts,
+            isVisibleMultiAlbums: action.isVisibleMultiAlbums
         }
     }
 
@@ -425,6 +431,29 @@ const mainReducer=(state=defaultState,action)=>{
             srcPhotoBigger: action.srcPhotoBigger,
             isVisibleBiggerPhoto: action.isVisibleBiggerPhoto,
             isVisiblePosts: action.isVisiblePosts
+        }
+    }
+
+    if(action.type === "CHANGE_ALBUMS"){
+        return{
+            ...state,
+            albums: [...state.albums, action.albums]
+        }
+    }
+
+    if(action.type === "ADD_ALBUMS"){
+        return{
+            ...state,
+            albums: [...state.albums, action.albums]
+        }
+    }
+
+    if(action.type === "CHANGE_VISIBLE_MULTI_ALBUMS"){
+        return{
+            ...state,
+            isVisibleMultiAlbums: action.isVisibleMultiAlbums,
+            isVisibleAlbum: action.isVisibleAlbum,
+            activeAlbumId: action.activeAlbumId
         }
     }
 

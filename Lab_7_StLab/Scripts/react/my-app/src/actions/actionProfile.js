@@ -9,10 +9,11 @@ export function changeVisibleAlbom(){
 export function visibleAlbum() {
     return{
         type: constantsProfile.CHANGE_VISIBLE_ALBUM_FROM_PROFILE,
-        isVisibleAlbum: true,
+        isVisibleAlbum: false,
         isVisiblePosts: false,
         isVisibleInformation: false,
-        flagForCheckAlbumInPosts: false
+        flagForCheckAlbumInPosts: false,
+        isVisibleMultiAlbums: true
     }
 }
 
@@ -28,7 +29,8 @@ export function visibleInformation() {
         isVisibleInformation: true,
         isVisibleAlbum: false,
         isVisiblePosts: false,
-        flagForCheckAlbumInPosts: false
+        flagForCheckAlbumInPosts: false,
+        isVisibleMultiAlbums:false
     }
 }
 
@@ -45,6 +47,7 @@ export function visiblePosts() {
         isVisibleAlbum: false,
         isVisiblePosts: true,
         isVisibleInformation: false,
-        flagForCheckAlbumInPosts: false
+        flagForCheckAlbumInPosts: false,
+        isVisibleMultiAlbums: false
     }
 }

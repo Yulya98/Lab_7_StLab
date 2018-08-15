@@ -11,6 +11,7 @@ import Registration from "./containers/containerRegistration"
 import Posts from "./containers/containerPosts"
 import Album from "./containers/containerAlbum"
 import InformationAboutUser from "./containers/containerAboutYourself"
+import MultiAlbum from "./containers/containerMultiAlbum"
 
 let store = createStore(mainReducer, applyMiddleware(thunk));
 
@@ -25,6 +26,7 @@ class App extends React.Component{
                 <Posts></Posts>
                 <Album></Album>
                 <InformationAboutUser></InformationAboutUser>
+                <MultiAlbum></MultiAlbum>
             </div>
         )
     }

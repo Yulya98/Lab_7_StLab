@@ -9,7 +9,7 @@ namespace Lab_7_StLab
     {
         public static void AddNewUser(Users user)
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
             context.Users.Add(user);
             context.SaveChanges();
             Users.ActiveUser = (from u in context.Users
@@ -18,7 +18,7 @@ namespace Lab_7_StLab
 
         public static bool DefineUser(string email, string password)
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
             IEnumerable<Users> listUsers = from u in context.Users
                                            select u;
             foreach (Users us in listUsers)
@@ -37,19 +37,22 @@ namespace Lab_7_StLab
 
         public static Users getInformationActiveUser()
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
             Users aktiveUser = (from u in context.Users
                                where u.Id == Users.ActiveUser
                                select u).FirstOrDefault();
             return aktiveUser;
         }
 
-        public static List<string> PathPhoto(int id)
+        public static List<string> PathPhoto(int id,int idAlbum)
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
+            int?[] idPosts = (from posts in context.UserAlbumPosts
+                             where posts.IdUsersAlbum == idAlbum
+                             select posts.IdPost).ToArray();
             string[] photoPath = (from page in context.Images
                                  join user in context.UsersImages on page.Id equals user.IdImage
-                                 where user.IdUser == id
+                                 where user.IdUser == id && idPosts.Contains(user.Id)
                                  select page.Path).ToArray();
             string[] namePhoto = (from page in context.UsersImages
                                  join user in context.Images on page.IdImage equals user.Id
@@ -66,9 +69,9 @@ namespace Lab_7_StLab
             return resultList;
         }
 
-        public static void AddNewPhoto(string path,string nameImg)
+        public static void AddNewPhoto(string path,string nameImg,int idAlbum)
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
             Images image = new Images();
             image.Path = path;
             context.Images.Add(image);
@@ -83,11 +86,18 @@ namespace Lab_7_StLab
             users.Name = nameImg;
             context.UsersImages.Add(users);
             context.SaveChanges();
+            int idPost = (from posts in context.UserAlbum
+                           select posts.Id).Last();
+            UserAlbumPosts userAlbumPosts = new UserAlbumPosts();
+            userAlbumPosts.IdUsersAlbum = idAlbum;
+            userAlbumPosts.IdPost = idPost;
+            context.UserAlbumPosts.Add(userAlbumPosts);
+            context.SaveChanges();
         }
 
         public static List<string> SearchPosts()
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
             string[] authors = (from user in context.Users
                                 join userPage in context.UsersImages on user.Id equals userPage.IdUser
                                 select user.Name).ToArray();
@@ -117,7 +127,7 @@ namespace Lab_7_StLab
 
         public static List<string> SearchComments(int idPost)
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
             string[] listUsers = (from userName in context.Users
                                   join postId in context.UsersImagesComments on userName.Id equals postId.IdUser
                                   where idPost == postId.IdPost
@@ -139,7 +149,7 @@ namespace Lab_7_StLab
 
         public static List<string> AuthorNameAndImagePath(int idPost)
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
             string autorPost = (from author in context.Users
                                 join post in context.UsersImages on author.Id equals post.IdUser
                                 where post.Id == idPost
@@ -161,7 +171,7 @@ namespace Lab_7_StLab
 
         public static void DeletePhoto(string nameOfPhoto)
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
             int idUser = WorkWithDb.getInformationActiveUser().Id;
             UsersImages user = (from image in context.UsersImages
                                 where image.Name == nameOfPhoto && image.IdUser == Users.ActiveUser
@@ -173,7 +183,7 @@ namespace Lab_7_StLab
 
         public static void AddComment(int idPost, string text)
         {
-            Lab_7Entities9 context = new Lab_7Entities9();
+            Lab_7Entities10 context = new Lab_7Entities10();
             int activeUserId = WorkWithDb.getInformationActiveUser().Id;
             UsersImagesComments comment = new UsersImagesComments();
             comment.IdPost = idPost;
@@ -181,6 +191,45 @@ namespace Lab_7_StLab
             comment.Comment = text;
             context.UsersImagesComments.Add(comment);
             context.SaveChanges();
+        }
+
+
+        public static int AddAlbum(int idUser,string nameAlbum)
+        {
+            Lab_7Entities10 context = new Lab_7Entities10();
+            Album album = new Album();
+            album.NameOfAlbum = nameAlbum;
+            context.Album.Add(album);
+            context.SaveChanges();
+            int idAlbum = (from u in context.Album
+                           select u.Id).Last();
+            UserAlbum userAlbum = new UserAlbum();
+            userAlbum.UserId = idUser;
+            userAlbum.AlbumId = idAlbum;
+            context.UserAlbum.Add(userAlbum);
+            context.SaveChanges();
+            return idAlbum;
+        }
+
+        public static List<string> SearchAlbum(int idUser)
+        {
+            Lab_7Entities10 context = new Lab_7Entities10();
+            UserAlbum[] userAlbum = (from u in context.UserAlbum
+                                     where u.UserId == idUser
+                                    select u).ToArray();
+            string[] nameAlbum = (from albumName in context.Album
+                                  join userAlbums in context.UserAlbum on albumName.Id equals userAlbums.AlbumId
+                                  where userAlbums.UserId == idUser
+                                  select albumName.NameOfAlbum).ToArray();
+            var index = 0;
+            List<string> listIdAlbumAndNameAlbum = new List<string>();
+            foreach(UserAlbum album in userAlbum)
+            {
+                listIdAlbumAndNameAlbum.Add(album.Id.ToString());
+                listIdAlbumAndNameAlbum.Add(nameAlbum[index]);
+                index++;
+            }
+            return listIdAlbumAndNameAlbum;
         }
     }
 }

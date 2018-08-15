@@ -1,11 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище Lab_7ModelContainer" CdmEntityContainer="Lab_7Entities9">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Lab_7ModelContainer" CdmEntityContainer="Lab_7Entities10">
+    <EntitySetMapping Name="Album">
+      <EntityTypeMapping TypeName="Lab_7Model.Album">
+        <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameOfAlbum" ColumnName="NameOfAlbum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Images">
       <EntityTypeMapping TypeName="Lab_7Model.Images">
         <MappingFragment StoreEntitySet="Images">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Path" ColumnName="Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAlbum">
+      <EntityTypeMapping TypeName="Lab_7Model.UserAlbum">
+        <MappingFragment StoreEntitySet="UserAlbum">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAlbumPosts">
+      <EntityTypeMapping TypeName="Lab_7Model.UserAlbumPosts">
+        <MappingFragment StoreEntitySet="UserAlbumPosts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdUsersAlbum" ColumnName="IdUsersAlbum" />
+          <ScalarProperty Name="IdPost" ColumnName="IdPost" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -4,15 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="46e0e51ec70241b39dda394e57b65c49" Name="Diagram1">
-        <EntityTypeShape EntityType="Lab_7Model.Images" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lab_7Model.Users" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lab_7Model.UsersImages" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Lab_7Model.UsersImagesComments" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdIma__0E6E26BF" ManuallyRouted="false" />
-        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdUse__0D7A0286" ManuallyRouted="false" />
-        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdUse__2A164134" ManuallyRouted="false" />
-        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdPos__29221CFB" ManuallyRouted="false" />
+      <Diagram DiagramId="ffe8ab4a22c44625b03de5ceb8679ffa" Name="Diagram1">
+        <EntityTypeShape EntityType="Lab_7Model.Album" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lab_7Model.Images" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lab_7Model.UserAlbum" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lab_7Model.UserAlbumPosts" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lab_7Model.Users" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lab_7Model.UsersImages" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Lab_7Model.UsersImagesComments" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Lab_7Model.FK__UserAlbum__Album__58D1301D" ManuallyRouted="false" />
+        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdIma__46B27FE2" ManuallyRouted="false" />
+        <AssociationConnector Association="Lab_7Model.FK__UserAlbum__IdUse__5CA1C101" ManuallyRouted="false" />
+        <AssociationConnector Association="Lab_7Model.FK__UserAlbum__UserI__57DD0BE4" ManuallyRouted="false" />
+        <AssociationConnector Association="Lab_7Model.FK__UserAlbum__IdPos__5D95E53A" ManuallyRouted="false" />
+        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdUse__45BE5BA9" ManuallyRouted="false" />
+        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdUse__4A8310C6" ManuallyRouted="false" />
+        <AssociationConnector Association="Lab_7Model.FK__UsersImag__IdPos__498EEC8D" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

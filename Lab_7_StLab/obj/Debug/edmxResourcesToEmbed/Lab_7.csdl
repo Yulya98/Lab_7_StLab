@@ -1,12 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Lab_7Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameOfAlbum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="UserAlbum" Relationship="Self.FK__UserAlbum__Album__58D1301D" FromRole="Album" ToRole="UserAlbum" />
+  </EntityType>
   <EntityType Name="Images">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="UsersImages" Relationship="Self.FK__UsersImag__IdIma__0E6E26BF" FromRole="Images" ToRole="UsersImages" />
+    <NavigationProperty Name="UsersImages" Relationship="Self.FK__UsersImag__IdIma__46B27FE2" FromRole="Images" ToRole="UsersImages" />
+  </EntityType>
+  <EntityType Name="UserAlbum">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="AlbumId" Type="Int32" />
+    <NavigationProperty Name="Album" Relationship="Self.FK__UserAlbum__Album__58D1301D" FromRole="UserAlbum" ToRole="Album" />
+    <NavigationProperty Name="UserAlbumPosts" Relationship="Self.FK__UserAlbum__IdUse__5CA1C101" FromRole="UserAlbum" ToRole="UserAlbumPosts" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__UserAlbum__UserI__57DD0BE4" FromRole="UserAlbum" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserAlbumPosts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsersAlbum" Type="Int32" />
+    <Property Name="IdPost" Type="Int32" />
+    <NavigationProperty Name="UserAlbum" Relationship="Self.FK__UserAlbum__IdUse__5CA1C101" FromRole="UserAlbumPosts" ToRole="UserAlbum" />
+    <NavigationProperty Name="UsersImages" Relationship="Self.FK__UserAlbum__IdPos__5D95E53A" FromRole="UserAlbumPosts" ToRole="UsersImages" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -20,8 +49,9 @@
     <Property Name="FieldOfActivity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="UsersImages" Relationship="Self.FK__UsersImag__IdUse__0D7A0286" FromRole="Users" ToRole="UsersImages" />
-    <NavigationProperty Name="UsersImagesComments" Relationship="Self.FK__UsersImag__IdUse__2A164134" FromRole="Users" ToRole="UsersImagesComments" />
+    <NavigationProperty Name="UserAlbum" Relationship="Self.FK__UserAlbum__UserI__57DD0BE4" FromRole="Users" ToRole="UserAlbum" />
+    <NavigationProperty Name="UsersImages" Relationship="Self.FK__UsersImag__IdUse__45BE5BA9" FromRole="Users" ToRole="UsersImages" />
+    <NavigationProperty Name="UsersImagesComments" Relationship="Self.FK__UsersImag__IdUse__4A8310C6" FromRole="Users" ToRole="UsersImagesComments" />
   </EntityType>
   <EntityType Name="UsersImages">
     <Key>
@@ -31,9 +61,10 @@
     <Property Name="IdUser" Type="Int32" Nullable="false" />
     <Property Name="IdImage" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Images" Relationship="Self.FK__UsersImag__IdIma__0E6E26BF" FromRole="UsersImages" ToRole="Images" />
-    <NavigationProperty Name="Users" Relationship="Self.FK__UsersImag__IdUse__0D7A0286" FromRole="UsersImages" ToRole="Users" />
-    <NavigationProperty Name="UsersImagesComments" Relationship="Self.FK__UsersImag__IdPos__29221CFB" FromRole="UsersImages" ToRole="UsersImagesComments" />
+    <NavigationProperty Name="Images" Relationship="Self.FK__UsersImag__IdIma__46B27FE2" FromRole="UsersImages" ToRole="Images" />
+    <NavigationProperty Name="UserAlbumPosts" Relationship="Self.FK__UserAlbum__IdPos__5D95E53A" FromRole="UsersImages" ToRole="UserAlbumPosts" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__UsersImag__IdUse__45BE5BA9" FromRole="UsersImages" ToRole="Users" />
+    <NavigationProperty Name="UsersImagesComments" Relationship="Self.FK__UsersImag__IdPos__498EEC8D" FromRole="UsersImages" ToRole="UsersImagesComments" />
   </EntityType>
   <EntityType Name="UsersImagesComments">
     <Key>
@@ -43,10 +74,22 @@
     <Property Name="IdPost" Type="Int32" Nullable="false" />
     <Property Name="IdUser" Type="Int32" Nullable="false" />
     <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Users" Relationship="Self.FK__UsersImag__IdUse__2A164134" FromRole="UsersImagesComments" ToRole="Users" />
-    <NavigationProperty Name="UsersImages" Relationship="Self.FK__UsersImag__IdPos__29221CFB" FromRole="UsersImagesComments" ToRole="UsersImages" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__UsersImag__IdUse__4A8310C6" FromRole="UsersImagesComments" ToRole="Users" />
+    <NavigationProperty Name="UsersImages" Relationship="Self.FK__UsersImag__IdPos__498EEC8D" FromRole="UsersImagesComments" ToRole="UsersImages" />
   </EntityType>
-  <Association Name="FK__UsersImag__IdIma__0E6E26BF">
+  <Association Name="FK__UserAlbum__Album__58D1301D">
+    <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+    <End Role="UserAlbum" Type="Self.UserAlbum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserAlbum">
+        <PropertyRef Name="AlbumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsersImag__IdIma__46B27FE2">
     <End Role="Images" Type="Self.Images" Multiplicity="1" />
     <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="*" />
     <ReferentialConstraint>
@@ -58,7 +101,43 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UsersImag__IdUse__0D7A0286">
+  <Association Name="FK__UserAlbum__IdUse__5CA1C101">
+    <End Role="UserAlbum" Type="Self.UserAlbum" Multiplicity="0..1" />
+    <End Role="UserAlbumPosts" Type="Self.UserAlbumPosts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAlbum">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserAlbumPosts">
+        <PropertyRef Name="IdUsersAlbum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserAlbum__UserI__57DD0BE4">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserAlbum" Type="Self.UserAlbum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserAlbum">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserAlbum__IdPos__5D95E53A">
+    <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="0..1" />
+    <End Role="UserAlbumPosts" Type="Self.UserAlbumPosts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UsersImages">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserAlbumPosts">
+        <PropertyRef Name="IdPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsersImag__IdUse__45BE5BA9">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="*" />
     <ReferentialConstraint>
@@ -70,7 +149,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UsersImag__IdUse__2A164134">
+  <Association Name="FK__UsersImag__IdUse__4A8310C6">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="UsersImagesComments" Type="Self.UsersImagesComments" Multiplicity="*" />
     <ReferentialConstraint>
@@ -82,7 +161,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UsersImag__IdPos__29221CFB">
+  <Association Name="FK__UsersImag__IdPos__498EEC8D">
     <End Role="UsersImages" Type="Self.UsersImages" Multiplicity="1" />
     <End Role="UsersImagesComments" Type="Self.UsersImagesComments" Multiplicity="*" />
     <ReferentialConstraint>
@@ -94,24 +173,43 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Lab_7Entities9" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Lab_7Entities10" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Album" EntityType="Self.Album" />
     <EntitySet Name="Images" EntityType="Self.Images" />
+    <EntitySet Name="UserAlbum" EntityType="Self.UserAlbum" />
+    <EntitySet Name="UserAlbumPosts" EntityType="Self.UserAlbumPosts" />
     <EntitySet Name="Users" EntityType="Self.Users" />
     <EntitySet Name="UsersImages" EntityType="Self.UsersImages" />
     <EntitySet Name="UsersImagesComments" EntityType="Self.UsersImagesComments" />
-    <AssociationSet Name="FK__UsersImag__IdIma__0E6E26BF" Association="Self.FK__UsersImag__IdIma__0E6E26BF">
+    <AssociationSet Name="FK__UserAlbum__Album__58D1301D" Association="Self.FK__UserAlbum__Album__58D1301D">
+      <End Role="Album" EntitySet="Album" />
+      <End Role="UserAlbum" EntitySet="UserAlbum" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsersImag__IdIma__46B27FE2" Association="Self.FK__UsersImag__IdIma__46B27FE2">
       <End Role="Images" EntitySet="Images" />
       <End Role="UsersImages" EntitySet="UsersImages" />
     </AssociationSet>
-    <AssociationSet Name="FK__UsersImag__IdUse__0D7A0286" Association="Self.FK__UsersImag__IdUse__0D7A0286">
+    <AssociationSet Name="FK__UserAlbum__IdUse__5CA1C101" Association="Self.FK__UserAlbum__IdUse__5CA1C101">
+      <End Role="UserAlbum" EntitySet="UserAlbum" />
+      <End Role="UserAlbumPosts" EntitySet="UserAlbumPosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserAlbum__UserI__57DD0BE4" Association="Self.FK__UserAlbum__UserI__57DD0BE4">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserAlbum" EntitySet="UserAlbum" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserAlbum__IdPos__5D95E53A" Association="Self.FK__UserAlbum__IdPos__5D95E53A">
+      <End Role="UsersImages" EntitySet="UsersImages" />
+      <End Role="UserAlbumPosts" EntitySet="UserAlbumPosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsersImag__IdUse__45BE5BA9" Association="Self.FK__UsersImag__IdUse__45BE5BA9">
       <End Role="Users" EntitySet="Users" />
       <End Role="UsersImages" EntitySet="UsersImages" />
     </AssociationSet>
-    <AssociationSet Name="FK__UsersImag__IdUse__2A164134" Association="Self.FK__UsersImag__IdUse__2A164134">
+    <AssociationSet Name="FK__UsersImag__IdUse__4A8310C6" Association="Self.FK__UsersImag__IdUse__4A8310C6">
       <End Role="Users" EntitySet="Users" />
       <End Role="UsersImagesComments" EntitySet="UsersImagesComments" />
     </AssociationSet>
-    <AssociationSet Name="FK__UsersImag__IdPos__29221CFB" Association="Self.FK__UsersImag__IdPos__29221CFB">
+    <AssociationSet Name="FK__UsersImag__IdPos__498EEC8D" Association="Self.FK__UsersImag__IdPos__498EEC8D">
       <End Role="UsersImages" EntitySet="UsersImages" />
       <End Role="UsersImagesComments" EntitySet="UsersImagesComments" />
     </AssociationSet>
