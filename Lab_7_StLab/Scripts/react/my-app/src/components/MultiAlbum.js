@@ -7,7 +7,6 @@ export default class MultiAlbum extends React.Component {
     }
 
     componentDidMount(){
-        debugger;
         this.props.componentWillMount(this.props.flagForCheckPageCommentsOrProfile);
         setTimeout(() => {this.props.getAlbum(this.props.activeUserId)}, 4000);
     }
@@ -37,7 +36,7 @@ export default class MultiAlbum extends React.Component {
                         <div className="position_button_mini"><button className="edit_button" onClick={() => this.props.addAlbum(this.props.activeUserId,this.props.nameOfNewAlbum)}>Add Album</button></div>
                     </div>
                     <div className="without_album">
-                        You haven't photos...
+                        You haven't albums.
                     </div>
                 </div>
             )

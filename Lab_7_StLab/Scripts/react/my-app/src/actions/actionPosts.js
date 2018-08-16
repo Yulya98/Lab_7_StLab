@@ -67,19 +67,20 @@ export function changeVisiblePost(postId){
     }
 }
 
-export function goToAlbum(idUser){
+export function goToAlbum(idUser,idAlbum){
     return (dispatch) => {
-        dispatch(changeIsVisibleAlbum(idUser))
+        dispatch(changeIsVisibleAlbum(idUser,idAlbum))
     }
 }
 
-export function changeIsVisibleAlbum(idUser){
+export function changeIsVisibleAlbum(idUser,idAlbum){
     return{
         type: constants.CHANGE_VISIBLE,
         flagForCheckAlbumInPosts: true,
         isVisiblePosts: false,
         activeUserId: idUser,
-        flagForCheckPageCommentsOrProfile: true
+        flagForCheckPageCommentsOrProfile: true,
+        activeAlbumId: idAlbum
     }
 }
 

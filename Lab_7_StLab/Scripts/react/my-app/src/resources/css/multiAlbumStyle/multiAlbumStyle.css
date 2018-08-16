@@ -211,13 +211,22 @@ edit_button:active{
 }
 
 .position_inputs_mimi{
-
+    margin-top: 10vw;
+    width: 25vw;
+    float: left;
+    margin-left: 2vw;
 }
 
 .position_button_mini{
-
+    margin-top: 2vw;
+    margin-left: 7vw;
 }
 
 .without_album{
-    
+    width: 47vw;
+    float: left;
+    text-align: center;
+    font-family: serif;
+    margin-top: 10vw;
+    font-size: 4vw;
 }

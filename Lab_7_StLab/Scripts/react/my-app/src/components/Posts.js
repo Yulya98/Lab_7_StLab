@@ -4,7 +4,7 @@ import "../resources/css/posts/posts.css"
 import InfiniteScroll from 'react-bidirectional-infinite-scroll'
 
 
-var i = -1;
+var i = 1;
 export default class Posts extends React.Component {
 
 
@@ -24,8 +24,8 @@ export default class Posts extends React.Component {
         this.props.visiblePost(postId);
     }
 
-    goToAlbum(idUser){
-        this.props.goToAlbum(idUser);
+    goToAlbum(idUser,idAlbum){
+        this.props.goToAlbum(idUser,idAlbum);
     }
 
 
@@ -37,10 +37,12 @@ export default class Posts extends React.Component {
                 .then((response) => {
                     context.props.changeRegistrationUser(response.data);
                 });
+            debugger;
             axios.post('searchPosts')
                 .then((response) => {
-                    for (var i = 0; i < response.data.length; i+=4) {
-                        const obj = {postId:response.data[i], authorName: response.data[i+1], src: response.data[i + 2] , idUser:response.data[i+3]};
+                    debugger;
+                    for (var i = 0; i < response.data.length; i+=5) {
+                        const obj = {postId:response.data[i], authorName: response.data[i+1], src: response.data[i + 2] , idUser:response.data[i+3], idAlbum: response.data[i+4]};
                         this.props.changePosts(obj);
                     }
                     var subPosts = [].concat(this.getItems()).concat(this.getItems());
@@ -52,33 +54,45 @@ export default class Posts extends React.Component {
     getItems() {
         if(typeof this.props.posts[0] != "undefined") {
             i++;
-            if(this.props.isRegistrationUser == false) {
-                return (
-                    <div className="post_style_mini">
-                        <div className="spanMedium_mini"><span>Author name:{this.props.posts[i].authorName}</span></div>
-                        <img className="image_style" src={this.props.posts[i].src} onClick={()=>this.props.changeBiggerPhotoPath(this.props.posts[i].src)}/>
-                        <div className="button_style_mini">
-                            <button className="button_style" onClick={() => this.handleClick(this.props.posts[i].postId)}>
-                                To comment
+            debugger;
+            if (i < this.props.posts.length) {
+                if (this.props.isRegistrationUser == false) {
+                    return (
+                        <div className="post_style_mini">
+                            <div className="spanMedium_mini"><span>Author name:{this.props.posts[i].authorName}</span>
+                            </div>
+                            <img className="image_style" src={this.props.posts[i].src}
+                                 onClick={() => this.props.changeBiggerPhotoPath(this.props.posts[i].src)}/>
+                            <div className="button_style_mini">
+                                <button className="button_style"
+                                        onClick={() => this.handleClick(this.props.posts[i].postId)}>
+                                    To comment
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+                else {
+                    return (<div className="post_style">
+                        <div className="spanMedium"><span>Author name:{this.props.posts[i].authorName}</span></div>
+                        <img className="image_style" src={this.props.posts[i].src}
+                             onClick={() => this.props.changeBiggerPhotoPath(this.props.posts[i].src)}/>
+                        <div className="button_style_position">
+                            <button className="button_style"
+                                    onClick={() => this.handleClick(this.props.posts[i].postId)}>Add comment
                             </button>
                         </div>
-                    </div>
-                )
-            }
-            else{
-                return(<div className="post_style">
-                    <div className="spanMedium"><span>Author name:{this.props.posts[i].authorName}</span></div>
-                    <img className="image_style" src={this.props.posts[i].src} onClick={()=>this.props.changeBiggerPhotoPath(this.props.posts[i].src)}/>
-                    <div className="button_style_position">
-                        <button className="button_style"
-                                onClick={() => this.handleClick(this.props.posts[i].postId)}>Add comment
+                        <button className="button_style" onClick={() => this.goToAlbum(this.props.posts[i].idUser, this.props.posts[i].idAlbum)}>To
+                            Album
                         </button>
-                    </div>
-                    <button className="button_style" onClick={() => this.goToAlbum(this.props.posts[i].idUser)}>To
-                        Album
-                    </button>
 
-                </div>)
+                    </div>)
+                }
+            }
+            else {
+                return(
+                    <div></div>
+                )
             }
         }
         return(
@@ -102,7 +116,7 @@ export default class Posts extends React.Component {
     }
 
     componentWillUnmount(){
-        i=-1;
+        i=1;
         this.props.returnInInitialState();
     }
 

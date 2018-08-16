@@ -244,7 +244,8 @@ const mainReducer=(state=defaultState,action)=>{
             flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts,
             isVisiblePosts: action.isVisiblePosts,
             flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile,
-            activeUserId: action.activeUserId
+            activeUserId: action.activeUserId,
+            activeAlbumId: action.activeAlbumId
         }
     }
 

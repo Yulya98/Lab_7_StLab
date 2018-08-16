@@ -9,6 +9,7 @@ export function componentWillMount(flagForCheckPage){
         if(!flagForCheckPage) {
             axios.post('searchActiveUserId')
                 .then(function (response) {
+                    debugger;
                     dispatch(searchActiveUserIdFromProfile(response.data));
                 });
         }

@@ -43,33 +43,58 @@ export default class Album extends React.Component {
             return (
                 <div>
                     <div className="image_gallery_style_without_photo">
-                         <input className="edit_input" type="text" name="value" value={this.props.path} onChange={this.props.onChangePath} /><br /><br />
-                         <input className="edit_input" type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage} /><br /><br />
-                         <button className="edit_button" onClick={() => this.props.handleClicks(this.props.nameImg, this.props.path, this.props.activeAlbumId)}>Add photo</button>
+                        <input className="edit_input" type="text" name="value" value={this.props.path}
+                               onChange={this.props.onChangePath}/><br/><br/>
+                        <input className="edit_input" type="text" name="nameImg" value={this.props.nameImg}
+                               onChange={this.props.onChangeNameImage}/><br/><br/>
+                        <button className="edit_button"
+                                onClick={() => this.props.handleClicks(this.props.nameImg, this.props.path, this.props.activeAlbumId)}>Add
+                            photo
+                        </button>
                     </div>
-                    <div className="span_style"><spsn className="span_style_span">You haven't photos</spsn></div>
+                    <div className="span_style">
+                        <spsn className="span_style_span">You haven't photos</spsn>
+                    </div>
                 </div>
             );
         }
         else {
-            return (
-                <div>
-                    <div className="image_gallery_style_with_photo">
-                        <ImageGallery items={this.props.images} />
-                    </div>
-                    <div className="inputs">
-                        <input className="edit_input" type="text" name="value" value={this.props.path} onChange={this.props.onChangePath} /><br /><br />
-                        <input className="edit_input" type="text" name="nameImg" value={this.props.nameImg} onChange={this.props.onChangeNameImage} /><br /><br />
-                        <div className="margin_block">
-                             <button className="edit_button" onClick={() => this.props.handleClicks(this.props.nameImg, this.props.path, this.props.activeAlbumId)}>Add photo</button><br /><br /><br />
+            if (this.props.flagForCheckPageCommentsOrProfile == false) {
+                return (
+                    <div>
+                        <div className="image_gallery_style_with_photo">
+                            <ImageGallery items={this.props.images}/>
                         </div>
-                        <input className="edit_input" type="text" name="deleteItem" value={this.props.deleteItem} onChange={this.props.onChangeDeleteItem} /><br /><br />
-                        <div className="margin_block">
-                             <button className="edit_button" onClick={this.deleteButton}>Delete photo</button>
+                        <div className="inputs">
+                            <input className="edit_input" type="text" name="value" value={this.props.path}
+                                   onChange={this.props.onChangePath}/><br/><br/>
+                            <input className="edit_input" type="text" name="nameImg" value={this.props.nameImg}
+                                   onChange={this.props.onChangeNameImage}/><br/><br/>
+                            <div className="margin_block">
+                                <button className="edit_button"
+                                        onClick={() => this.props.handleClicks(this.props.nameImg, this.props.path, this.props.activeAlbumId)}>Add
+                                    photo
+                                </button>
+                                <br/><br/><br/>
+                            </div>
+                            <input className="edit_input" type="text" name="deleteItem" value={this.props.deleteItem}
+                                   onChange={this.props.onChangeDeleteItem}/><br/><br/>
+                            <div className="margin_block">
+                                <button className="edit_button" onClick={this.deleteButton}>Delete photo</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-           );
+                );
+            }
+            else{
+                return(
+                    <div>
+                        <div className="image_gallery_style_with_photo">
+                            <ImageGallery items={this.props.images}/>
+                        </div>
+                    </div>
+                )
+            }
         }
     }
 }

@@ -109,9 +109,13 @@ namespace Lab_7_StLab
                              select podtsId.Id).ToArray();
             int[] idUser = (from podtsId in context.UsersImages
                              select podtsId.IdUser).ToArray();
+            int?[] idAlbum = (from albums in context.UserAlbumPosts
+                             join post in context.UsersImages on albums.IdPost equals post.Id
+                             select albums.IdUsersAlbum).ToArray();
             idUser.Reverse();
             idPosts.Reverse();
             paths.Reverse();
+            idAlbum.Reverse();
             int index = 0;
             List<string> posts = new List<string>();
             foreach (string author in authors)
@@ -120,6 +124,7 @@ namespace Lab_7_StLab
                 posts.Add(author);
                 posts.Add(paths[index]);
                 posts.Add(idUser[index].ToString());
+                posts.Add(idAlbum[index].ToString());
                 index++;
             }
             return posts;
