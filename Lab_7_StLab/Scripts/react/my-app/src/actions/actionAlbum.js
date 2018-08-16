@@ -20,13 +20,6 @@ export function searchActiveUserIdFromProfile(data){
     }
 }
 
-// export function searchActiveUserIdFromComments(){
-//     return{
-//         type: constants.CHANGE_ACTIVE_USER_FROM_COMMENTS,
-//         flagForCheckPageCommentsOrProfile: false
-//     }
-// }
-
 export function  handleClicks(nameImg,value,idAlbum) {
     return (dispatch) => {
         var obj = {};

@@ -4,7 +4,7 @@ import "../resources/css/posts/posts.css"
 import InfiniteScroll from 'react-bidirectional-infinite-scroll'
 
 
-var i = 1;
+var i = -1;
 export default class Posts extends React.Component {
 
 
