@@ -14,7 +14,6 @@ class ContainerAuthorization extends React.Component{
     }
 }
 
-
 const mapStateToProps = (state) => {
     return state
 };
