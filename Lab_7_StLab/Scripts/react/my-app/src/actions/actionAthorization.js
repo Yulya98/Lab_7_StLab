@@ -17,7 +17,6 @@ export function onChangePassword(e){
 }
 
 export function changePassword(e){
-    console.log(e);
     return{
         type: constants.CHANGE_PASSWORD,
         password: e
@@ -35,6 +34,8 @@ export function handleSubmit(email,password){
                     if (!response.data)
                         alert("Incorrect data");
                     dispatch(isVisibleProfile(response.data));
+                    dispatch(changeVisibleAuthorization(response.data))
+                    dispatch(changeRegistrationUser());
                 });
         });
 
@@ -42,6 +43,14 @@ export function handleSubmit(email,password){
 }
 
 export function isVisibleProfile(data) {
+
+    return{
+        type: constants.CHANGE_VISIBLE_PROFILE,
+        isVisibleProfile: data
+    }
+}
+
+export  function  changeVisibleAuthorization(data) {
     var flag;
     if(data === true){
         flag = false;
@@ -50,9 +59,14 @@ export function isVisibleProfile(data) {
         flag = true;
     }
     return{
-        type: constants.CHANGE_VISIBLE_PROFILE,
-        isVisibleProfile: data,
-        isVisibleAuthorization: flag,
+        type: constants.CHANGE_VISIBLE_AUTHORIZATION,
+        isVisibleAuthorization: flag
+    }
+}
+
+export  function  changeRegistrationUser() {
+    return{
+        type: constants.CHANGE_USER_REGISTRATION,
         isRegistrationUser: true
     }
 }
@@ -60,13 +74,20 @@ export function isVisibleProfile(data) {
 export function isVisibleRegistrations(){
     return (dispatch) =>{
         dispatch(changeVisibleRegistration());
+        dispatch((changeVisibleAuthorizationFlag));
     }
 }
 
 export function changeVisibleRegistration(){
     return{
         type: constants.CHANGE_VISIBLE_REGISTRATION,
-        isVisibleRegistration: true,
+        isVisibleRegistration: true
+    }
+}
+
+export function changeVisibleAuthorizationFlag(){
+    return{
+        type: constants.CHANGE_VISIBLE_AUTHORIZATION_FLAG,
         isVisibleAuthorization: false
     }
 }

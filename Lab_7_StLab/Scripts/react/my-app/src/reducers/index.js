@@ -2,7 +2,7 @@ import * as constantsRegistration from "../constants/constantsRegistration";
 import * as constantsProfile from "../constants/constantsProfile";
 import * as constantsComments from "../constants/constsComments";
 import * as constantsAlbum from "../constants/constantsAlbum";
-import {INFO_ABOUT_USER} from "../constants/constantsAboutYoiurself";
+import * as constantsAboutYourself from "../constants/constantsAboutYoiurself";
 import * as constantsAuthorization from "../constants/constantsAuthorization";
 import * as constantsPosts from "../constants/constantsPosts";
 import * as constantsBiggerPhoto from "../constants/constantsBiggerPhoto"
@@ -50,9 +50,7 @@ let defaultState= {
 };
 
 const mainReducer=(state=defaultState,action)=>{
-    debugger;
-    console.log(action.type);
-    console.log(state.activeAlbumId);
+
     if(action.type === constantsAuthorization.CHANGE_EMAIL){
         return {
             ...state,
@@ -64,7 +62,13 @@ const mainReducer=(state=defaultState,action)=>{
         return{
             ...state,
             activeUserId: action.activeUserId,
-            flagForCheckPage: action.flagForCheckPage
+        }
+    }
+
+    if(action.type === constantsAlbum.CHANGE_FLAG_FOR_CHECK_PAGE){
+        return{
+            ...state,
+            flagForCheckPage: action.flagForCheckPage,
         }
     }
 
@@ -74,7 +78,7 @@ const mainReducer=(state=defaultState,action)=>{
             password: action.password
         }
     }
-    if(action.type === constantsAlbum.HANGE_ACTIVE_USER){
+    if(action.type === constantsAlbum.CHANGE_ACTIVE_USER){
         return{
             ...state,
             activeUserId: action.activeUserId
@@ -84,30 +88,83 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === constantsAuthorization.CHANGE_VISIBLE_PROFILE){
         return{
             ...state,
-            isVisibleProfile: action.isVisibleProfile,
-            isVisibleAuthorization: action.isVisibleAuthorization,
-            activeUserId: action.activeUserId,
-            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile,
+            isVisibleProfile: action.isVisibleProfile
+        }
+    }
+
+    if(action.type === constantsAuthorization.CHANGE_VISIBLE_AUTHORIZATION){
+        return{
+            ...state,
+            isVisibleAuthorization: action.isVisibleAuthorization
+        }
+    }
+
+    if(action.type === constantsAuthorization.CHANGE_USER_REGISTRATION){
+        return{
+            ...state,
             isRegistrationUser: action.isRegistrationUser
         }
     }
 
-    if(action.type === INFO_ABOUT_USER){
+    if(action.type === constantsAuthorization.CHANGE_VISIBLE_AUTHORIZATION){
         return{
             ...state,
-            name:action.name,
-            surname:action.surname,
-            emailUser: action.emailUser,
-            sphere: action.sphere,
-            city: action.city,
+            isVisibleAuthorization: action.isVisibleAuthorization
+        }
+    }
+
+    if(action.type === constantsAboutYourself.INFO_ABOUT_USER_CHANGE_NAME){
+        return{
+            ...state,
+            name:action.name
+        }
+    }
+
+    if(action.type === constantsAboutYourself.INFO_ABOUT_USER_CHANGE_SURNAME){
+        return{
+            ...state,
+            surname:action.surname
+        }
+    }
+
+    if(action.type === constantsAboutYourself.INFO_ABOUT_USER_CHANGE_EMAIL_USER){
+        return{
+            ...state,
+            emailUser: action.emailUser
+        }
+    }
+
+    if(action.type === constantsAboutYourself.INFO_ABOUT_USER_CHANGE_SPHERE_USER){
+        return{
+            ...state,
+            sphere: action.sphere
+        }
+    }
+
+    if(action.type === constantsAboutYourself.INFO_ABOUT_USER_CHANGE_CITY_USER){
+        return{
+            ...state,
+            city: action.city
         }
     }
 
     if(action.type === constantsAlbum.CHANGE_IMAGES){
         return{
             ...state,
-            images: [...state.images,action.images],
-            nameImg: "",
+            images: [...state.images,action.images]
+        }
+    }
+
+    if(action.type === constantsAlbum.CHANGE_INITIAL_STATE_IMG_NAME){
+        return{
+            ...state,
+            nameImg: ""
+        }
+    }
+
+    if(action.type === constantsAlbum.CHANGE_INITIAL_STATE_IMG_PATH){
+        return{
+            ...state,
             path:""
 
         }
@@ -197,17 +254,36 @@ const mainReducer=(state=defaultState,action)=>{
         return{
             ...state,
             isVisiblePost: action.isVisiblePost,
-            isVisiblePosts: action.isVisiblePosts,
-            idPost: action.idPost
         }
     }
 
-    if(action.type === constantsPosts.CHANGE_IN_INITIAL_STATE_IMAGES){
+    if(action.type === constantsPosts.VISIBLE_POST_PART){
+        debugger;
         return{
             ...state,
-            posts: action.posts,
-            subPosts:action.subPosts,
-            isVisiblePosts:action.isVisiblePosts
+            isVisiblePosts: action.isVisiblePosts,
+        }
+    }
+
+    if(action.type === constantsPosts.VISIBLE_POST_POST_ID){
+        debugger;
+        return{
+            ...state,
+            idPost: action.idPost,
+        }
+    }
+
+    if(action.type === constantsPosts.CHANGE_IN_INITIAL_STATE_IMAGES) {
+        return {
+            ...state,
+            posts: action.posts
+        }
+    }
+
+    if(action.type === constantsPosts.CHANGE_IN_INITIAL_STATE_SUB_POSTS) {
+        return {
+            ...state,
+            subPosts: action.subPosts
         }
     }
 
@@ -216,7 +292,14 @@ const mainReducer=(state=defaultState,action)=>{
         return{
             ...state,
             images: action.images,
-            deleteItem: ""
+        }
+    }
+
+    if(action.type === constantsAlbum.DELETE_PHOTO_ITEM){
+        debugger;
+        return{
+            ...state,
+            deleteItem: action.deleteItem
         }
     }
 
@@ -232,8 +315,15 @@ const mainReducer=(state=defaultState,action)=>{
         debugger;
         return{
             ...state,
-            isVisiblePost: action.isVisiblePost,
-            isVisibleAlbum: action.isVisibleAlbum,
+            isVisiblePost: action.isVisiblePost
+        }
+    }
+
+    if(action.type === constantsComments.CHANGE_VISIBLE_ALBUM){
+        debugger;
+        return{
+            ...state,
+            isVisibleAlbum: action.isVisibleAlbum
         }
     }
 
@@ -241,10 +331,30 @@ const mainReducer=(state=defaultState,action)=>{
         debugger;
         return{
             ...state,
-            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts,
-            isVisiblePosts: action.isVisiblePosts,
-            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile,
-            activeUserId: action.activeUserId,
+            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
+        }
+    }
+
+    if(action.type === constantsPosts.CHANGE_USER_ID){
+        debugger;
+        return{
+            ...state,
+            activeUserId: action.activeUserId
+        }
+    }
+
+    if(action.type === constantsPosts.CHANGE_FLAG_PROFILE){
+        debugger;
+        return{
+            ...state,
+            flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile
+        }
+    }
+
+    if(action.type === constantsPosts.CHANGE_ALBUM_ID){
+        debugger;
+        return{
+            ...state,
             activeAlbumId: action.activeAlbumId
         }
     }
@@ -301,16 +411,34 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === constantsRegistration.CHANGE_VISIBLE_PROFILE_FROM_AUTHORIZATION){
         return{
             ...state,
-            isVisibleProfile: action.isVisibleProfile,
-            isVisibleRegistration: action.isVisibleRegistration,
-            isRegistrationUser:action.isRegistrationUser
+            isVisibleProfile: action.isVisibleProfile
+        }
+    }
+
+    if(action.type === constantsRegistration.CHANGE_VISIBLE_REGISTRATIONS){
+        return{
+            ...state,
+            isVisibleRegistration: action.isVisibleRegistration
+        }
+    }
+
+    if(action.type === constantsRegistration.CHANGE_USER_REGISTRATION){
+        return{
+            ...state,
+            isRegistrationUser: action.isRegistrationUser
         }
     }
 
     if(action.type === constantsAuthorization.CHANGE_VISIBLE_REGISTRATION){
         return{
             ...state,
-            isVisibleRegistration: action.isVisibleRegistration,
+            isVisibleRegistration: action.isVisibleRegistration
+        }
+    }
+
+    if(action.type === constantsAuthorization.CHANGE_VISIBLE_AUTHORIZATION_FLAG){
+        return{
+            ...state,
             isVisibleAuthorization: action.isVisibleAuthorization
         }
     }
@@ -318,9 +446,27 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === constantsComments.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE){
         return{
             ...state,
-            author: action.author,
-            data:action.data,
-            isVisiblePosts: action.isVisiblePosts,
+            author: action.author
+        }
+    }
+
+    if(action.type === constantsComments.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE_DATA){
+        return{
+            ...state,
+            data: action.data
+        }
+    }
+
+    if(action.type === constantsComments.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE_POSTS){
+        return{
+            ...state,
+            isVisiblePosts: action.isVisiblePosts
+        }
+    }
+
+    if(action.type === constantsComments.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE_POST){
+        return{
+            ...state,
             isVisiblePost: action.isVisiblePost
         }
     }
@@ -328,17 +474,27 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === constantsPosts.POSTS_VISIBLE){
         return{
             ...state,
-            isVisiblePosts: action.isVisiblePosts,
-            isVisiblePost: action.isVisiblePost,
-            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts
+            isVisiblePosts: action.isVisiblePosts
         }
     }
 
     if(action.type === constantsAlbum.RETURN_IN_INITIAL_STATE_IMAGE){
         return{
             ...state,
-            images: action.images,
-            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts,
+            images: action.images
+        }
+    }
+
+    if(action.type === constantsAlbum.RETURN_IN_INITIAL_STATE_PAGE_POSTS){
+        return{
+            ...state,
+            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts
+        }
+    }
+
+    if(action.type === constantsAlbum.RETURN_IN_INITIAL_STATE_FLAG_FOR_CHECK_PAGE_COMMENTS){
+        return{
+            ...state,
             flagForCheckPageCommentsOrProfile: action.flagForCheckPageCommentsOrProfile
         }
     }
@@ -346,7 +502,13 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === constantsPosts.CHANGE_REGISTR_USER){
         return{
             ...state,
-            isRegistrationUser: action.isRegistrationUser,
+            isRegistrationUser: action.isRegistrationUser
+        }
+    }
+
+    if(action.type === constantsPosts.CHANGE_REGISTR_PROFILE){
+        return{
+            ...state,
             isVisibleProfile: action.isVisibleProfile
         }
     }
@@ -354,67 +516,55 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === constantsPosts.VISIBLE_AUTHORIZATION){
         return{
             ...state,
-            isVisibleAuthorization: action.isVisibleAuthorization,
-            isVisiblePosts: action.isVisiblePosts
+            isVisibleAuthorization: action.isVisibleAuthorization
         }
     }
 
     if(action.type === constantsComments.VISIBLE_AUTHORIZATION_FROM_COMMENTS){
         return{
             ...state,
-            isVisibleAuthorization: action.isVisibleAuthorization,
-            isVisiblePosts: action.isVisiblePosts
-        }
-    }
-
-    if(action.type === constantsComments.CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER){
-        return{
-            ...state,
-            isVisibleAuthorization: action.isVisibleAuthorization,
-            isVisiblePost: action.isVisiblePost
+            isVisibleAuthorization: action.isVisibleAuthorization
         }
     }
 
     if(action.type === constantsPosts.CHANGE_INITIAL_STATE_POSTS){
         return{
             ...state,
-            isVisibleAlbum: action.isVisibleAlbum,
-            isVisiblePosts: action.isVisiblePosts,
-            isVisiblePost: action.isVisiblePost
+            isVisibleAlbum: action.isVisibleAlbum
         }
     }
 
     if(action.type === constantsProfile.CHANGE_VISIBLE_ALBUM_FROM_PROFILE){
         return {
             ...state,
-            isVisibleAlbum: action.isVisibleAlbum,
-            isVisiblePosts:action.isVisiblePosts,
-            isVisibleInformation:action.isVisibleInformation,
-            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts,
-            isVisibleMultiAlbums: action.isVisibleMultiAlbums
+            isVisibleAlbum: action.isVisibleAlbum
         }
     }
 
-    if(action.type === constantsProfile.CHANGE_VISIBLE_INFORMATION){
-        debugger;
-        return{
+    if(action.type === constantsProfile.CHANGE_VISIBLE_POSTS_FROM_PROFILE_FLAG){
+        return {
             ...state,
-            isVisibleInformation: action.isVisibleInformation,
-            isVisibleAlbum:action.isVisibleAlbum,
-            isVisiblePosts:action.isVisiblePosts,
-            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts,
-            isVisibleMultiAlbums:action.isVisibleMultiAlbums
+            isVisiblePosts:action.isVisiblePosts
         }
     }
 
-    if(action.type === constantsProfile.CHANGE_VISIBLE_POSTS_FROM_PROFILE){
-        debugger;
-        return{
+    if(action.type === constantsProfile.CHANGE_VISIBLE_INFORMATION_FROM_PROFILE){
+        return {
             ...state,
-            isVisibleInformation: action.isVisibleInformation,
-            isVisibleAlbum:action.isVisibleAlbum,
-            isVisiblePosts:action.isVisiblePosts,
-            flagForCheckAlbumInPosts: action.flagForCheckAlbumInPosts,
+            isVisibleInformation:action.isVisibleInformation
+        }
+    }
+
+    if(action.type === constantsProfile.CHANGE_VISIBLE_CHECK_ALBUM_FROM_PROFILE){
+        return {
+            ...state,
+            flagForCheckAlbumInPosts:action.flagForCheckAlbumInPosts
+        }
+    }
+
+    if(action.type === constantsProfile.CHANGE_VISIBLE_CHECK_MULTI_ALBUM_FROM_PROFILE){
+        return {
+            ...state,
             isVisibleMultiAlbums: action.isVisibleMultiAlbums
         }
     }
@@ -422,7 +572,13 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === constantsBiggerPhoto.CHANGE_VISIBLE_BIGGER_PHOTO){
         return{
             ...state,
-            isVisibleBiggerPhoto: action.isVisibleBiggerPhoto,
+            isVisibleBiggerPhoto: action.isVisibleBiggerPhoto
+        }
+    }
+
+    if(action.type === constantsBiggerPhoto.CHANGE_VISIBLE_BIGGER_PHOTO_POSTS){
+        return{
+            ...state,
             isVisiblePosts: action.isVisiblePosts
         }
     }
@@ -430,8 +586,20 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === constantsPosts.CHANGE_BIGGER_PHOTO_PATH){
         return{
             ...state,
-            srcPhotoBigger: action.srcPhotoBigger,
-            isVisibleBiggerPhoto: action.isVisibleBiggerPhoto,
+            srcPhotoBigger: action.srcPhotoBigger
+        }
+    }
+
+    if(action.type === constantsPosts.CHANGE_BIGGER_PHOTO_VISIBLE){
+        return{
+            ...state,
+            isVisibleBiggerPhoto: action.isVisibleBiggerPhoto
+        }
+    }
+
+    if(action.type === constantsPosts.CHANGE_BIGGER_PHOTO_VISIBLE_POSTS){
+        return{
+            ...state,
             isVisiblePosts: action.isVisiblePosts
         }
     }
@@ -453,8 +621,20 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type === constantsMultiAlbum.CHANGE_VISIBLE_MULTI_ALBUMS){
         return{
             ...state,
-            isVisibleMultiAlbums: action.isVisibleMultiAlbums,
-            isVisibleAlbum: action.isVisibleAlbum,
+            isVisibleMultiAlbums: action.isVisibleMultiAlbums
+        }
+    }
+
+    if(action.type === constantsMultiAlbum.CHANGE_VISIBLE_ALBUM_FROM_MULTI_ALBUMS){
+        return{
+            ...state,
+            isVisibleAlbum: action.isVisibleAlbum
+        }
+    }
+
+    if(action.type === constantsMultiAlbum.CHANGE_VISIBLE_ALBUM_IF_FROM_ALBUMS){
+        return{
+            ...state,
             activeAlbumId: action.activeAlbumId
         }
     }

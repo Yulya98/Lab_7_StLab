@@ -13,6 +13,7 @@ class InfoAboutYourself extends React.Component {
     }
 
     render() {
+        debugger;
         return (
             <div className="profile_card">
                 <p>About you</p>

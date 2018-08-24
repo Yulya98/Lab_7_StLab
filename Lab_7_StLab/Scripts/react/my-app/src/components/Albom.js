@@ -22,7 +22,6 @@ export default class Album extends React.Component {
         var obj = {};
         obj.nameImg = this.props.deleteItem;
         obj.idAlbum = this.props.activeAlbumId;
-        console.log(obj.nameImg);
         document.getElementsByName("deleteItem")[0].value = '';
         axios.post('photoDelete', obj);
         this.props.deleteItemFromArray(this.props.images, obj.nameImg);

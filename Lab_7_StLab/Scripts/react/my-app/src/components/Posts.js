@@ -30,6 +30,7 @@ export default class Posts extends React.Component {
 
 
     componentDidMount() {
+        debugger;
         var context = this;
 
         let promise = new Promise((resolve,reject )=> {

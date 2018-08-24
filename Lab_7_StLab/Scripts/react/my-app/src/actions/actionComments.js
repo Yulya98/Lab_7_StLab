@@ -78,32 +78,59 @@ export function commentAdd(comment){
 
 export function goToAlbums(idUser) {
     return (dispatch) =>{
-        dispatch(changeVisibleComments(idUser))
+        dispatch(changeVisibleComments(false));
+        dispatch(changeAlbumVisible());
     }
 }
 
-export function changeVisibleComments(idUser) {
+export function changeVisibleComments(flag) {
     return{
         type:constants.CHANGE_VISIBLE_COMMENTS,
-        isVisiblePost: false,
-        isVisibleAlbum: true,
-        flagForCheckPageCommentsOrProfile: true,
-        activeUserId: idUser
+        isVisiblePost: flag
     }
 }
+
+export function changeAlbumVisible() {
+    return{
+        type:constants.CHANGE_VISIBLE_ALBUM,
+        isVisibleAlbum: true
+    }
+}
+
 
 export function returnInInitialState(){
     return (dispatch) => {
         dispatch(changeInitialState())
+        dispatch(changeInitialStateData());
+        dispatch(changeInitialStateVisiblePosts(true));
+        dispatch(changeInitialStateVisiblePost());
     }
 }
 
 export function changeInitialState() {
     return{
         type: constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE,
-        author:[],
-        data: [],
-        isVisiblePosts: true,
+        author:[]
+    }
+}
+
+export function changeInitialStateData(){
+    return{
+        type: constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE_DATA,
+        data: []
+    }
+}
+
+export function changeInitialStateVisiblePosts(flag){
+    return{
+        type: constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE_POSTS,
+        isVisiblePosts: flag
+    }
+}
+
+export function changeInitialStateVisiblePost(){
+    return{
+        type: constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE_POST,
         isVisiblePost: false
     }
 }
@@ -111,27 +138,20 @@ export function changeInitialState() {
 export function changeVisibleAuthorization(){
     return (dispatch) => {
         dispatch(visibleAuthorization())
+        dispatch(changeInitialStateVisiblePosts(false))
     }
 }
 
 export function visibleAuthorization() {
     return{
         type:constants.VISIBLE_AUTHORIZATION_FROM_COMMENTS,
-        isVisibleAuthorization: true,
-        isVisiblePosts: false
+        isVisibleAuthorization: true
     }
 }
 
 export function changeVisibleCommentsFromNotAuthorization(){
     return (dispatch) => {
-        dispatch(visibleComments())
-    }
-}
-
-export function visibleComments(){
-    return{
-        type:constants.CHANGE_VISIBLE_COMMENTS_FOR_NOT_AUTHORIZATION_USER,
-        isVisiblePosts: true,
-        isVisiblePost: false
+        dispatch(changeVisibleComments(false));
+        dispatch(changeInitialStateVisiblePosts(true));
     }
 }

@@ -94,14 +94,28 @@ export function changePassword(data){
 export function visibleProfile(){
     return (dispatch) => {
         dispatch(changeProfile());
+        dispatch(changeVisibleRegistration());
+        dispatch(changeRegistrationUser());
     }
 }
 
 export function changeProfile(){
     return{
         type: constants.CHANGE_VISIBLE_PROFILE_FROM_AUTHORIZATION,
-        isVisibleProfile: true,
-        isVisibleRegistration: false,
+        isVisibleProfile: true
+    }
+}
+
+export function changeVisibleRegistration(){
+    return{
+        type: constants.CHANGE_VISIBLE_REGISTRATIONS,
+        isVisibleRegistration: false
+    }
+}
+
+export function changeRegistrationUser(){
+    return{
+        type: constants.CHANGE_USER_REGISTRATION,
         isRegistrationUser: true
     }
 }

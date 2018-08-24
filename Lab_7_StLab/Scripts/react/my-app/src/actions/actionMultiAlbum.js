@@ -83,15 +83,29 @@ export function addAlbumsData(obj) {
 
 export function changeVisibleMultiAlbums(activeAlbumId){
     return (dispatch) => {
-        dispatch(visibleMultiAlbum(activeAlbumId))
+        dispatch(visibleMultiAlbum(activeAlbumId));
+        dispatch(visibleAlbum());
+        dispatch(changeIdAlbum(activeAlbumId));
     }
 }
 
 export function visibleMultiAlbum(activeAlbumId) {
     return{
         type: constantsMultiAlbum.CHANGE_VISIBLE_MULTI_ALBUMS,
-        isVisibleMultiAlbums: false,
-        isVisibleAlbum: true,
+        isVisibleMultiAlbums: false
+    }
+}
+
+export function visibleAlbum() {
+    return{
+        type: constantsMultiAlbum.CHANGE_VISIBLE_ALBUM_FROM_MULTI_ALBUMS,
+        isVisibleAlbum: true
+    }
+}
+
+export function changeIdAlbum(activeAlbumId) {
+    return{
+        type: constantsMultiAlbum.CHANGE_VISIBLE_ALBUM_IF_FROM_ALBUMS,
         activeAlbumId: activeAlbumId
     }
 }
