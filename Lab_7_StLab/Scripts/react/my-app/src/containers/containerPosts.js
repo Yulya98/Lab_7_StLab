@@ -4,10 +4,10 @@ import * as actionCreators from "../actions/actionPosts.js"
 import Posts from "../components/Posts"
 import Comments from "../containers/containerComments"
 import BiggerPhoto from "../containers/containerBigerPhoto"
+import {withRouter} from "react-router-dom";
 
 class ContainerPosts extends React.Component{
     constructor(props) {
-        debugger;
         super(props);
         this.props.returnInInitialStatePages();
     }
@@ -28,4 +28,4 @@ const mapStateToProps = (state) => {
     return state
 };
 
-export default connect (mapStateToProps, actionCreators)(ContainerPosts);
+export default withRouter(connect (mapStateToProps, actionCreators)(ContainerPosts));

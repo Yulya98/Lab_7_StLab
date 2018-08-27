@@ -1,15 +1,21 @@
 ﻿import React from 'react';
 import "../resources/css/profileStyle/profile.css"
+import InfoAboutYourself from "../containers/containerAboutYourself"
+import Album from "../containers/containerAlbum"
+import Posts from '../containers/containerPosts'
+import {PrivateRoute} from "./PrivateRouter";
 
 import {
     BrowserRouter as Router,
     Link,
+    Switch
 } from 'react-router-dom'
 
 
-class App extends React.Component {
+export default class Profile extends React.Component {
 
     constructor(props) {
+        debugger;
         super(props);
     }
 
@@ -17,20 +23,24 @@ class App extends React.Component {
         return (
             <div>
                 <div className="header"></div>
-            <Router>
-                <div className="container-menu">
-                    <div className="menu">
-                        <ul>
-                            <li><Link onClick={()=>this.props.changeVisibleInformation()} to="/about">Information</Link></li>
-                            <li><Link onClick={()=>this.props.changeVisibleAlbom()} to="/album">My album</Link></li>
-                            <li><Link onClick={()=>this.props.changeVisiblePosts()} to="/posts" id="menu_none">Last posts</Link></li>
-                        </ul>
+                <Router>
+                    <div className="container-menu">
+                        <div className="menu">
+                            <ul>
+                                <li><Link to="/about">Information</Link></li>
+                                <li><Link to="/album">My album</Link></li>
+                                <li><Link to="/posts" id="menu_none">Last posts</Link></li>
+                            </ul>
+                            <Switch>
+                                <PrivateRoute exact path="/about" component={InfoAboutYourself}/>
+                                <PrivateRoute exact path="/album" component={Album} />
+                                <PrivateRoute exact path="/posts" component={Posts} />
+                            </Switch>
+                        </div>
+
                     </div>
-                </div>
-            </Router>
+                </Router>
             </div>
         );
     }
 }
-
-export default  App;

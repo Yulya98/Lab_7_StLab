@@ -6,7 +6,6 @@ const initialState = {
 
 export default function reducerPosts  (state = initialState,action) {
 
-    debugger;
     if(action.type === constants.CHANGE_POSTS){
         return{
             ...state,

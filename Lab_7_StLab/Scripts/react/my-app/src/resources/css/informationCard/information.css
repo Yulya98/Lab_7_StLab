@@ -1,12 +1,12 @@
 .profile_card{
-    margin-top: 4vw;
+    margin-top: 10vw;
     background-color: white;
     width: 18vw;
     text-align: center;
     box-shadow: -0.8vw 0.8vw 0vw 0vw #D3D3D3;
     border-radius: 2vw 0vw 2vw 0.3vw;
     position: absolute;
-    margin-left: 40vw;
+    margin-left: 20vw;
 }
 
 

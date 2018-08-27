@@ -35,11 +35,11 @@ import reducerSubPosts from "./reducerSubPosts";
 import reducerSurname from "./reducerSurname";
 import reducerIdPost from "./reducerIdPost";
 import reducerFlagForCheckAlbumInPosts from "./reducerFlagForCheckAlbumInPosts";
-import reducerRedirectReferrer from "./reducerRedirectToReferrer"
+import reducerRegistrationUser from "./reducerIsRegistrationUser"
 import { combineReducers } from 'redux'
 
 export default combineReducers({
-    reducerRedirectReferrer,
+    reducerRegistrationUser,
     reducerActiveAlbumId,
     reducerActiveUserId,
     reducerAlbum,

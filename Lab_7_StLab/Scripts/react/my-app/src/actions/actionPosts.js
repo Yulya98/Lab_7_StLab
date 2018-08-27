@@ -3,28 +3,25 @@ var axios = require('axios');
 import React, { Component } from 'react';
 
 export function changePosts(posts){
-    debugger;
+
     return (dispatch) => {
         dispatch(post(posts))
     }
 }
 
 export function componentDidMount(changeRegistrationUser, changePosts, changeSubPosts,getItems,index,props,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum) {
-    debugger;
+
     let promise = new Promise((resolve,reject )=> {
         axios.post('defineRegistrationUser')
             .then((response) => {
-                debugger;
                 changeRegistrationUser(response.data);
             });
         axios.post('searchPosts')
             .then((response) => {
-                debugger;
                 for (var i = 0; i < response.data.length; i+=5) {
                     const obj = {postId:response.data[i], authorName: response.data[i+1], src: response.data[i + 2] , idUser:response.data[i+3], idAlbum: response.data[i+4]};
                     changePosts(obj);
                 }
-                console.log(props.posts);
                 var subPosts = [].concat(getItems(index,props.posts,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum)).concat(getItems(index,props.posts,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum));
                 changeSubPosts(subPosts);
             });
@@ -248,7 +245,6 @@ export function changeBiggerPhotoPath(src) {
 }
 
 export function changeBiggerPhoto(src) {
-    debugger;
     return{
         type: constants.CHANGE_BIGGER_PHOTO_PATH,
         srcPhotoBigger: src
@@ -270,7 +266,6 @@ export function changeVisiblePosts(){
 }
 
 export function getItems(i,posts,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum) {
-    debugger;
     if(typeof posts[0] != "undefined") {
         i++;
         if (i < posts.length) {

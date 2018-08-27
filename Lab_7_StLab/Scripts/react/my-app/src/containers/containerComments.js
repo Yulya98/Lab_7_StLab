@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import * as actionCreators from "../actions/actionComments"
 import Comments from "../components/Comments"
+import {withRouter} from "react-router-dom";
 
 
 class containerComments extends React.Component{
@@ -19,4 +20,4 @@ const mapStateToProps = (state) => {
     return state
 };
 
-export default connect (mapStateToProps, actionCreators)(containerComments);
+export default withRouter(connect (mapStateToProps, actionCreators)(containerComments));

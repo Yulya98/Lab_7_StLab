@@ -88,6 +88,12 @@ export const INFO_ABOUT_USER_CHANGE_SURNAME = "INFO_ABOUT_USER_CHANGE_SURNAME";
 
 export const CHANGE_NAME_IMAGE = "CHANGE_NAME_IMAGE";
 
-export const CHANGE_REDIRECT_TO_REFFER = "CHANGE_REDIRECT_TO_REFFER";
+export const isAuthenticated = {
+    isAuthenticated : false,
+    authenticate() {
+        this.isAuthenticated = true;
+    },
+}
+
 
 

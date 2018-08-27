@@ -11,7 +11,6 @@ export function changeVisibleAlbom(){
         dispatch(changeVisibleInformationFlag(false));
         dispatch(checkAlbum(false));
         dispatch(checkmMultiAlbum(true));
-        debugger;
     }
 }
 
@@ -51,7 +50,7 @@ export function checkmMultiAlbum(flag){
 }
 
 export function changeVisibleInformation(){
-    debugger;
+
     return (dispatch) => {
         dispatch(changeVisibleComments());
         dispatch(changeVisibleBiggerPhoto());
@@ -61,7 +60,6 @@ export function changeVisibleInformation(){
         dispatch(changeVisibleInformationFlag(true));
         dispatch(checkAlbum(false));
         dispatch(checkmMultiAlbum(false));
-        debugger;
     }
 }
 
@@ -97,6 +95,5 @@ export function changeVisiblePosts(){
         dispatch(changeVisibleInformationFlag(false));
         dispatch(checkAlbum(false));
         dispatch(checkmMultiAlbum(false));
-        debugger;
     }
 }

@@ -2,6 +2,7 @@
 var axios = require('axios');
 import "../resources/css/posts/posts.css"
 import InfiniteScroll from 'react-bidirectional-infinite-scroll'
+import {isAuthenticated} from '../constants/constants'
 
 
 var i = -1;
@@ -45,7 +46,6 @@ export default class Posts extends React.Component {
                     }
                     var subPosts = [].concat(this.getItems()).concat(this.getItems());
                     this.props.changeSubPosts(subPosts);
-                    console.log(this.props.posts);
                 });
         });
     }
@@ -54,7 +54,8 @@ export default class Posts extends React.Component {
         if(typeof this.props.posts[0] != "undefined") {
             i++;
             if (i < this.props.posts.length) {
-                if (this.props.isRegistrationUser == false) {
+                console.log(this.props.isRegistrationUser);
+                if (isAuthenticated.isAuthenticated == false) {
                     return (
                         <div className="post_style_mini">
                             <div className="spanMedium_mini"><span>Author name:{this.props.posts[i].authorName}</span>
@@ -120,7 +121,8 @@ export default class Posts extends React.Component {
 
     render() {
         if (typeof this.props.posts[0] != "undefined") {
-            if(this.props.isRegistrationUser != false) {
+            console.log(this.props.isRegistrationUser);
+            if(isAuthenticated.isAuthenticated != false) {
                 return (
                     <div className="posts_style">
                         <div className="post_scroll">
@@ -150,7 +152,7 @@ export default class Posts extends React.Component {
                 )
             }
         }
-        if(this.props.isRegistrationUser != false) {
+        if(isAuthenticated.isAuthenticated != false) {
             return (
                 <div className="load_style">Loading...</div>
             )

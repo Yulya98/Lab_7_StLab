@@ -1,22 +1,16 @@
 import axios from "axios";
 import * as constants from "../constants/constants"
-import {authenticaiton} from "./actionLogin"
+import {isAuthenticated} from "../constants/constants"
 
 export function onChangeEmail(e){
     return(dispatch) => {dispatch(changeEmail(e.target.value))};
 }
 
 export function onChangeRedirectToReferrer() {
-    authenticaiton.authenticate(true);
     return (dispatch) =>{
-        dispatch(changeRedirectReferrer());
-    }
-}
-
-export function changeRedirectReferrer() {
-    return{
-        type: constants.CHANGE_REDIRECT_TO_REFFER,
-        redirectToReferrer: true
+        debugger;
+        isAuthenticated.authenticate();
+        dispatch(changeRegistrationUser());
     }
 }
 

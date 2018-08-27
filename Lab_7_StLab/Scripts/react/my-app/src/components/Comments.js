@@ -21,7 +21,6 @@ export default class Comments extends React.Component {
     render() {
 
         if(this.props.isRegistrationUser != false) {
-            debugger;
             return (
                 <div className="commentsStyle">
                     {this.props.author.map(item => <div><div className="span_margin"><span className="span_style_mini">Author name: {item.authorName}</span></div>
@@ -44,7 +43,6 @@ export default class Comments extends React.Component {
             )
         }
         else{
-            debugger;
             return (
                 <div>
                     <div className="change_location_buttons"><button className="button_style_not_authorization_user" onClick={()=>{this.props.changeVisibleCommentsFromNotAuthorization()}}>Return to posts</button></div>

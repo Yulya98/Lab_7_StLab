@@ -24,16 +24,15 @@ const email = (value) => {
 export default class UserForm extends React.Component {
 
     constructor(props) {
-        debugger;
         super(props);
     }
 
 
     render() {
-        const { from } = this.props.location.state || { from: { pathname: "/" } };
-        const { redirectToReferrer } = this.props.redirectToReferrer;
+        const { from } = { from: { pathname: "/profile"}};
+        const { isRegistrationUser } = {isRegistrationUser :this.props.isRegistrationUser};
 
-        if (redirectToReferrer) {
+        if (isRegistrationUser) {
             return <Redirect to={from} />;
         }
 
@@ -48,7 +47,7 @@ export default class UserForm extends React.Component {
                             <label>Password:</label><br />
                             <Input type="password" validations={[required]} name="password" placeholder="password" value={this.props.password} onChange={this.props.changePassword} /><br />`
                         </Form>
-                        <button disabled={!this.props.password || !this.props.email} onClick={()=>{this.props.handleSubmit(this.props.email, this.props.password)}}>Sign in</button>
+                        <button disabled={!this.props.password || !this.props.email} onClick={()=>{() => this.props.onChangeRedirectToReferrer()}}>Sign in</button>
                         <button onClick={() => this.props.onChangeRedirectToReferrer()}>Registration</button>
                     </div>
                 </div>

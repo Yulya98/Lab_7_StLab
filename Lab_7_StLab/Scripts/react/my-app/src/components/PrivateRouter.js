@@ -1,16 +1,16 @@
 import React from 'react';
-import {authentication} from "../actions/actionLogin";
 import {
     Route,
     Redirect
 } from "react-router-dom";
+import {isAuthenticated} from "../constants/constants";
 
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
         render={props =>
-            authentication.isAuthenticated ? (
+            isAuthenticated.isAuthenticated ? (
                 <Component {...props} />
             ) : (
                 <Redirect

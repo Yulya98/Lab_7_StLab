@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import * as actionCreators from "../actions/actionRegistration"
 import Registration from "../components/Registration"
+import {withRouter} from "react-router-dom";
 
 
 class ContainerRegistration extends React.Component{
@@ -19,4 +20,4 @@ const mapStateToProps = (state) => {
     return state
 };
 
-export default connect (mapStateToProps, actionCreators)(ContainerRegistration);
+export default withRouter(connect (mapStateToProps, actionCreators)(ContainerRegistration));

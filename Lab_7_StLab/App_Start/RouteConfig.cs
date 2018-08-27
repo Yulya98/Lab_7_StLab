@@ -15,7 +15,7 @@ namespace Lab_7_StLab
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "{*url}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
