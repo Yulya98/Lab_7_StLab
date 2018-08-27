@@ -1,8 +1,23 @@
 import axios from "axios";
-import * as constants from "../constants/constantsAuthorization"
+import * as constants from "../constants/constants"
+import {authenticaiton} from "./actionLogin"
 
 export function onChangeEmail(e){
     return(dispatch) => {dispatch(changeEmail(e.target.value))};
+}
+
+export function onChangeRedirectToReferrer() {
+    authenticaiton.authenticate(true);
+    return (dispatch) =>{
+        dispatch(changeRedirectReferrer());
+    }
+}
+
+export function changeRedirectReferrer() {
+    return{
+        type: constants.CHANGE_REDIRECT_TO_REFFER,
+        redirectToReferrer: true
+    }
 }
 
 export function changeEmail(e){
@@ -71,23 +86,23 @@ export  function  changeRegistrationUser() {
     }
 }
 
-export function isVisibleRegistrations(){
+export function changeVisibleRegistrations(){
     return (dispatch) =>{
         dispatch(changeVisibleRegistration());
-        dispatch((changeVisibleAuthorizationFlag));
+        dispatch(changeVisibleAuthorizationFlag());
     }
 }
 
 export function changeVisibleRegistration(){
     return{
-        type: constants.CHANGE_VISIBLE_REGISTRATION,
+        type: constants.CHANGE_VISIBLE_REGISTRATIONS,
         isVisibleRegistration: true
     }
 }
 
 export function changeVisibleAuthorizationFlag(){
     return{
-        type: constants.CHANGE_VISIBLE_AUTHORIZATION_FLAG,
+        type: constants.CHANGE_VISIBLE_AUTHORIZATION,
         isVisibleAuthorization: false
     }
 }

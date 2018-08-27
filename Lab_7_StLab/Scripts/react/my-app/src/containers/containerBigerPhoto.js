@@ -8,7 +8,7 @@ class ContainerBiggerPhoto extends React.Component{
     render(){
         return(
             <div>
-                 <BiggerPhoto srcPhotoBigger={this.props.srcPhotoBigger} changeVisibleBiggerPhoto={this.props.changeVisibleBiggerPhoto}></BiggerPhoto>
+                 <BiggerPhoto returnInInitialStateVisible={this.props.returnInInitialStateVisible} srcPhotoBigger={this.props.reducerSrcPhotoBigger.srcPhotoBigger} changeVisibleBiggerPhoto={this.props.changeVisibleBiggerPhoto}></BiggerPhoto>
             </div>
         )
     }

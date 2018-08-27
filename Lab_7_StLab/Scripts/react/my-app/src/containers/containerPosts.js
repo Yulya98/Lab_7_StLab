@@ -10,16 +10,14 @@ class ContainerPosts extends React.Component{
         debugger;
         super(props);
         this.props.returnInInitialStatePages();
-        debugger;
     }
 
     render(){
-        debugger;
         return(
             <div>
-                {this.props.isVisiblePosts && <Posts changeBiggerPhotoPath={this.props.changeBiggerPhotoPath} isVisiblePosts={this.props.isVisiblePosts} isRegistrationUser={this.props.isRegistrationUser} changeRegistrationUser={this.props.changeRegistrationUser} changeVisibleAuthorization={this.props.changeVisibleAuthorization} returnInInitialState={this.props.returnInInitialState} changeCurrentImage={this.props.changeCurrentImage} changeLightboxIsOpen={this.props.changeLightboxIsOpen} changeSubPosts={this.props.changeSubPosts} goToAlbum={this.props.goToAlbum} changePosts={this.props.changePosts} changeSubPosts={this.props.changeSubPosts} visiblePost={this.props.visiblePost} posts={this.props.posts} currentImage={this.props.currentImage} subPosts={this.props.subPosts} postId={this.props.postId} ></Posts>}
-                {this.props.isVisibleBiggerPhoto && <BiggerPhoto />}
-                {this.props.isVisiblePost && <Comments></Comments>}
+                {this.props.reducerIsVisiblePosts.isVisiblePosts && <Posts changeBiggerPhotoPath={this.props.changeBiggerPhotoPath} isVisiblePosts={this.props.reducerIsVisiblePosts.isVisiblePosts} isRegistrationUser={this.props.reducerIsRegistrationUser.isRegistrationUser} changeRegistrationUser={this.props.changeRegistrationUser} changeVisibleAuthorization={this.props.changeVisibleAuthorization} returnInInitialState={this.props.returnInInitialState} changeCurrentImage={this.props.changeCurrentImage} changeLightboxIsOpen={this.props.changeLightboxIsOpen} changeSubPosts={this.props.changeSubPosts} goToAlbum={this.props.goToAlbum} changePosts={this.props.changePosts} changeSubPosts={this.props.changeSubPosts} visiblePost={this.props.visiblePost} posts={this.props.reducerPosts.posts} currentImage={this.props.currentImage} subPosts={this.props.reducerSubPosts.subPosts} postId={this.props.reducerIdPost.idPost} ></Posts>}
+                {this.props.reducerIsVisibleBiggerPhoto.isVisibleBiggerPhoto && <BiggerPhoto />}
+                {this.props.reducerVisiblePost.isVisiblePost && <Comments></Comments>}
             </div>
         )
     }

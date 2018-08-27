@@ -11,10 +11,9 @@ class ContainerAboutYourself extends React.Component{
     }
 
     render(){
-        debugger;
         return(
             <div>
-                {(this.props.isVisibleAlbum || this.props.flagForCheckAlbumInPosts) && <Album activeAlbumId={this.props.activeAlbumId} flagForCheckPageCommentsOrProfile={this.props.flagForCheckPageCommentsOrProfile} deletePhoto={this.props.deletePhoto} deleteItemFromArray={this.props.deleteItemFromArray} returnInInitialState={this.props.returnInInitialState} activeUserId={this.props.activeUserId} loadImages={this.props.loadImages} deleteItem={this.props.deleteItem} nameImg={this.props.nameImg} path={this.props.path} images={this.props.images} loadData={this.props.componentWillMount} handleClicks={this.props.handleClicks} onChangeDeleteItem={this.props.onChangeDeleteItem} onChangeNameImage={this.props.onChangeNameImage} onChangePath={this.props.onChangePath} deleteButton={this.props.deleteButton}></Album>}
+                {(this.props.reducerIsVisibleAlbum.isVisibleAlbum || this.props.reducerFlagForCheckAlbumInPosts.flagForCheckAlbumInPosts) && <Album activeAlbumId={this.props.reducerActiveAlbumId.activeAlbumId} flagForCheckPageCommentsOrProfile={this.props.reducerFlagForCheckPageCommentsOrProfile.flagForCheckPageCommentsOrProfile} deletePhoto={this.props.reducerDeleteItem.deletePhoto} deleteItemFromArray={this.props.deleteItemFromArray} returnInInitialState={this.props.returnInInitialState} activeUserId={this.props.reducerActiveUserId.activeUserId} loadImages={this.props.loadImages} deleteItem={this.props.reducerDeleteItem.deleteItem} nameImg={this.props.reducerNameImg.nameImg} path={this.props.reducerPath.path} images={this.props.reducerImages.images} loadData={this.props.componentWillMount} handleClicks={this.props.handleClicks} onChangeDeleteItem={this.props.onChangeDeleteItem} onChangeNameImage={this.props.onChangeNameImage} onChangePath={this.props.onChangePath} deleteButton={this.props.deleteButton}></Album>}
             </div>
         )
     }

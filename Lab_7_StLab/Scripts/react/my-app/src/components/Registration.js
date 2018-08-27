@@ -1,5 +1,4 @@
 var React = require('react')
-var axios = require('axios')
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import validator from 'validator';
@@ -20,26 +19,12 @@ export default class RegistrtionForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit() {
-        var obj = {};
-        obj.Name = this.props.name;
-        obj.Surname = this.props.surname;
-        obj.Pseudonym = this.props.pseoudonym;
-        obj.Email = this.props.email;
-        obj.FieldOfActivity = this.props.sphere;
-        obj.City = this.props.city;
-        obj.Password = this.props.password;
-        axios.post('adduser', obj);
-        this.props.visibleProfile();
     }
 
     render() {
         return (
             <div className="login-wrap">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={() => this.props.visibleProfile(this.props.name,this.props.surname,this.props.pseoudonym,this.props.email,this.props.sphere,this.props.city, this.props.password )}>
                 <h2>Registration</h2>
 
                 <div className="form">

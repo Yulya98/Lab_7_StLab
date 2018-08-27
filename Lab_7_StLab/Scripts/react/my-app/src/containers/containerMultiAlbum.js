@@ -6,10 +6,9 @@ import MultiAlbum from "../components/MultiAlbum"
 
 class containerMultiAlbum extends React.Component{
     render(){
-        debugger;
         return(
             <div>
-                {this.props.isVisibleMultiAlbums && <MultiAlbum addAlbum={this.props.addAlbum} changeNewAlbumName={this.props.changeNewAlbumName} nameOfNewAlbum={this.props.nameOfNewAlbum} returnInInitialState={this.props.returnInInitialState} flagForCheckPageCommentsOrProfile={this.props.flagForCheckPageCommentsOrProfile} componentWillMount={this.props.componentWillMount} activeUserId={this.props.activeUserId} getAlbum={this.props.getAlbum} albums={this.props.albums} changeVisibleMultiAlbums={this.props.changeVisibleMultiAlbums}></MultiAlbum>}
+                {this.props.reducerIsVisibleMultiAlbums.isVisibleMultiAlbums && <MultiAlbum addAlbum={this.props.addAlbum} changeNewAlbumName={this.props.changeNewAlbumName} nameOfNewAlbum={this.props.reducerNameOfNewAlbum.nameOfNewAlbum} returnInInitialState={this.props.returnInInitialState} flagForCheckPageCommentsOrProfile={this.props.flagForCheckPageCommentsOrProfile} componentWillMount={this.props.componentWillMount} activeUserId={this.props.reducerActiveUserId.activeUserId} getAlbum={this.props.getAlbum} albums={this.props.reducerAlbum.albums} changeVisibleMultiAlbums={this.props.changeVisibleMultiAlbums}></MultiAlbum>}
             </div>
         )
     }

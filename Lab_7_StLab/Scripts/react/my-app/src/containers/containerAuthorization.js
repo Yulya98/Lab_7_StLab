@@ -6,9 +6,10 @@ import Authorization from "../components/Authorization"
 
 class ContainerAuthorization extends React.Component{
     render(){
+        debugger;
         return(
             <div>
-                {this.props.isVisibleAuthorization && <Authorization changeRgistrationUser={this.props.changeRgistrationUser} visibleProfile={this.props.isVisibleRegistrations} email={this.props.email} password={this.props.password} handleSubmit={this.props.handleSubmit} changeEmail={this.props.onChangeEmail} changePassword={this.props.onChangePassword}></Authorization>}
+                {this.props.reducerIsVisibleAuthorization.isVisibleAuthorization && <Authorization redirectToReferrer={this.props.reducerRedirectReferrer.redirectToReferrer} onChangeRedirectToReferrer={this.props.onChangeRedirectToReferrer} changeRgistrationUser={this.props.changeRgistrationUser} visibleProfile={this.props.changeVisibleRegistrations} email={this.props.reducerEmail.email} password={this.props.reducerPassword.password} handleSubmit={this.props.handleSubmit} changeEmail={this.props.onChangeEmail} changePassword={this.props.onChangePassword}></Authorization>}
             </div>
         )
     }

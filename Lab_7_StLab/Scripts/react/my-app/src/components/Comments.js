@@ -8,41 +8,10 @@ export default class Comments extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { data: [], idPost:this.props.idPost, currentImage: 0, author: [], comment:""};
-        this.closeLightbox = this.closeLightbox.bind(this);
-        this.openLightbox = this.openLightbox.bind(this);
-        this.gotoNext = this.gotoNext.bind(this);
-        this.gotoPrevious = this.gotoPrevious.bind(this)
     }
 
     componentDidMount() {
         this.props.componentDidMount(this.props.idPost);
-    }
-
-    openLightbox(event, obj) {
-        this.setState({
-            currentImage: obj.index,
-            lightboxIsOpen: true,
-        });
-    }
-
-    closeLightbox() {
-        this.setState({
-            currentImage: 0,
-            lightboxIsOpen: false,
-        });
-    }
-
-    gotoPrevious() {
-        this.setState({
-            currentImage: this.state.currentImage - 1,
-        });
-    }
-
-    gotoNext() {
-        this.setState({
-            currentImage: this.state.currentImage + 1,
-        });
     }
 
     componentWillUnmount(){
@@ -50,18 +19,13 @@ export default class Comments extends React.Component {
     }
 
     render() {
+
         if(this.props.isRegistrationUser != false) {
+            debugger;
             return (
                 <div className="commentsStyle">
                     {this.props.author.map(item => <div><div className="span_margin"><span className="span_style_mini">Author name: {item.authorName}</span></div>
-                        <Gallery photos={item.pathToPage} onClick={this.openLightbox}/>
-                        <Lightbox images={item.pathToPage}
-                                  onClose={this.closeLightbox}
-                                  onClickPrev={this.gotoPrevious}
-                                  onClickNext={this.gotoNext}
-                                  currentImage={this.props.currentImage}
-                                  isOpen={this.state.lightboxIsOpen}
-                        /></div>)}
+                        <img className="image_style_mini" src={item.pathToPage[0].src}/></div>)}
                     {this.props.data.map(item => <div><span>{item.author}</span>
                         <p>{item.text}</p></div>)}
                     <div>
@@ -80,20 +44,14 @@ export default class Comments extends React.Component {
             )
         }
         else{
+            debugger;
             return (
                 <div>
                     <div className="change_location_buttons"><button className="button_style_not_authorization_user" onClick={()=>{this.props.changeVisibleCommentsFromNotAuthorization()}}>Return to posts</button></div>
                     <button className="button_style_not_authorization_user" onClick={()=>this.props.changeVisibleAuthorization()}>Registration</button>
                     <div className="commentsStyle">
                         {this.props.author.map(item => <div><div className="span_margin"><span className="span_style_mini">Author name: {item.authorName}</span></div>
-                            <Gallery photos={item.pathToPage} onClick={this.openLightbox}/>
-                            <Lightbox images={item.pathToPage}
-                                      onClose={this.closeLightbox}
-                                      onClickPrev={this.gotoPrevious}
-                                      onClickNext={this.gotoNext}
-                                      currentImage={this.props.currentImage}
-                                      isOpen={this.state.lightboxIsOpen}
-                            /></div>)}
+                           <img className="image_style_mini" src={item.pathToPage[0].src}/></div>)}
                         {this.props.data.map(item => <div><span>{item.author}</span>
                             <p>{item.text}</p></div>)}
                     </div>

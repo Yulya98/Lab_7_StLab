@@ -8,7 +8,7 @@ class ContainerAboutYourself extends React.Component{
     render(){
         return(
             <div>
-                {this.props.isVisibleInformation && <InfoAboutYourself name={this.props.name} surname={this.props.surname} email={this.props.emailUser} sphere={this.props.sphere} city={this.props.city} loadData={this.props.componentDidMount}></InfoAboutYourself>}
+                {this.props.reducerIsVisibleInformation.isVisibleInformation && <InfoAboutYourself name={this.props.reducerName.name} surname={this.props.reducerSurname.surname} email={this.props.reducerEmailUser.emailUser} sphere={this.props.reducerSphere.sphere} city={this.props.reducerCity.city} loadData={this.props.componentDidMount}></InfoAboutYourself>}
             </div>
         )
     }

@@ -1,9 +1,34 @@
-import * as constants from "../constants/constantsPosts"
+import * as constants from "../constants/constants";
+var axios = require('axios');
+import React, { Component } from 'react';
 
 export function changePosts(posts){
+    debugger;
     return (dispatch) => {
         dispatch(post(posts))
     }
+}
+
+export function componentDidMount(changeRegistrationUser, changePosts, changeSubPosts,getItems,index,props,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum) {
+    debugger;
+    let promise = new Promise((resolve,reject )=> {
+        axios.post('defineRegistrationUser')
+            .then((response) => {
+                debugger;
+                changeRegistrationUser(response.data);
+            });
+        axios.post('searchPosts')
+            .then((response) => {
+                debugger;
+                for (var i = 0; i < response.data.length; i+=5) {
+                    const obj = {postId:response.data[i], authorName: response.data[i+1], src: response.data[i + 2] , idUser:response.data[i+3], idAlbum: response.data[i+4]};
+                    changePosts(obj);
+                }
+                console.log(props.posts);
+                var subPosts = [].concat(getItems(index,props.posts,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum)).concat(getItems(index,props.posts,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum));
+                changeSubPosts(subPosts);
+            });
+    });
 }
 
 export function post(post){
@@ -85,9 +110,9 @@ export function goToAlbum(idUser,idAlbum){
     return (dispatch) => {
         dispatch(changeIsVisibleAlbum(true));
         dispatch(changeVisiblePostPart());
-        dispatch(changeUserId());
+        dispatch(changeUserId(idUser));
         dispatch(changeFlag());
-        dispatch(changeIdAlbum());
+        dispatch(changeIdAlbum(idAlbum));
     }
 }
 
@@ -100,7 +125,7 @@ export function changeIsVisibleAlbum(flag){
 
 export function changeUserId(idUser){
     return{
-        type: constants.CHANGE_USER_ID,
+        type: constants.CHANGE_ACTIVE_USER,
         activeUserId: idUser
     }
 }
@@ -130,7 +155,7 @@ export function visiblePosts() {
 
 export function returnInInitialStatePosts(){
     return{
-        type: constants.POSTS_VISIBLE,
+        type: constants.VISIBLE_POST_PART,
         isVisiblePosts: true
     }
 }
@@ -169,7 +194,7 @@ export function defineUser(flag) {
     if(flag)
         flagForVisibleProfile = true;
     return{
-        type: constants.CHANGE_REGISTR_USER,
+        type: constants.CHANGE_USER_REGISTRATION,
         isRegistrationUser: flag,
     }
 }
@@ -179,21 +204,21 @@ export function defineUserProfile(flag) {
     if(flag)
         flagForVisibleProfile = true;
     return{
-        type: constants.CHANGE_REGISTR_PROFILE,
+        type: constants.CHANGE_VISIBLE_PROFILE,
         isVisibleProfile: flagForVisibleProfile
     }
 }
 
 export function changeVisibleAuthorization(){
     return (dispatch) => {
-        dispatch(visibleAuthorization())
+        dispatch(visibleAuthorization());
         dispatch(changeVisiblePostPart());
     }
 }
 
 export function visibleAuthorization() {
     return{
-        type: constants.VISIBLE_AUTHORIZATION,
+        type: constants.CHANGE_VISIBLE_AUTHORIZATION,
         isVisibleAuthorization: true
     }
 }
@@ -209,7 +234,7 @@ export function returnInInitialStatePages(){
 
 export function initialState() {
     return{
-        type: constants.CHANGE_INITIAL_STATE_POSTS,
+        type: constants.CHANGE_VISIBLE_ALBUM,
         isVisibleAlbum: false
     }
 }
@@ -232,14 +257,68 @@ export function changeBiggerPhoto(src) {
 
 export function changeVisibleBiggerPhoto(){
     return{
-        type: constants.CHANGE_BIGGER_PHOTO_VISIBLE,
+        type: constants.CHANGE_VISIBLE_BIGGER_PHOTO,
         isVisibleBiggerPhoto: true
     }
 }
 
 export function changeVisiblePosts(){
     return{
-        type: constants.CHANGE_BIGGER_PHOTO_VISIBLE_POSTS,
+        type: constants.VISIBLE_POST_PART,
         isVisiblePosts: false
     }
+}
+
+export function getItems(i,posts,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum) {
+    debugger;
+    if(typeof posts[0] != "undefined") {
+        i++;
+        if (i < posts.length) {
+            if (isRegistrationUser == false) {
+                return (
+                    <div className="post_style_mini">
+                        <div className="spanMedium_mini"><span>Author name:{posts[i].authorName}</span>
+                        </div>
+                        <img className="image_style" src={posts[i].src}
+                             onClick={() => changeBiggerPhotoPath(posts[i].src)}/>
+                        <div className="button_style_mini">
+                            <button className="button_style"
+                                    onClick={() => visiblePost(posts[i].postId)}>
+                                To comment
+                            </button>
+                        </div>
+                    </div>
+                )
+            }
+            else {
+                return (<div className="post_style">
+                    <div className="spanMedium"><span>Author name:{posts[i].authorName}</span></div>
+                    <img className="image_style" src={posts[i].src}
+                         onClick={() => changeBiggerPhotoPath(posts[i].src)}/>
+                    <div className="button_style_position">
+                        <button className="button_style"
+                                onClick={() => visiblePost(posts[i].postId)}>Add comment
+                        </button>
+                    </div>
+                    <button className="button_style" onClick={() => goToAlbum(posts[i].idUser, posts[i].idAlbum)}>To
+                        Album
+                    </button>
+
+                </div>)
+            }
+        }
+        else {
+            return(
+                <div></div>
+            )
+        }
+    }
+    return(
+        <div>Loading...</div>
+    )
+}
+
+export function handleScrollDown(getItems, subPost,changeSubPosts,i,posts,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum) {
+    const subPosts = subPost.concat(getItems(i,posts,isRegistrationUser,changeBiggerPhotoPath,visiblePost,goToAlbum))
+    setTimeout(() => { changeSubPosts(subPosts)}, 500)
 }

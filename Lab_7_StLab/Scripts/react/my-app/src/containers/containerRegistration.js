@@ -8,7 +8,7 @@ class ContainerRegistration extends React.Component{
     render(){
         return(
             <div>
-                {this.props.isVisibleRegistration && <Registration password={this.props.registrationPassword} visibleProfile={this.props.visibleProfile} name={this.props.name} surname={this.props.surname} email={this.props.registrationEmail} sphere={this.props.sphere} city={this.props.city} pseoudonym={this.props.pseoudonym} isVisibleRegistration={this.props.isVisibleRegistration} onChangeName={this.props.onChangeName} onChangeSurname={this.props.onChangeSurname} onChangepPseoudonym={this.props.onChangepPseoudonym} onChangepEmail={this.props.onChangepEmail} onChangepSphere={this.props.onChangepSphere} onChangepCity={this.props.onChangepCity} onChangepPassword={this.props.onChangepPassword}></Registration>}
+                {this.props.reducerIsVisibleRegistration.isVisibleRegistration && <Registration password={this.props.reducerRegistrationPassword.registrationPassword} visibleProfile={this.props.visibleProfile} name={this.props.reducerName.name} surname={this.props.reducerSurname.surname} email={this.props.reducerRegistrationEmail.registrationEmail} sphere={this.props.reducerSphere.sphere} city={this.props.reducerCity.city} pseoudonym={this.props.reducerPseudonym.pseoudonym} isVisibleRegistration={this.props.reducerIsVisibleRegistration.isVisibleRegistration} onChangeName={this.props.onChangeName} onChangeSurname={this.props.onChangeSurname} onChangepPseoudonym={this.props.onChangepPseoudonym} onChangepEmail={this.props.onChangepEmail} onChangepSphere={this.props.onChangepSphere} onChangepCity={this.props.onChangepCity} onChangepPassword={this.props.onChangepPassword}></Registration>}
             </div>
         )
     }

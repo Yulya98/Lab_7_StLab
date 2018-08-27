@@ -1,4 +1,4 @@
-import * as constants from "../constants/constantsBiggerPhoto"
+import * as constants from "../constants/constants"
 
 export function changeVisibleBiggerPhoto(){
     return (dispatch) =>{
@@ -14,9 +14,15 @@ export function VisibleBiggerPhoto(){
     }
 }
 
+export function returnInInitialStateVisible(){
+    return (dispatch) =>{
+        dispatch(VisibleBiggerPhoto());
+    }
+}
+
 export function visibleBiggerPhotoPosts() {
     return{
-        type: constants.CHANGE_VISIBLE_BIGGER_PHOTO_POSTS,
+        type: constants.VISIBLE_POST_PART,
         isVisiblePosts: true
     }
 }

@@ -14,21 +14,9 @@ export default class Album extends React.Component {
 
     constructor(props) {
         super(props);
-        this.deleteButton = this.deleteButton.bind(this);
-
-    }
-
-    deleteButton(){
-        var obj = {};
-        obj.nameImg = this.props.deleteItem;
-        obj.idAlbum = this.props.activeAlbumId;
-        document.getElementsByName("deleteItem")[0].value = '';
-        axios.post('photoDelete', obj);
-        this.props.deleteItemFromArray(this.props.images, obj.nameImg);
     }
 
     componentDidMount() {
-        debugger;
         this.props.loadData(this.props.flagForCheckPageCommentsOrProfile);
         setTimeout(() => { this.props.loadImages(this.props.activeUserId, this.props.activeAlbumId)}, 4000);
     }
@@ -79,7 +67,7 @@ export default class Album extends React.Component {
                             <input className="edit_input" type="text" name="deleteItem" value={this.props.deleteItem}
                                    onChange={this.props.onChangeDeleteItem}/><br/><br/>
                             <div className="margin_block">
-                                <button className="edit_button" onClick={this.deleteButton}>Delete photo</button>
+                                <button className="edit_button" onClick={() => this.props.deleteItemFromArray(this.props.images,this.props.deleteItem,this.props.activeAlbumId)}>Delete photo</button>
                             </div>
                         </div>
                     </div>

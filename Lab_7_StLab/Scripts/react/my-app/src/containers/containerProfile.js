@@ -5,10 +5,11 @@ import Profile from "../components/Profile"
 
 
 class ContainerProfile extends React.Component{
+
     render(){
         return(
             <div>
-                {this.props.isVisibleProfile && <Profile changeVisiblePosts={this.props.changeVisiblePosts} changeVisibleInformation={this.props.changeVisibleInformation} changeVisibleAlbom={this.props.changeVisibleAlbom}></Profile>}
+                {this.props.reducerIsVisibleProfile.isVisibleProfile && <Profile changeVisiblePosts={this.props.changeVisiblePosts} changeVisibleInformation={this.props.changeVisibleInformation} changeVisibleAlbom={this.props.changeVisibleAlbom}></Profile>}
             </div>
         )
     }

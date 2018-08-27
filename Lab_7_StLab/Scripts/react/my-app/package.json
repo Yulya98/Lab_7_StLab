@@ -8,6 +8,7 @@
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.0.0-beta.54",
     "axios": "^0.18.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.0-beta.4",
     "css-loader": "^1.0.0",
     "file-loader": "^1.1.11",

@@ -1,4 +1,5 @@
-import * as constants from "../constants/constantsRegistration"
+import * as constants from "../constants/constants";
+var axios = require('axios')
 
 export function onChangeName(e){
     return (dispatch) => {
@@ -8,7 +9,7 @@ export function onChangeName(e){
 
 export function changeName(data){
     return{
-        type: constants.CHANGE_NAME_REGISTRATION,
+        type: constants.INFO_ABOUT_USER_CHANGE_NAME,
         name: data
     }
 }
@@ -21,7 +22,7 @@ export function onChangeSurname(e){
 
 export function changeSurname(data){
     return{
-        type: constants.CHANGE__SURNAME_REGISTRATION,
+        type: constants.INFO_ABOUT_USER_CHANGE_SURNAME,
         surname: data
     }
 }
@@ -60,7 +61,7 @@ export function onChangepSphere(e){
 
 export function changeSphere(data){
     return{
-        type: constants.CHANGE__SPHERE_REGISTRATION,
+        type: constants.INFO_ABOUT_USER_CHANGE_SPHERE_USER,
         sphere: data
     }
 }
@@ -73,7 +74,7 @@ export function onChangepCity(e){
 
 export function changeCity(data){
     return{
-        type: constants.CHANGE__CITY_REGISTRATION,
+        type: constants.INFO_ABOUT_USER_CHANGE_CITY_USER,
         city: data
     }
 }
@@ -91,8 +92,18 @@ export function changePassword(data){
     }
 }
 
-export function visibleProfile(){
+export function visibleProfile(name,surname,pseoudonym,email,sphere,city,password){
     return (dispatch) => {
+        var obj = {};
+        obj.Name = name;
+        obj.Surname = surname;
+        obj.Pseudonym = pseoudonym;
+        obj.Email = email;
+        obj.FieldOfActivity = sphere;
+        obj.City = city;
+        obj.Password = password;
+        axios.post('adduser', obj);
+        this.props.visibleProfile();
         dispatch(changeProfile());
         dispatch(changeVisibleRegistration());
         dispatch(changeRegistrationUser());
@@ -101,7 +112,7 @@ export function visibleProfile(){
 
 export function changeProfile(){
     return{
-        type: constants.CHANGE_VISIBLE_PROFILE_FROM_AUTHORIZATION,
+        type: constants.CHANGE_VISIBLE_PROFILE,
         isVisibleProfile: true
     }
 }

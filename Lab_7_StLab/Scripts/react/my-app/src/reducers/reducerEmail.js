@@ -1,14 +1,18 @@
-import * as constantsAuthorization from "../constants/constantsAuthorization";
+import * as constantsAuthorization from "../constants/constants";
 
-const initialState = {
+let initialState = {
     email: ""
 };
 
-export default function reducerEmail(state = initialState) {
+export default function reducerEmail (state = initialState,action) {
     if(action.type === constantsAuthorization.CHANGE_EMAIL) {
         return {
             ...state,
             email: action.email
         }
     }
-}
+
+    return{
+        ...state
+    }
+};

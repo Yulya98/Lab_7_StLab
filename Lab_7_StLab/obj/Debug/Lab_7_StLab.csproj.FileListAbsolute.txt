@@ -155,4 +155,3 @@ C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLa
 C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLab.pdb
 C:\Users\Yuliya.Kukareka\Documents\Task_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLab.csprojAssemblyReference.cache
 C:\Users\Yulya\source\repos\Lab_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLab.csproj.CopyComplete
-C:\Users\Yulya\source\repos\Lab_7_StLab\Lab_7_StLab\obj\Debug\Lab_7_StLab.csprojAssemblyReference.cache

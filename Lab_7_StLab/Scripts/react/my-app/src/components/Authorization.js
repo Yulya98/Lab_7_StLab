@@ -4,6 +4,9 @@ import "../resources/css/authorizationStyle/authorization.scss"
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import validator from 'validator';
+import {
+    Redirect
+} from "react-router-dom";
 
 const required = (value) => {
 
@@ -18,13 +21,22 @@ const email = (value) => {
     }
 };
 
-class UserForm extends React.Component {
+export default class UserForm extends React.Component {
 
-        constructor(props) {
+    constructor(props) {
+        debugger;
         super(props);
     }
 
+
     render() {
+        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        const { redirectToReferrer } = this.props.redirectToReferrer;
+
+        if (redirectToReferrer) {
+            return <Redirect to={from} />;
+        }
+
         return (
             <div>
                 <div className="login-wrap">
@@ -37,12 +49,10 @@ class UserForm extends React.Component {
                             <Input type="password" validations={[required]} name="password" placeholder="password" value={this.props.password} onChange={this.props.changePassword} /><br />`
                         </Form>
                         <button disabled={!this.props.password || !this.props.email} onClick={()=>{this.props.handleSubmit(this.props.email, this.props.password)}}>Sign in</button>
-                        <button onClick={() => {this.props.visibleProfile()}}>Registration</button>
+                        <button onClick={() => this.props.onChangeRedirectToReferrer()}>Registration</button>
                     </div>
                 </div>
             </div>
         );
     }
 }
-
-export default UserForm;

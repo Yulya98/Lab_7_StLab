@@ -16,7 +16,6 @@ export default class MultiAlbum extends React.Component {
     }
 
     render(){
-        debugger;
         if(this.props.albums.length !=0) {
             return (
                 <div>

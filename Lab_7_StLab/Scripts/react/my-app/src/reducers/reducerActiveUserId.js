@@ -1,15 +1,19 @@
-import * as constantsAlbum from "../constants/constantsAlbum";
+import * as constants from "../constants/constants";
 
-const initialState = {
+let initialState = {
     activeUserId: ""
 };
 
-export default function reducerPassword(state = initialState) {
+export default function reducerActiveUserId (state = initialState,action) {
 
-    if(action.type === constantsAlbum.CHANGE_ACTIVE_USER){
+    if(action.type === constants.CHANGE_ACTIVE_USER){
         return{
             ...state,
             activeUserId: action.activeUserId,
         }
+    }
+
+    return{
+        ...state
     }
 }

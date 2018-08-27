@@ -4,7 +4,7 @@ import "../resources/css/posts/posts.css"
 import InfiniteScroll from 'react-bidirectional-infinite-scroll'
 
 
-var i = 1;
+var i = -1;
 export default class Posts extends React.Component {
 
 
@@ -30,24 +30,22 @@ export default class Posts extends React.Component {
 
 
     componentDidMount() {
-        debugger;
-        var context = this;
+        // this.props.componentDidMount();
 
         let promise = new Promise((resolve,reject )=> {
             axios.post('defineRegistrationUser')
                 .then((response) => {
-                    context.props.changeRegistrationUser(response.data);
+                    this.props.changeRegistrationUser(response.data);
                 });
-            debugger;
             axios.post('searchPosts')
                 .then((response) => {
-                    debugger;
                     for (var i = 0; i < response.data.length; i+=5) {
                         const obj = {postId:response.data[i], authorName: response.data[i+1], src: response.data[i + 2] , idUser:response.data[i+3], idAlbum: response.data[i+4]};
                         this.props.changePosts(obj);
                     }
                     var subPosts = [].concat(this.getItems()).concat(this.getItems());
                     this.props.changeSubPosts(subPosts);
+                    console.log(this.props.posts);
                 });
         });
     }
@@ -55,7 +53,6 @@ export default class Posts extends React.Component {
     getItems() {
         if(typeof this.props.posts[0] != "undefined") {
             i++;
-            debugger;
             if (i < this.props.posts.length) {
                 if (this.props.isRegistrationUser == false) {
                     return (
@@ -117,7 +114,7 @@ export default class Posts extends React.Component {
     }
 
     componentWillUnmount(){
-        i=1;
+        i = -1;
         this.props.returnInInitialState();
     }
 

@@ -1,14 +1,18 @@
-import * as constantsAuthorization from "../constants/constantsAuthorization";
+import * as constants from "../constants/constants";
 
-const initialState = {
+let initialState = {
     password: ""
 };
 
-export default function reducerPassword(state = initialState) {
-    if(action.type === constantsAuthorization.CHANGE_PASSWORD){
+export default function reducerPassword (state = initialState,action) {
+    if(action.type === constants.CHANGE_PASSWORD){
         return{
             ...state,
             password: action.password
         }
+    }
+
+    return{
+        ...state
     }
 }

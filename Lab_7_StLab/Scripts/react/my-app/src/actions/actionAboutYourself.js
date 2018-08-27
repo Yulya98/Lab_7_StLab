@@ -1,14 +1,12 @@
 import axios from "axios";
-import * as constsants from "../constants/constantsAboutYoiurself"
+import * as constants from "../constants/constants"
 
 
 export function componentDidMount() {
     return (dispatch)=> {
-        debugger;
         let promise = new Promise((resolve,reject )=> {
             axios.post('aktiveusersearch')
                 .then((response) => {
-                    debugger;
                     dispatch(changeName(response.data));
                     dispatch(changeSurname(response.data));
                     dispatch(changeEmailUser(response.data));
@@ -21,35 +19,35 @@ export function componentDidMount() {
 
 export function changeName(data) {
     return{
-        type: constsants.INFO_ABOUT_USER_CHANGE_NAME,
+        type: constants.INFO_ABOUT_USER_CHANGE_NAME,
         name: data[0]
     }
 }
 
 export function changeSurname(data) {
     return{
-        type: constsants.INFO_ABOUT_USER_CHANGE_SURNAME,
+        type: constants.INFO_ABOUT_USER_CHANGE_SURNAME,
         surname: data[1],
     }
 }
 
 export function changeEmailUser(data) {
     return{
-        type: constsants.INFO_ABOUT_USER_CHANGE_EMAIL_USER,
+        type: constants.INFO_ABOUT_USER_CHANGE_EMAIL_USER,
         emailUser: data[2]
     }
 }
 
 export function changeSphere(data) {
     return{
-        type: constsants.INFO_ABOUT_USER_CHANGE_SPHERE_USER,
+        type: constants.INFO_ABOUT_USER_CHANGE_SPHERE_USER,
         sphere: data[3]
     }
 }
 
 export function changeCity(data) {
     return{
-        type: constsants.INFO_ABOUT_USER_CHANGE_CITY_USER,
+        type: constants.INFO_ABOUT_USER_CHANGE_CITY_USER,
         city: data[4]
     }
 }

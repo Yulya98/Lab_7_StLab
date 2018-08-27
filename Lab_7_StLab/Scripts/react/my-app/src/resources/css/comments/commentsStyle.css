@@ -333,3 +333,8 @@ edit_button:active{
     margin-right: 1vw;
     float: left;
 }
+
+.image_style_mini{
+    width: 25vw;
+    height: 30vw;
+}

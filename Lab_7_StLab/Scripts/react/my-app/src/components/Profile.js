@@ -22,7 +22,7 @@ class App extends React.Component {
                     <div className="menu">
                         <ul>
                             <li><Link onClick={()=>this.props.changeVisibleInformation()} to="/about">Information</Link></li>
-                            <li><Link onClick={()=>this.props.changeVisibleAlbom()} to="/albom">My albom</Link></li>
+                            <li><Link onClick={()=>this.props.changeVisibleAlbom()} to="/album">My album</Link></li>
                             <li><Link onClick={()=>this.props.changeVisiblePosts()} to="/posts" id="menu_none">Last posts</Link></li>
                         </ul>
                     </div>

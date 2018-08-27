@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as constants from "../constants/constantsAlbum";
+import * as constants from "../constants/constants";
 
 export function componentWillMount(flagForCheckPage){
     return(dispatch) => {
@@ -7,11 +7,12 @@ export function componentWillMount(flagForCheckPage){
             axios.post('searchActiveUserId')
                 .then(function (response) {
                     dispatch(searchActiveUserIdFromProfile(response.data));
-                    dispatch(changeFlagForCheckPage())
+                    // dispatch(changeFlagForCheckPage())
                 });
         }
     }
 }
+
 
 export function searchActiveUserIdFromProfile(data){
     return{
@@ -40,7 +41,6 @@ export function  handleClicks(nameImg,value,idAlbum) {
         obj.NameImg = nameImg;
         obj.Path = value;
         obj.idAlbum = idAlbum;
-        debugger;
         axios.post('addPhoto', obj);
         const objs = {'original': obj.Path, 'thumbnail': obj.Path, 'description': obj.NameImg};
         dispatch(changeState(objs));
@@ -122,17 +122,18 @@ export function loadImages(activeUserId,idAlbum) {
                             'original': response.data[i],
                             'thumbnail': response.data[i],
                             'description': response.data[i + 1]
-                        }
+                        };
                         dispatch(loadImg(obj));
                     }
                 });
         });
+        dispatch(changeDeleteItem());
     }
 }
 
 export  function loadImg(obj) {
     return{
-        type: constants.LOAD_IMAGES,
+        type: constants.CHANGE_IMAGES,
         images: obj
     }
 }
@@ -140,33 +141,29 @@ export  function loadImg(obj) {
 export function returnInInitialState(){
     return (dispatch) => {
         dispatch(returnImagesInInitialState());
-        dispatch(changeImagesAlbumInPosts());
         dispatch(changeCheckPageCommentsOrProfile());
     }
 }
 
 export function returnImagesInInitialState() {
     return{
-        type: constants.RETURN_IN_INITIAL_STATE_IMAGE,
+        type: constants.DELETE_PHOTO_FROM_IMAGES,
         images: []
-    }
-}
-
-export function changeImagesAlbumInPosts(){
-    return{
-        type: constants.RETURN_IN_INITIAL_STATE_PAGE_POSTS,
-        flagForCheckAlbumInPosts: false
     }
 }
 
 export function changeCheckPageCommentsOrProfile() {
     return{
-        type: constants.RETURN_IN_INITIAL_STATE_FLAG_FOR_CHECK_PAGE_COMMENTS,
+        type: constants.CHANGE_FLAG_PROFILE,
         flagForCheckPageCommentsOrProfile: false
     }
 }
 
-export function deleteItemFromArray(array,deleteItem){
+export function deleteItemFromArray(array,deleteItem,activeAlbumId){
+    var obj = {};
+    obj.nameImg = deleteItem;
+    obj.idAlbum = activeAlbumId;
+    axios.post('photoDelete', obj);
     var index = -1;
     return (dispatch)=>{
         for(var j=0; j<array.length;j++){
@@ -192,7 +189,7 @@ export function searchOnValue(array){
 
 export function chamgeDeleteItem(){
     return{
-        type: constants.DELETE_PHOTO_ITEM,
+        type: constants.CHANGE_DELETE_ITEM,
         deleteItem: ""
     }
 }

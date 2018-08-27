@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as constants from "../constants/constsComments"
+import * as constants from "../constants/constants"
 
 export function componentDidMount(idPost) {
     return (dispatch)=> {
@@ -71,7 +71,7 @@ export function addComment(idPost, comment,idActiveUser){
 
 export function commentAdd(comment){
     return{
-        type:constants.ADD_COMMENT,
+        type:constants.CHANGE_DATA,
         data: comment
     }
 }
@@ -85,7 +85,7 @@ export function goToAlbums(idUser) {
 
 export function changeVisibleComments(flag) {
     return{
-        type:constants.CHANGE_VISIBLE_COMMENTS,
+        type:constants.VISIBLE_POST,
         isVisiblePost: flag
     }
 }
@@ -100,9 +100,8 @@ export function changeAlbumVisible() {
 
 export function returnInInitialState(){
     return (dispatch) => {
-        dispatch(changeInitialState())
+        dispatch(changeInitialState());
         dispatch(changeInitialStateData());
-        dispatch(changeInitialStateVisiblePosts(true));
         dispatch(changeInitialStateVisiblePost());
     }
 }
@@ -123,14 +122,14 @@ export function changeInitialStateData(){
 
 export function changeInitialStateVisiblePosts(flag){
     return{
-        type: constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE_POSTS,
+        type: constants.VISIBLE_POST_PART,
         isVisiblePosts: flag
     }
 }
 
 export function changeInitialStateVisiblePost(){
     return{
-        type: constants.RETURN_IN_INITIAL_STATE_COMMENTS_PAGE_POST,
+        type: constants.VISIBLE_POST,
         isVisiblePost: false
     }
 }
@@ -144,7 +143,7 @@ export function changeVisibleAuthorization(){
 
 export function visibleAuthorization() {
     return{
-        type:constants.VISIBLE_AUTHORIZATION_FROM_COMMENTS,
+        type: constants.CHANGE_VISIBLE_AUTHORIZATION,
         isVisibleAuthorization: true
     }
 }
